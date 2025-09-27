@@ -124,12 +124,6 @@ const PatientDashboard = ({ route }) => {
             <Text style={{color: 'white'}}>No available trials found at this time.</Text>
           )}
         </View>
-
-        {/* Health Tracker Card (Still static as a placeholder) */}
-        <View style={styles.card}>
-          <Text style={styles.cardTitle}>Health Tracker - Glucose Level</Text>
-          {/* ... static health tracker UI ... */}
-        </View>
       </View>
     </ScrollView>
   );

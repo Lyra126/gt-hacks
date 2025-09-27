@@ -1,7 +1,7 @@
 # api/endpoints/patient.py
 from fastapi import APIRouter, HTTPException
 # Import the new function from your service file
-from services.deep_agent_service import generate_personalized_timeline, get_patient_emr_for_dashboard
+from services.deep_agent_service import generate_personalized_timeline, get_patient_emr_for_dashboard, get_patient_profile_for_dashboard
 
 router = APIRouter()
 
@@ -28,3 +28,16 @@ async def get_emr_for_patient_dashboard(patient_id: str):
         raise HTTPException(status_code=404, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail="Failed to fetch EMR data.")
+    
+@router.get("/patient/{patient_id}/profile")
+async def get_profile_for_patient_dashboard(patient_id: str):
+    """
+    Fetches the PII profile data for a specific patient.
+    """
+    try:
+        profile_data = await get_patient_profile_for_dashboard(patient_id)
+        return profile_data
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+    except Exception:
+        raise HTTPException(status_code=500, detail="Failed to fetch profile data.")

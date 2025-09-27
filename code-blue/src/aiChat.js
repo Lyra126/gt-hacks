@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
 
 // Define the base URL directly in the file
-// Use 'http://10.0.2.2:8000' for Android, 'http://localhost:8000' for iOS
-const API_BASE_URL = 'http://10.0.2.2:8000';
+// Use 'http://100.66.12.93:8000' for Android, 'http://localhost:8000' for iOS
+const API_BASE_URL = 'http://100.66.12.93:8000';
 
 const AIChat = ({ patientId }) => { 
   const [messages, setMessages] = useState([]);

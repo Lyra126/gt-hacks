@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
 
 // The base URL of your local FastAPI server.
-// Use 'http://10.0.2.2:8000' for the Android emulator.
+// Use 'http://100.66.12.93:8000' for the Android emulator.
 // Use 'http://localhost:8000' for the iOS simulator.
-const API_BASE_URL = 'http://10.0.2.2:8000';
+const API_BASE_URL = 'http://100.66.12.93:8000';
 
 const DoctorDashboard = () => {
   const [patients, setPatients] = useState([]);

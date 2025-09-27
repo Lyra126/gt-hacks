@@ -17,7 +17,7 @@ export default function MainTabs() {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           if (route.name === 'Patient') iconName = focused ? 'home' : 'home-outline';
-          if (route.name === 'Doctor') iconName = focused ? 'medkit' : 'medkit-outline';
+          // if (route.name === 'Doctor') iconName = focused ? 'medkit' : 'medkit-outline';
           if (route.name === 'AI Chat') iconName = focused ? 'chatbubbles' : 'chatbubbles-outline';
           if (route.name === 'Trials') iconName = focused ? 'clipboard' : 'clipboard-outline';
           return <Ionicons name={iconName} size={size} color={color} />;
@@ -27,7 +27,7 @@ export default function MainTabs() {
       })}
     >
       <Tab.Screen name="Patient" component={PatientDashboard} />
-      <Tab.Screen name="Doctor" component={DoctorDashboard} />
+      {/* <Tab.Screen name="Doctor" component={DoctorDashboard} /> */}
       <Tab.Screen name="AI Chat" component={AIChat} />
       <Tab.Screen name="Trials" component={ClinicalTrials} />
     </Tab.Navigator>

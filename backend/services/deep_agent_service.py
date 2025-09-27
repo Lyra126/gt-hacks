@@ -26,18 +26,32 @@ def get_patient_emr(patient_id: str) -> str:
     except Exception as e:
         return f"Error fetching EMR: {e}"
 
+# @tool
+# def update_patient_emr(patient_id: str, new_entry: str) -> str:
+#     """Appends a new entry to a patient's EMR log in 'emr_records'."""
+#     try:
+#         print(f"RTDB: Updating EMR log for patient '{patient_id}'")
+#         ref = realtime_db.reference(f'emr_records/{patient_id}/log')
+#         current_log = ref.get() or []
+#         current_log.append(new_entry) # type: ignore
+#         ref.set(current_log)
+#         return "EMR updated successfully in Realtime DB."
+#     except Exception as e:
+#         return f"Error updating EMR: {e}"
+
 @tool
-def update_patient_emr(patient_id: str, new_entry: str) -> str:
-    """Appends a new entry to a patient's EMR log in 'emr_records'."""
+def update_patient_emr(patient_id: str, new_entry: dict) -> str:
+    """Appends a new JSON entry to a patient's EMR log in 'emr_records'."""
     try:
         print(f"RTDB: Updating EMR log for patient '{patient_id}'")
         ref = realtime_db.reference(f'emr_records/{patient_id}/log')
         current_log = ref.get() or []
-        current_log.append(new_entry) # type: ignore
+        current_log.append(new_entry)  # append dict directly
         ref.set(current_log)
         return "EMR updated successfully in Realtime DB."
     except Exception as e:
         return f"Error updating EMR: {e}"
+
 
 @tool
 def get_trial_info(trial_id: str, stage_number: int = None) -> str:  # type: ignore

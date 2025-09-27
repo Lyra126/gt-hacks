@@ -19,13 +19,13 @@ app = FastAPI(
 
 # Configure the Gemini API
 try:
-    api_key = os.environ["GEMINI_API_KEY"]
+    api_key = os.environ["GOOGLE_API_KEY"]
     if not api_key:
-        raise ValueError("GEMINI_API_KEY not found in environment variables.")
+        raise ValueError("GOOGLE_API_KEY not found in environment variables.")
     # The 'type: ignore' comment suppresses a common Pylance linter warning.
     genai.configure(api_key=api_key) # type: ignore
 except KeyError:
-    raise ValueError("GEMINI_API_KEY is not set in the environment.")
+    raise ValueError("GOOGLE_API_KEY is not set in the environment.")
 
 # Initialize the Gemini Model
 model = genai.GenerativeModel('gemini-1.5-flash') # Updated to a valid model name

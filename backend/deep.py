@@ -100,14 +100,60 @@ def update_trial_protocol(trial_id: str, stage_number: int, update_description: 
     except Exception as e:
         return f"Error updating trial protocol: {e}"
 
+@tool
+def update_checklist_item(patient_id: str, stage_number: int, item_description: str, is_complete: bool) -> str:
+    """
+    Updates a single checklist item for a patient's specific trial stage.
+    Can be used to mark an item as complete/incomplete or to add a new ad-hoc item.
+    """
+    try:
+        print(f"FIRESTORE: Updating checklist for patient '{patient_id}', stage {stage_number}")
+        
+        # Find the active enrollment document for the patient
+        enrollments_ref = db.collection('enrollments').where('patientId', '==', patient_id).where('isActive', '==', True)
+        docs = list(enrollments_ref.stream())
+        if not docs:
+            return f"No active enrollment found for patient '{patient_id}'."
+        
+        enrollment_doc_ref = docs[0].reference
+
+        # Use dot notation to update the specific nested field in the map
+        field_path = f"checklistProgress.stage{stage_number}.{item_description}"
+        enrollment_doc_ref.update({
+            field_path: is_complete
+        })
+        
+        status = "marked as complete" if is_complete else "marked as incomplete"
+        return f"Checklist item '{item_description}' for stage {stage_number} was successfully {status}."
+        
+    except Exception as e:
+        return f"An error occurred while updating the checklist: {e}"
+
 
 # --- 3. AGENT CONFIGURATION & INITIALIZATION ---
 
-all_tools = [get_patient_profile, get_patient_emr, update_patient_emr, get_trial_info, get_patient_progress, update_trial_protocol]
+all_tools = [get_patient_profile, get_patient_emr, update_patient_emr, get_trial_info, get_patient_progress, update_trial_protocol, update_checklist_item]
 
-emr_subagent = {"name": "EMR_Manager", "description": "Manages patient-specific data...", "prompt": "...", "tools": [get_patient_profile, get_patient_emr, update_patient_emr]}
-trial_info_subagent = {"name": "Trial_Info_Specialist", "description": "Provides information about the clinical trial...", "prompt": "...", "tools": [get_trial_info]}
-clinical_org_subagent = {"name": "Clinical_Org_Assistant", "description": "An assistant for clinical trial staff...", "prompt": "...", "tools": [get_patient_progress, update_trial_protocol]}
+emr_subagent = {
+    "name": "EMR_Manager",
+    "description": "Manages all patient-specific data, including both personal profiles (name, email), sensitive medical records (EMR), and checklist items. Use this for any task related to reading, writing, or updating any of a patient's data.",
+    "prompt": "You are a diligent patient data assistant. You handle both personal and medical records with accuracy. Always confirm when an update is complete.",
+    "tools": [get_patient_profile, get_patient_emr, update_patient_emr, update_checklist_item]
+}
+
+trial_info_subagent = {
+    "name": "Trial_Info_Specialist",
+    "description": "Provides information to patients about the clinical trial. Use this to answer questions about the trial's purpose, specific stages, or what to expect next.",
+    "prompt": "You are a helpful and clear communicator. Your job is to explain the clinical trial to patients in an easy-to-understand way.",
+    "tools": [get_trial_info]
+}
+
+clinical_org_subagent = {
+    "name": "Clinical_Org_Assistant",
+    "description": "An assistant for the clinical trial organization staff. Use this to query patient progress, update checklists, or make administrative updates to the trial protocol.",
+    "prompt": "You are an administrative assistant for the clinical trial staff. Be precise and formal. Confirm all administrative changes.",
+    "tools": [get_patient_progress, update_trial_protocol, update_checklist_item]
+}
 
 main_agent_instructions = "You are the central router for a clinical trial chat system..."
 

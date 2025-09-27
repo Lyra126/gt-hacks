@@ -194,6 +194,41 @@ async def get_active_patients_for_org(org_id: str) -> list:
         print(f"Error fetching active patients: {e}")
         raise
 
+async def get_patient_profile_for_dashboard(patient_id: str):
+    """
+    Service function to fetch a patient's PII profile for their dashboard.
+    """
+    try:
+        print(f"RTDB: Fetching profile from 'users/{patient_id}' for dashboard")
+        snapshot = realtime_db.reference(f'users/{patient_id}').get()
+        if snapshot:
+            return snapshot
+        else:
+            raise ValueError(f"No profile found for patient '{patient_id}'.")
+    except Exception as e:
+        print(f"Error fetching profile for dashboard: {e}")
+        raise
+
+async def get_available_trials() -> list:
+    """
+    Service function to fetch all clinical trials that are 'Active' or 'Recruiting'.
+    """
+    try:
+        print("RTDB: Fetching all clinical trials")
+        all_trials = realtime_db.reference('clinicalTrials').get() or {}
+        
+        available_trials = []
+        for trial_id, trial_data in all_trials.items(): # type: ignore
+            if trial_data.get("status") in ["Active", "Recruiting"]:
+                # Add the trial_id to the object for use in the frontend
+                trial_data['id'] = trial_id 
+                available_trials.append(trial_data)
+        
+        return available_trials
+    except Exception as e:
+        print(f"Error fetching available trials: {e}")
+        raise
+
 # --- 3. AGENT CONFIGURATION & INITIALIZATION ---
 all_tools = [
     get_patient_profile,

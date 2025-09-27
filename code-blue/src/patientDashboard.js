@@ -1,8 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
+import axios from 'axios';
+import { useState } from 'react';
 
 const PatientDashboard = () => {
-  const userName = "Sarah Johnson";
+  const API_BASE = "http://100.66.11.34:8000/api";
+  const name = "Sarah Johnson";
+  const [error, setErrorMessage] = useState("");
   
   const emrData = {
     patientId: "PT-2024-7891",
@@ -59,11 +63,56 @@ const PatientDashboard = () => {
     return '#28a745';
   };
 
+  const handleUploadEMR = async () => {
+    console.log("Upload EMR information");
+    try {
+      setErrorMessage("");
+      const res = await axios.post(`${API_BASE}/updateEMRInfo`, {
+          email,
+          name,
+      });
+
+      console.log("Login response:", res.data);
+
+      if (userType === 'patient') {
+          setIsLoggedIn(true);
+          navigation.reset({
+              index: 0,
+              routes: [{ name: "MainTabs" }],
+          });
+      } else {
+          navigation.reset({
+              index: 0,
+              routes: [{ name: "DoctorDashboard" }],
+          });
+      }
+      
+    } catch (err) {
+        console.error("Login error:", err.response?.data || err.message);
+        const detail = err.response?.data?.detail;
+        if (Array.isArray(detail)) {
+            setErrorMessage(detail.map(d => d.msg).join(", "));
+        } else if (typeof detail === "string") {
+            setErrorMessage(detail);
+        } else {
+            setErrorMessage("Login failed");
+        }
+    }
+  }
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.wrapper}>
       <Text style={styles.title}>Patient Dashboard</Text>
-      <Text style={styles.welcomeText}>Welcome back, {userName}</Text>
+      <Text style={styles.welcomeText}>Welcome back, {name}</Text>
+       <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.uploadButton} onPress={handleUploadEMR}>
+            <Text style={styles.buttonText}>Upload EMR Files</Text>
+          </TouchableOpacity>
+          {/* <TouchableOpacity style={styles.updateButton}>
+            <Text style={styles.buttonText}>Update Info</Text>
+          </TouchableOpacity> */}
+        </View>
       
       {/* EMR Information Card */}
       <View style={[styles.card, styles.cardHover]}>
@@ -187,7 +236,8 @@ const styles = StyleSheet.create({
     backgroundColor:  "#667eea",
     padding: 24, 
     borderRadius: 20, 
-    marginBottom: 20, 
+    marginTop: 10,
+    marginBottom: 10, 
     shadowColor: '#000', 
     shadowOpacity: 0.15, 
     shadowOffset: { width: 0, height: 4 }, 
@@ -337,7 +387,36 @@ const styles = StyleSheet.create({
   timeLabel: {
     fontSize: 12,
     color: 'rgba(255,255,255,0.8)'
-  }
+  },
+   uploadButton: {
+    backgroundColor: '#4CAF50',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    borderRadius: 25,
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+    elevation: 3,
+    margin:7
+  },
+  updateButton: {
+    backgroundColor: '#2196F3',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    borderRadius: 25,
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+    elevation: 3,
+    margin:7
+  },
+  buttonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 14
+  },
 });
 
 export default PatientDashboard;

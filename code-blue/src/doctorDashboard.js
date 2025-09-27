@@ -15,24 +15,24 @@ const DoctorDashboard = () => {
     // IMPORTANT: Replace 'org-abc' with the actual ID of the logged-in organization
     const orgId = 'org-abc';
 
-    // The fetch logic is now directly inside the component's effect
-    fetch(`${API_BASE_URL}/api/org/${orgId}/active-patients`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then(data => {
-        setPatients(data.active_patients || []);
-      })
-      .catch(err => {
-        console.error("Failed to fetch active doctors:", err);
-        setError("Failed to load patient data.");
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    // // The fetch logic is now directly inside the component's effect
+    // fetch(`${API_BASE_URL}/api/org/${orgId}/active-patients`)
+    //   .then(response => {
+    //     if (!response.ok) {
+    //       throw new Error(`HTTP error! status: ${response.status}`);
+    //     }
+    //     return response.json();
+    //   })
+    //   .then(data => {
+    //     setPatients(data.active_patients || []);
+    //   })
+    //   .catch(err => {
+    //     console.error("Failed to fetch active doctors:", err);
+    //     setError("Failed to load patient data.");
+    //   })
+    //   .finally(() => {
+    //     setIsLoading(false);
+    //   });
   }, []); // The empty array [] ensures this effect runs only once
 
   if (isLoading) {

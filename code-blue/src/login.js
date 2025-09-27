@@ -9,13 +9,13 @@ import axios from 'axios';
 
 const API_BASE = "http://100.66.11.34:8000/api";
 
-const login = ({ }) => {
+const login = () => {
     const navigation = useNavigation();
     const [email,setEmail]=  useState("");
     const [password,setPassword]=  useState("");
     const [error, setErrorMessage] = useState("");
     const [userType, setUserType] = useState('patient'); // 'patient' or 'crc'
-    
+
     const handleSignIn = async () => {
         // setIsLoggedIn(true);
         if (!email || !password) {

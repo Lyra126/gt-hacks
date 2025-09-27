@@ -201,6 +201,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   timelineTitle: {
+    marginTop: 50,
     fontSize: 24,
     fontWeight: 'bold',
     color: '#2980b9',

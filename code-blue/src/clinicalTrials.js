@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, Modal, SafeAreaView } from 'react-native';
+import ClinicalTrialTimeline from './timeline'; // Make sure this path is correct
 
 const ClinicalTrials = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedFilter, setSelectedFilter] = useState('All');
+  const [selectedTrial, setSelectedTrial] = useState(null); // State to manage the modal
 
+  // --- (Your allTrials data remains the same) ---
   const allTrials = [
     {
       id: 1,
@@ -123,111 +126,120 @@ const ClinicalTrials = () => {
     console.log(`Requesting doctor review for: ${trialTitle}`);
   };
 
-  const handleViewDetails = (trialTitle) => {
-    // Handle view details
-    console.log(`Viewing details for: ${trialTitle}`);
+  // --- Handlers for opening and closing the timeline modal ---
+  const handleOpenTimeline = (trial) => {
+    setSelectedTrial(trial);
+  };
+
+  const handleCloseTimeline = () => {
+    setSelectedTrial(null);
   };
 
   return (
-    <ScrollView style={styles.container}>
-        <View style={styles.wrapper}>
-        <Text style={styles.title}>Clinical Trials</Text>
-        
-        {/* Search Bar */}
-        <View style={styles.searchContainer}>
-            <TextInput
-            style={styles.searchInput}
-            placeholder="Search by condition, location, or sponsor..."
-            value={searchQuery}
-            onChangeText={setSearchQuery}
-            />
-        </View>
+    <>
+      <ScrollView style={styles.container}>
+          <View style={styles.wrapper}>
+          <Text style={styles.title}>Clinical Trials</Text>
+          
+          <View style={styles.searchContainer}>
+              <TextInput
+              style={styles.searchInput}
+              placeholder="Search by condition, location, or sponsor..."
+              value={searchQuery}
+              onChangeText={setSearchQuery}
+              />
+          </View>
 
-        {/* Filter Buttons */}
-        <View style={styles.filterContainer}>
-            {filterOptions.map((filter) => (
-            <TouchableOpacity
-                key={filter}
-                style={[
-                styles.filterButton,
-                selectedFilter === filter && styles.activeFilterButton
-                ]}
-                onPress={() => setSelectedFilter(filter)}
-            >
-                <Text style={[
-                styles.filterButtonText,
-                selectedFilter === filter && styles.activeFilterButtonText
-                ]}>
-                {filter}
-                </Text>
-            </TouchableOpacity>
-            ))}
-        </View>
+          <View style={styles.filterContainer}>
+              {filterOptions.map((filter) => (
+              <TouchableOpacity
+                  key={filter}
+                  style={[ styles.filterButton, selectedFilter === filter && styles.activeFilterButton ]}
+                  onPress={() => setSelectedFilter(filter)}
+              >
+                  <Text style={[ styles.filterButtonText, selectedFilter === filter && styles.activeFilterButtonText ]}>
+                  {filter}
+                  </Text>
+              </TouchableOpacity>
+              ))}
+          </View>
 
-        {/* Results Count */}
-        <Text style={styles.resultsCount}>
-            {filteredTrials.length} trial{filteredTrials.length !== 1 ? 's' : ''} found
-        </Text>
+          <Text style={styles.resultsCount}>
+              {filteredTrials.length} trial{filteredTrials.length !== 1 ? 's' : ''} found
+          </Text>
 
-        {/* Clinical Trials Cards */}
-        {filteredTrials.map((trial) => (
-            <View key={trial.id} style={styles.card}>
-            <View style={styles.cardHeader}>
-                <Text style={styles.cardTitle}>{trial.title}</Text>
-                <View style={[styles.statusBadge, { backgroundColor: getStatusColor(trial.status) }]}>
-                <Text style={styles.statusText}>{trial.status}</Text>
+          {filteredTrials.map((trial) => (
+              // Card is now pressable to open the timeline
+              <TouchableOpacity key={trial.id} onPress={() => handleOpenTimeline(trial)} activeOpacity={0.8}>
+                <View style={styles.card}>
+                  <View style={styles.cardHeader}>
+                      <Text style={styles.cardTitle}>{trial.title}</Text>
+                      <View style={[styles.statusBadge, { backgroundColor: getStatusColor(trial.status) }]}>
+                      <Text style={styles.statusText}>{trial.status}</Text>
+                      </View>
+                  </View>
+
+                  <View style={styles.distanceLocationRow}>
+                      <Text style={styles.distance}>📍 {trial.distance}</Text>
+                      <Text style={styles.condition}>{trial.condition}</Text>
+                  </View>
+
+                  <Text style={styles.location}>🏥 {trial.location}</Text>
+                  <Text style={styles.description}>{trial.description}</Text>
+
+                  <View style={styles.infoRow}>
+                      <Text style={styles.infoLabel}>Sponsor:</Text>
+                      <Text style={styles.infoValue}>{trial.sponsor}</Text>
+                  </View>
+
+                  <View style={styles.infoRow}>
+                      <Text style={styles.infoLabel}>Insurance:</Text>
+                      <Text style={styles.infoValue}>{trial.insurance}</Text>
+                  </View>
+                  
+                  <TouchableOpacity 
+                    style={styles.reviewButton}
+                    onPress={() => handleRequestReview(trial.title)}
+                  >
+                    <Text style={styles.reviewButtonText}>Request Doctor Review</Text>
+                  </TouchableOpacity>
                 </View>
-            </View>
+              </TouchableOpacity>
+          ))}
 
-            <View style={styles.distanceLocationRow}>
-                <Text style={styles.distance}>📍 {trial.distance}</Text>
-                <Text style={styles.condition}>{trial.condition}</Text>
-            </View>
+          {filteredTrials.length === 0 && (
+              <View style={styles.noResults}>
+              <Text style={styles.noResultsText}>No clinical trials found.</Text>
+              <Text style={styles.noResultsSubtext}>Try adjusting your search or filter.</Text>
+              </View>
+          )}
+          </View>
+      </ScrollView>
 
-            <Text style={styles.location}>🏥 {trial.location}</Text>
-
-            <Text style={styles.description}>{trial.description}</Text>
-
-            <View style={styles.infoRow}>
-                <Text style={styles.infoLabel}>Sponsor:</Text>
-                <Text style={styles.infoValue}>{trial.sponsor}</Text>
-            </View>
-
-            <View style={styles.infoRow}>
-                <Text style={styles.infoLabel}>Insurance:</Text>
-                <Text style={styles.infoValue}>{trial.insurance}</Text>
-            </View>
-
-         
-                <TouchableOpacity 
-                style={styles.reviewButton}
-                onPress={() => handleRequestReview(trial.title)}
-                >
-                <Text style={styles.reviewButtonText}>Request Doctor Review</Text>
+      {/* --- Timeline Modal --- */}
+      <Modal
+        visible={!!selectedTrial}
+        animationType="slide"
+        onRequestClose={handleCloseTimeline}
+      >
+        <SafeAreaView style={styles.modalContainer}>
+            <View style={styles.modalHeader}>
+                <Text style={styles.modalTitle}>{selectedTrial?.title}</Text>
+                <TouchableOpacity onPress={handleCloseTimeline} style={styles.closeButton}>
+                    <Text style={styles.closeButtonText}>Exit</Text>
                 </TouchableOpacity>
-                
-                <TouchableOpacity 
-                style={styles.detailsButton}
-                onPress={() => handleViewDetails(trial.title)}
-                >
-                <Text style={styles.detailsButtonText}>View Details</Text>
-                </TouchableOpacity>
-
             </View>
-        ))}
-
-        {filteredTrials.length === 0 && (
-            <View style={styles.noResults}>
-            <Text style={styles.noResultsText}>No clinical trials found matching your criteria.</Text>
-            <Text style={styles.noResultsSubtext}>Try adjusting your search or filter options.</Text>
-            </View>
-        )}
-        </View>
-    </ScrollView>
+            <ClinicalTrialTimeline trialTitle={selectedTrial?.title}/>
+        </SafeAreaView>
+      </Modal>
+    </>
   );
 };
 
+
+// --- Add these new styles to your existing StyleSheet.create call ---
 const styles = StyleSheet.create({
+  // --- (all your existing styles are here) ---
   container: { 
     flex: 1, 
     padding: 20, 
@@ -240,7 +252,6 @@ const styles = StyleSheet.create({
     padding: 20,
     marginTop: 50,
     marginBottom: 20,
-    // Using padding and margin to create space around the content
     paddingBottom: 40
   },
   title: { 
@@ -261,8 +272,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 4,
-    elevation: 2,
-    fontSize: 14
+    elevation: 2
   },
   filterContainer: {
     flexDirection: 'row',
@@ -388,27 +398,10 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 16,
     borderRadius: 25,
-    flex: 1,
     alignItems: 'center',
-    margin: 7
-  },
-  detailsButton: {
-    backgroundColor: 'rgba(255,255,255,0.2)',
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    borderRadius: 25,
-    flex: 1,
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.3)',
-    margin: 7
+    marginTop: 10
   },
   reviewButtonText: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 14
-  },
-  detailsButtonText: {
     color: 'white',
     fontWeight: 'bold',
     fontSize: 14
@@ -429,6 +422,38 @@ const styles = StyleSheet.create({
   noResultsSubtext: {
     fontSize: 14,
     color: '#adb5bd'
+  },
+
+  // NEW STYLES FOR MODAL
+  modalContainer: {
+    flex: 1,
+    backgroundColor: '#f4f8fb'
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingTop: 20,
+    paddingBottom: 10,
+    backgroundColor: '#f4f8fb',
+  },
+  modalTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#2c3e50',
+    flex: 1,
+  },
+  closeButton: {
+    backgroundColor: '#e74c3c',
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 20,
+  },
+  closeButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 14,
   }
 });
 

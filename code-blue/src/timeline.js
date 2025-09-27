@@ -149,7 +149,7 @@ const TimelineItem = ({ item, index, isExpanded, onToggle, taskStatus, onTaskTog
   );
 };
 
-const ClinicalTrialTimeline = () => {
+const ClinicalTrialTimeline = ({ trialTitle }) => {
   const [expandedItems, setExpandedItems] = useState(new Set());
   // Track completion status for each task in each step
   const [taskStatus, setTaskStatus] = useState(
@@ -176,7 +176,7 @@ const ClinicalTrialTimeline = () => {
 
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      <Text style={styles.timelineTitle}>Clinical Trial Volunteer Timeline</Text>
+      <Text style={styles.timelineTitle}>{trialTitle ? `${trialTitle} Timeline` : 'Clinical Trial Timeline'}</Text>
       <View style={styles.timeline}>
         {timelineData.map((item, index) => (
           <TimelineItem

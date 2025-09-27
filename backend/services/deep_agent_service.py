@@ -209,6 +209,26 @@ async def get_patient_profile_for_dashboard(patient_id: str):
         print(f"Error fetching profile for dashboard: {e}")
         raise
 
+async def get_available_trials() -> list:
+    """
+    Service function to fetch all clinical trials that are 'Active' or 'Recruiting'.
+    """
+    try:
+        print("RTDB: Fetching all clinical trials")
+        all_trials = realtime_db.reference('clinicalTrials').get() or {}
+        
+        available_trials = []
+        for trial_id, trial_data in all_trials.items(): # type: ignore
+            if trial_data.get("status") in ["Active", "Recruiting"]:
+                # Add the trial_id to the object for use in the frontend
+                trial_data['id'] = trial_id 
+                available_trials.append(trial_data)
+        
+        return available_trials
+    except Exception as e:
+        print(f"Error fetching available trials: {e}")
+        raise
+
 # --- 3. AGENT CONFIGURATION & INITIALIZATION ---
 all_tools = [
     get_patient_profile,

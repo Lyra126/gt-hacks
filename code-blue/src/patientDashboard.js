@@ -1,73 +1,59 @@
-import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
-import axios from 'axios';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
+import * as DocumentPicker from 'expo-document-picker';
 
+const API_BASE_URL = 'http://10.0.2.2:8000';
 
-const PatientDashboard = ({route, email: propEmail}) => {
-  const email = route?.params?.email || propEmail || "";
-  const name = "John Doe"
-  const API_BASE = "http://100.66.11.34:8000/api";
-  const [error, setErrorMessage] = useState("");
+const InfoRow = ({ label, value }) => {
+  if (!value || value.length === 0) return null;
+  return (
+    <View style={styles.infoRow}>
+      <Text style={styles.infoLabel}>{label}:</Text>
+      <Text style={styles.infoValue}>{value}</Text>
+    </View>
+  );
+};
+
+const PatientDashboard = ({ route }) => {
+  const patientId = "patient-xyz-123";
+
+  const [profileData, setProfileData] = useState(null);
+  const [emrData, setEmrData] = useState(null);
+  const [trials, setTrials] = useState([]); // <-- ADDED State for trials
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log("Fetching data for:", email);
-  }, [email]);
-  
-  const emrData = {
-    patientId: "PT-2024-7891",
-    age: 34,
-    bloodType: "A+",
-    conditions: ["Type 2 Diabetes", "Hypertension", "Asthma"],
-    insurance: "BlueCross BlueShield Premium"
-  };
+    const fetchDashboardData = async () => {
+      try {
+        // Fetch profile, EMR, and available trials all at once
+        const [profileResponse, emrResponse, trialsResponse] = await Promise.all([
+          fetch(`${API_BASE_URL}/api/patient/${patientId}/profile`),
+          fetch(`${API_BASE_URL}/api/patient/${patientId}/emr`),
+          fetch(`${API_BASE_URL}/api/trials/available`) // <-- ADDED fetch call
+        ]);
 
-  const clinicalTrials = [
-    {
-      name: "DIABETES-CARE-2025",
-      status: "Recruiting",
-      matchPercentage: 94,
-      distance: "2.3 miles",
-      description: "A phase III trial evaluating a new glucose monitoring system for Type 2 diabetes patients with improved accuracy and continuous tracking capabilities."
-    },
-    {
-      name: "HYPERTENSION-NOVA",
-      status: "Active",
-      matchPercentage: 87,
-      distance: "5.7 miles", 
-      description: "Study comparing effectiveness of combination therapy versus traditional treatment approaches for managing hypertension in adults."
-    },
-    {
-      name: "RESPIRATORY-WELLNESS",
-      status: "Enrolling",
-      matchPercentage: 78,
-      distance: "8.2 miles",
-      description: "Research on personalized asthma management using AI-powered inhaler technology and environmental monitoring."
-    }
-  ];
+        if (!profileResponse.ok) throw new Error('Failed to fetch patient profile.');
+        if (!emrResponse.ok) throw new Error('Failed to fetch patient EMR.');
+        if (!trialsResponse.ok) throw new Error('Failed to fetch clinical trials.');
 
-  const healthData = {
-    glucoseLevel: 126,
-    status: "Slightly Elevated",
-    target: "80-120 mg/dL",
-    lastReading: "2 hours ago"
-  };
+        const profile = await profileResponse.json();
+        const emr = await emrResponse.json();
+        const trialsData = await trialsResponse.json();
 
-  const getStatusColor = (status) => {
-    switch(status.toLowerCase()) {
-      case 'recruiting': return '#28a745';
-      case 'active': return '#007bff';
-      case 'enrolling': return '#fd7e14';
-      case 'completed': return '#6c757d';
-      default: return '#6c757d';
-    }
-  };
+        setProfileData(profile);
+        setEmrData(emr);
+        setTrials(trialsData.available_trials || []); // <-- ADDED state update
 
-  const getGlucoseStatusColor = (level) => {
-    if (level < 80) return '#dc3545';
-    if (level > 120) return '#fd7e14';
-    return '#28a745';
-  };
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchDashboardData();
+  }, [patientId]);
 
   const handleUploadEMR = async () => {
     console.log("Upload EMR information");
@@ -97,105 +83,50 @@ const PatientDashboard = ({route, email: propEmail}) => {
       }
     }
   };
+  
+  if (isLoading) {
+    return <View style={styles.centerContainer}><ActivityIndicator size="large" color="#667eea" /></View>;
+  }
+
+  if (error) {
+    return <View style={styles.centerContainer}><Text style={styles.errorText}>{error}</Text></View>;
+  }
 
   return (
     <ScrollView style={styles.container}>
       <View style={styles.wrapper}>
-      <Text style={styles.title}>Patient Dashboard</Text>
-      <Text style={styles.welcomeText}>Welcome back, {name}</Text>
-       <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.uploadButton} onPress={handleUploadEMR}>
-            <Text style={styles.buttonText}>Upload EMR Files</Text>
-          </TouchableOpacity>
-          {/* <TouchableOpacity style={styles.updateButton}>
-            <Text style={styles.buttonText}>Update Info</Text>
-          </TouchableOpacity> */}
-        </View>
+        <Text style={styles.title}>Patient Dashboard</Text>
+        <Text style={styles.welcomeText}>Welcome back, {profileData?.firstName || 'Patient'}</Text>
+        
+        <TouchableOpacity style={styles.uploadButton} onPress={handleUploadEMR}>
+          <Text style={styles.buttonText}>Upload New EMR File</Text>
+        </TouchableOpacity>
       
-      {/* EMR Information Card */}
-      <View style={[styles.card, styles.cardHover]}>
-        <Text style={styles.cardTitle}>EMR Information</Text>
-        <View style={styles.infoRow}>
-          <Text style={styles.infoLabel}>Patient ID:</Text>
-          <Text style={styles.infoValue}>{emrData.patientId}</Text>
+        {/* EMR Information Card */}
+        <View style={styles.card}>
+            {/* ... (your existing EMR card) */}
         </View>
-        <View style={styles.infoRow}>
-          <Text style={styles.infoLabel}>Age:</Text>
-          <Text style={styles.infoValue}>{emrData.age} years</Text>
-        </View>
-        <View style={styles.infoRow}>
-          <Text style={styles.infoLabel}>Blood Type:</Text>
-          <Text style={styles.infoValue}>{emrData.bloodType}</Text>
-        </View>
-        <View style={styles.infoRow}>
-          <Text style={styles.infoLabel}>Conditions:</Text>
-          <Text style={styles.infoValue}>{emrData.conditions.join(', ')}</Text>
-        </View>
-        <View style={styles.infoRow}>
-          <Text style={styles.infoLabel}>Insurance:</Text>
-          <Text style={styles.infoValue}>{emrData.insurance}</Text>
-        </View>
-      </View>
 
-      {/* Clinical Trials Card */}
-      <View style={[styles.card, styles.cardHover]}>
-        <Text style={styles.cardTitle}>Matched Clinical Trials</Text>
-        {clinicalTrials.map((trial, index) => (
-          <View key={index} style={styles.trialItem}>
-            <View style={styles.trialHeader}>
-              <Text style={styles.trialName}>{trial.name}</Text>
-              <View style={[styles.statusBadge, { backgroundColor: getStatusColor(trial.status) }]}>
-                <Text style={styles.statusText}>{trial.status}</Text>
+        {/* --- UPDATED Clinical Trials Card --- */}
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>Available Clinical Trials</Text>
+          {trials.length > 0 ? (
+            trials.map((trial) => (
+              <View key={trial.id} style={styles.trialItem}>
+                <View style={styles.trialHeader}>
+                  <Text style={styles.trialName}>{trial.title}</Text>
+                  <View style={[styles.statusBadge, { backgroundColor: '#28a745' }]}>
+                    <Text style={styles.statusText}>{trial.status}</Text>
+                  </View>
+                </View>
+                <Text style={styles.trialDescription}>{trial.description}</Text>
               </View>
-            </View>
-            <View style={styles.trialDetails}>
-              <Text style={styles.matchPercentage}>{trial.matchPercentage}% Match</Text>
-              <Text style={styles.distance}>{trial.distance} away</Text>
-            </View>
-            <Text style={styles.trialDescription}>{trial.description}</Text>
-          </View>
-        ))}
-      </View>
+            ))
+          ) : (
+            <Text style={{color: 'white'}}>No available trials found at this time.</Text>
+          )}
+        </View>
 
-      {/* Health Tracker Card */}
-      <View style={[styles.card, styles.cardHover]}>
-        <Text style={styles.cardTitle}>Health Tracker - Glucose Level</Text>
-        <View style={styles.glucoseContainer}>
-          <View style={styles.glucoseReading}>
-            <Text style={styles.glucoseValue}>{healthData.glucoseLevel}</Text>
-            <Text style={styles.glucoseUnit}>mg/dL</Text>
-          </View>
-          <View style={styles.glucoseInfo}>
-            <Text style={[styles.glucoseStatus, { color: getGlucoseStatusColor(healthData.glucoseLevel) }]}>
-              {healthData.status}
-            </Text>
-            <Text style={styles.glucoseTarget}>Target: {healthData.target}</Text>
-            <Text style={styles.lastReading}>Last reading: {healthData.lastReading}</Text>
-          </View>
-        </View>
-        <View style={styles.glucoseChart}>
-          <Text style={styles.chartLabel}>Today's Trend</Text>
-          <View style={styles.chartContainer}>
-            {/* Simple visual representation of glucose levels throughout the day */}
-            <View style={styles.chartBar}>
-              <View style={[styles.chartPoint, { height: 40, backgroundColor: '#28a745' }]} />
-              <Text style={styles.timeLabel}>6AM</Text>
-            </View>
-            <View style={styles.chartBar}>
-              <View style={[styles.chartPoint, { height: 60, backgroundColor: '#fd7e14' }]} />
-              <Text style={styles.timeLabel}>12PM</Text>
-            </View>
-            <View style={styles.chartBar}>
-              <View style={[styles.chartPoint, { height: 55, backgroundColor: '#fd7e14' }]} />
-              <Text style={styles.timeLabel}>6PM</Text>
-            </View>
-            <View style={styles.chartBar}>
-              <View style={[styles.chartPoint, { height: 45, backgroundColor: '#28a745' }]} />
-              <Text style={styles.timeLabel}>Now</Text>
-            </View>
-          </View>
-        </View>
-      </View>
       </View>
     </ScrollView>
   );

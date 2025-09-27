@@ -5,20 +5,22 @@ import firebase_config
 
 # We will create these files in the next steps
 #add back in timeline_service
-from api.endpoints import agent, auth
+from api.endpoints import agent, auth, timeline, patient
+
+load_dotenv()
 
 app = FastAPI(
     title="Clinical Trial Unified API",
     description="A single API for all clinical trial services"
 )
 
-
 # --- 2. INCLUDE ROUTERS ---
 # This step makes the endpoints defined in other files part of the main application.
 # We add a '/api' prefix to keep all routes organized.
-app.include_router(agent.router, prefix="/api", tags=["Conversational Agent"]) # type: ignore
-# app.include_router(timeline.router, prefix="/api", tags=["Timeline Parser"]) # type: ignore
-app.include_router(auth.router, prefix="/api", tags=["Authentication & Codes"]) # type: ignore
+app.include_router(agent.router, prefix="/api", tags=["Conversational Agent"])
+app.include_router(timeline.router, prefix="/api", tags=["Timeline Parser"])
+app.include_router(auth.router, prefix="/api", tags=["Authentication"])
+app.include_router(patient.router, prefix="/api", tags=["Patient Views"])
 
 # A simple root endpoint to confirm the server is running
 @app.get("/")

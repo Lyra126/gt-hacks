@@ -97,6 +97,54 @@ def update_checklist_item(patient_id: str, stage_number: int, item_description: 
     except Exception as e:
         return f"An error occurred while updating the checklist: {e}"
 
+# --- Additional Service Functions ---
+# This function is NOT a tool. It's a separate service called by its own API endpoint.
+
+async def generate_personalized_timeline(patient_id: str, trial_id: str) -> dict:
+    """
+    Fetches a generic trial protocol and a patient's EMR, then uses an LLM
+    to generate a personalized timeline and checklist for that patient.
+    """
+    try:
+        # Step 1: Fetch the patient's EMR
+        emr_doc = db.collection('emr_records').document(patient_id).get()
+        if not emr_doc.exists:
+            return {"error": f"No EMR found for patient {patient_id}"}
+        patient_emr = emr_doc.to_dict()
+
+        # Step 2: Fetch the generic trial protocol and all its stages
+        stages_ref = db.collection('clinicalTrials').document(trial_id).collection('stages').stream()
+        generic_protocol = {f"Stage {stage.id}": stage.to_dict() for stage in stages_ref}
+
+        if not generic_protocol:
+            return {"error": f"No protocol found for trial {trial_id}"}
+
+        # Step 3: Craft a detailed prompt for the LLM
+        prompt = f"""
+        You are a helpful clinical trial assistant with deep medical expertise.
+        Your task is to personalize a generic clinical trial protocol for a specific patient based on their EMR.
+
+        **Patient's EMR:**
+        {json.dumps(patient_emr, indent=2)}
+
+        **Generic Trial Protocol:**
+        {json.dumps(generic_protocol, indent=2)}
+
+        **Instructions:**
+        Rewrite the generic protocol to be personalized for this patient. For each stage, you MUST:
+        1.  Rewrite the 'summary' to include specific advice relevant to the patient's conditions.
+        2.  Rewrite each 'checklist' item from a generic instruction to a specific, tailored actionable task for THIS patient, such as mentioning their exact medications where applicable (e.g., "Discontinue blood thinners" becomes "Stop taking your Aspirin 81mg").
+        3.  Return ONLY a single, valid JSON object that has the same structure as the generic protocol, but with the personalized 'summary' and 'checklist' fields.
+        """
+        
+        response = await llm.ainvoke(prompt)
+        json_string = response.content.strip().replace("```json", "").replace("```", "") # type: ignore
+        return json.loads(json_string)
+
+    except Exception as e:
+        print(f"Error generating personalized timeline: {e}")
+        return {"error": "Failed to generate personalized timeline."}
+    
 # --- 3. AGENT CONFIGURATION & INITIALIZATION ---
 
 all_tools = [get_patient_profile, get_patient_emr, update_patient_emr, get_trial_info, get_patient_progress, update_trial_protocol, update_checklist_item]

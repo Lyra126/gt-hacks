@@ -151,6 +151,48 @@ async def get_patient_emr_for_dashboard(patient_id: str) -> dict:
     except Exception as e:
         print(f"Error fetching EMR for dashboard: {e}")
         raise
+<<<<<<< Updated upstream
+=======
+
+async def get_active_patients_for_org(org_id: str) -> list:
+    """
+    Service function to fetch a list of active patients for a clinical org.
+    This function performs a "join" by fetching enrollments and then user profiles.
+    """
+    try:
+        print(f"FIRESTORE: Fetching active patients for org '{org_id}'")
+        # Step 1: Find all active enrollments for the given organization
+        enrollments_ref = db.collection('enrollments').where('orgId', '==', org_id).where('isActive', '==', True)
+        enrollment_docs = list(enrollments_ref.stream())
+
+        if not enrollment_docs:
+            return []
+
+        patient_list = []
+        for enrollment in enrollment_docs:
+            enrollment_data = enrollment.to_dict()
+            patient_id = enrollment_data.get('patientId') # type: ignore
+            
+            if patient_id:
+                # Step 2: For each enrollment, fetch the patient's profile from the 'users' collection
+                user_doc = db.collection('users').document(patient_id).get()
+                if user_doc.exists:
+                    user_data = user_doc.to_dict()
+                    # Step 3: Combine the data for the final list
+                    patient_list.append({
+                        "patientId": patient_id,
+                        "firstName": user_data.get('firstName'), # type: ignore
+                        "lastName": user_data.get('lastName'), # type: ignore
+                        "currentStage": enrollment_data.get('currentStage'), # type: ignore
+                        "trialId": enrollment_data.get('trialId') # type: ignore
+                    })
+        return patient_list
+    except Exception as e:
+        print(f"Error fetching active patients: {e}")
+        raise
+
+# --- 3. AGENT CONFIGURATION & INITIALIZATION ---
+>>>>>>> Stashed changes
 
 async def get_active_patients_for_org(org_id: str) -> list:
     """

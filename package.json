@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "expo": "^54.0.10",
+    "expo-document-picker": "~14.0.7"
+  }
+}

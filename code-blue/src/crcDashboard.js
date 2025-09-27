@@ -6,14 +6,20 @@ import { View, Text, StyleSheet, ScrollView, ActivityIndicator } from 'react-nat
 // Use 'http://localhost:8000' for the iOS simulator.
 const API_BASE_URL = 'http://100.66.12.93:8000';
 
-const DoctorDashboard = () => {
+const crcDashboard = ({route, email: propEmail}) => {
+  const email = route?.params?.email || propEmail || "";
   const [patients, setPatients] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    console.log("Fetching data for:", email);
+  }, [email]);
+
+  useEffect(() => {
     // IMPORTANT: Replace 'org-abc' with the actual ID of the logged-in organization
     const orgId = 'org-abc';
+    
 
     // // The fetch logic is now directly inside the component's effect
     // fetch(`${API_BASE_URL}/api/org/${orgId}/active-patients`)
@@ -54,7 +60,7 @@ const DoctorDashboard = () => {
 
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.title}>Doctor Dashboard</Text>
+      <Text style={styles.title}>Clinical Trials Coordinator Dashboard</Text>
       
       <View style={styles.card}>
         <Text style={styles.cardTitle}>Active Patients ({patients.length})</Text>
@@ -109,4 +115,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default DoctorDashboard;
+export default crcDashboard;

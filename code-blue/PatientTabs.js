@@ -3,7 +3,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
 import PatientDashboard from './src/patientDashboard';
-import DoctorDashboard from './src/doctorDashboard';
 import AIChat from './src/aiChat';
 import ClinicalTrials from './src/clinicalTrials';
 import Timeline from './src/timeline';

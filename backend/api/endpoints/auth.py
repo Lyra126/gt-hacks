@@ -114,25 +114,25 @@ def find_user_by_email(email: str):
 
 async def send_verification_email(email: str, verification_code: str):
     try:
-        MAILTRAP_HOST = os.getenv("MAILTRAP_HOST")
-        MAILTRAP_PORT = os.getenv("MAILTRAP_PORT")
-        MAILTRAP_USER = os.getenv("MAILTRAP_USER")
-        MAILTRAP_PASS = os.getenv("MAILTRAP_PASSWORD")
+        # MAILTRAP_HOST = os.getenv("MAILTRAP_HOST")
+        # MAILTRAP_PORT = os.getenv("MAILTRAP_PORT")
+        # MAILTRAP_USER = os.getenv("MAILTRAP_USER")
+        # MAILTRAP_PASS = os.getenv("MAILTRAP_PASSWORD")
 
-        msg = MIMEMultipart()
-        msg['From'] = "lyra4126@gmail.com"
-        msg['To'] = email
-        msg['Subject'] = "Verify your email"
+        # msg = MIMEMultipart()
+        # msg['From'] = "lyra4126@gmail.com"
+        # msg['To'] = email
+        # msg['Subject'] = "Verify your email"
 
-        body = f"Your verification code is: {verification_code}"
-        msg.attach(MIMEText(body, 'plain'))
+        # body = f"Your verification code is: {verification_code}"
+        # msg.attach(MIMEText(body, 'plain'))
 
-        # Connect to Mailtrap SMTP
-        context = ssl.create_default_context()
-        with smtplib.SMTP(MAILTRAP_HOST, MAILTRAP_PORT) as server:
-            server.starttls(context=context)
-            server.login(MAILTRAP_USER, MAILTRAP_PASS)
-            server.send_message(msg)
+        # # Connect to Mailtrap SMTP
+        # context = ssl.create_default_context()
+        # with smtplib.SMTP(MAILTRAP_HOST, MAILTRAP_PORT) as server:
+        #     server.starttls(context=context)
+        #     server.login(MAILTRAP_USER, MAILTRAP_PASS)
+        #     server.send_message(msg)
 
         print(f"[DEBUG] Verification email sent to {email} with code {verification_code}")
         return True

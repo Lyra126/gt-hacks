@@ -143,7 +143,7 @@ const SignUp = ({ onLogin, ...props }) => {
                         />
                     </View>
                     <View style={[styles.icons, {backgroundColor: '#e5e5e5'}]}>
-                        <AntDesign name="apple1" size={35} color="black" />
+                        <AntDesign name="apple" size={35} color="black" />
                     </View>
                 </View>
                 <View style={styles.footerView}>

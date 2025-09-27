@@ -33,7 +33,7 @@ def update_patient_emr(patient_id: str, new_entry: str) -> str:
         print(f"RTDB: Updating EMR log for patient '{patient_id}'")
         ref = realtime_db.reference(f'emr_records/{patient_id}/log')
         current_log = ref.get() or []
-        current_log.append(new_entry)
+        current_log.append(new_entry) # type: ignore
         ref.set(current_log)
         return "EMR updated successfully in Realtime DB."
     except Exception as e:
@@ -59,7 +59,7 @@ def get_patient_progress(patient_id: str) -> str:
         enrollments_ref = realtime_db.reference('enrollments')
         all_enrollments = enrollments_ref.get() or {}
         # Find first active enrollment for this patient
-        for _, enrollment in all_enrollments.items():
+        for _, enrollment in all_enrollments.items(): # type: ignore
             if enrollment.get("patientId") == patient_id and enrollment.get("isActive") is True:
                 return json.dumps(enrollment)
         return f"No active enrollment found for patient '{patient_id}'."
@@ -83,7 +83,7 @@ def update_checklist_item(patient_id: str, stage_number: int, item_description: 
         enrollments_ref = realtime_db.reference('enrollments')
         all_enrollments = enrollments_ref.get() or {}
         target_ref = None
-        for key, enrollment in all_enrollments.items():
+        for key, enrollment in all_enrollments.items(): # type: ignore
             if enrollment.get("patientId") == patient_id and enrollment.get("isActive") is True:
                 target_ref = enrollments_ref.child(key)
                 break
@@ -133,8 +133,6 @@ async def generate_personalized_timeline(patient_id: str, trial_id: str) -> dict
     except Exception as e:
         print(f"Error generating personalized timeline: {e}")
         return {"error": "Failed to generate personalized timeline."}
-<<<<<<< Updated upstream
-=======
     
 async def get_patient_emr_for_dashboard(patient_id: str) -> dict:
     """
@@ -151,10 +149,6 @@ async def get_patient_emr_for_dashboard(patient_id: str) -> dict:
     except Exception as e:
         print(f"Error fetching EMR for dashboard: {e}")
         raise
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
 
 async def get_active_patients_for_org(org_id: str) -> list:
     """
@@ -194,7 +188,6 @@ async def get_active_patients_for_org(org_id: str) -> list:
         raise
 
 # --- 3. AGENT CONFIGURATION & INITIALIZATION ---
->>>>>>> Stashed changes
 
 async def get_active_patients_for_org(org_id: str) -> list:
     """
@@ -234,7 +227,6 @@ async def get_active_patients_for_org(org_id: str) -> list:
         raise
 
 # --- 3. AGENT CONFIGURATION & INITIALIZATION ---
->>>>>>> Stashed changes
 
 async def get_active_patients_for_org(org_id: str) -> list:
     """
@@ -274,8 +266,6 @@ async def get_active_patients_for_org(org_id: str) -> list:
         raise
 
 # --- 3. AGENT CONFIGURATION & INITIALIZATION ---
->>>>>>> Stashed changes
-
 all_tools = [
     get_patient_profile,
     get_patient_emr,

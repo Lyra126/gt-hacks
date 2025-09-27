@@ -9,7 +9,7 @@ import axios from 'axios';
 
 const API_BASE = "http://100.66.11.34:8000/api";
 
-const login = ({ setIsLoggedIn }) => {
+const login = ({ }) => {
     const navigation = useNavigation();
     const [email,setEmail]=  useState("");
     const [password,setPassword]=  useState("");
@@ -40,10 +40,14 @@ const login = ({ setIsLoggedIn }) => {
             // } else {
             // If no 2FA required, navigate directly to timeline
             if (userType === 'patient') {
-                setIsLoggedIn(true);
                 navigation.reset({
                     index: 0,
-                    routes: [{ name: "MainTabs" }],
+                    routes: [{ name: "MainTabs",
+                         params: {
+                            screen: "PatientDashboard",
+                            params: { email: email }
+                        }
+                     }],
                 });
             } else {
                 navigation.reset({

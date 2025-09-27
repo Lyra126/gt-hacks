@@ -37,7 +37,8 @@ const SignUp = ({ onLogin, ...props }) => {
             console.log("Signup response:", res.data);
 
             // After signup, navigate to Verify screen
-            navigation.navigate("VerifyEmail", { email, isLogin: false});
+            // navigation.navigate("VerifyEmail", { email, isLogin: false});
+            navigation.navigate("Login", { email});
         } catch (err) {
             console.error("Signup error:", err.response?.data || err.message);
             if (Array.isArray(detail)) {

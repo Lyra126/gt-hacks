@@ -1,11 +1,15 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+// import DocumentPicker from 'react-native-document-picker';
+// import RNFS from 'react-native-fs'; 
 
-const PatientDashboard = () => {
+const PatientDashboard = ({route}) => {
+  // const { email } = route.params;
+  const email = ""
+  const name = "John Doe"
   const API_BASE = "http://100.66.11.34:8000/api";
-  const name = "Sarah Johnson";
   const [error, setErrorMessage] = useState("");
   
   const emrData = {
@@ -67,38 +71,30 @@ const PatientDashboard = () => {
     console.log("Upload EMR information");
     try {
       setErrorMessage("");
-      const res = await axios.post(`${API_BASE}/updateEMRInfo`, {
-          email,
-          name,
+      const res = await DocumentPicker.pickSingle({
+        type: [DocumentPicker.types.pdf],
       });
 
-      console.log("Login response:", res.data);
+      console.log("Selected file:", res);
 
-      if (userType === 'patient') {
-          setIsLoggedIn(true);
-          navigation.reset({
-              index: 0,
-              routes: [{ name: "MainTabs" }],
-          });
-      } else {
-          navigation.reset({
-              index: 0,
-              routes: [{ name: "DoctorDashboard" }],
-          });
-      }
-      
+      const fileBase64 = await RNFS.readFile(res.uri, 'base64');
+      const response = await axios.post(`${API_BASE}/extract_text_from_pdf`, {
+        email,  
+        name,  
+        fileData: fileBase64,
+        fileName: res.name
+      });
+
+      console.log("Upload EMR response:", response.data);
+
     } catch (err) {
-        console.error("Login error:", err.response?.data || err.message);
-        const detail = err.response?.data?.detail;
-        if (Array.isArray(detail)) {
-            setErrorMessage(detail.map(d => d.msg).join(", "));
-        } else if (typeof detail === "string") {
-            setErrorMessage(detail);
-        } else {
-            setErrorMessage("Login failed");
-        }
+      if (DocumentPicker.isCancel(err)) {
+        console.log("User cancelled file picker");
+      } else {
+        console.error("Upload error:", err.response?.data || err.message);
+      }
     }
-  }
+  };
 
   return (
     <ScrollView style={styles.container}>

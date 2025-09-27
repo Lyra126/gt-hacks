@@ -171,27 +171,27 @@ async def sign_up(user_data: UserSignUp):
         user_id = new_user_ref.key
         
         # Generate and send verification code
-        verification_code = generate_verification_code()
-        verification_codes[user_data.email] = {
-            "code": verification_code,
-            "expires": datetime.utcnow() + timedelta(minutes=10),
-            "verified": False,
-            "user_id": user_id
-        }
+        # verification_code = generate_verification_code()
+        # verification_codes[user_data.email] = {
+        #     "code": verification_code,
+        #     "expires": datetime.utcnow() + timedelta(minutes=10),
+        #     "verified": False,
+        #     "user_id": user_id
+        # }
         
-        # Send verification email
-        email_sent = await send_verification_email(user_data.email, verification_code)
+        # # Send verification email
+        # email_sent = await send_verification_email(user_data.email, verification_code)
         
-        if not email_sent:
-            # If email fails, still return success but inform about manual verification
-            return {
-                "message": "User registered successfully. Email service unavailable - contact admin for verification.",
-                "user_id": user_id,
-                "requires_verification": True
-            }
+        # if not email_sent:
+        #     # If email fails, still return success but inform about manual verification
+        #     return {
+        #         "message": "User registered successfully. Email service unavailable - contact admin for verification.",
+        #         "user_id": user_id,
+        #         "requires_verification": True
+        #     }
         
         return {
-            "message": "User registered successfully. Please check your email for verification code.",
+            "message": "User registered successfully.",
             "user_id": user_id,
             "requires_verification": True
         }
@@ -256,24 +256,24 @@ async def login(login_data: UserLogin):
         if user_data['userType'] != login_data.userType:
             raise HTTPException(status_code=400, detail="Invalid user type")
         
-        # Verify password
-        if not verify_password(login_data.password, user_data['password']):
-            raise HTTPException(status_code=401, detail="Invalid credentials")
+        # # Verify password
+        # if not verify_password(login_data.password, user_data['password']):
+        #     raise HTTPException(status_code=401, detail="Invalid credentials")
         
-        # Generate and send 2FA code
-        two_fa_code = generate_verification_code()
-        print(f"[DEBUG] Generated verification code for {user_data["email"]}: {two_fa_code}")
-        verification_codes[login_data.email] = {
-            "code": two_fa_code,
-            "expires": datetime.utcnow() + timedelta(minutes=5),
-            "verified": False,
-            "user_id": user_id,
-            "is_login": True
-        }
+        # # Generate and send 2FA code
+        # two_fa_code = generate_verification_code()
+        # print(f"[DEBUG] Generated verification code for {user_data["email"]}: {two_fa_code}")
+        # verification_codes[login_data.email] = {
+        #     "code": two_fa_code,
+        #     "expires": datetime.utcnow() + timedelta(minutes=5),
+        #     "verified": False,
+        #     "user_id": user_id,
+        #     "is_login": True
+        # }
 
-        # Send 2FA code
-        email_sent = await send_verification_email(login_data.email, two_fa_code)
-        print(f"[DEBUG] Email sent? {email_sent}")
+        # # Send 2FA code
+        # email_sent = await send_verification_email(login_data.email, two_fa_code)
+        # print(f"[DEBUG] Email sent? {email_sent}")
         return {
             "message": "2FA code sent to your email" if email_sent else "2FA required - email service unavailable",
             "requires_2fa": True,

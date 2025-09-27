@@ -17,6 +17,7 @@ const login = ({ }) => {
     const [userType, setUserType] = useState('patient'); // 'patient' or 'crc'
     
     const handleSignIn = async () => {
+        // setIsLoggedIn(true);
         if (!email || !password) {
             setErrorMessage("All fields are required.");
             return;
@@ -42,11 +43,7 @@ const login = ({ }) => {
             if (userType === 'patient') {
                 navigation.reset({
                     index: 0,
-                    routes: [{ name: "MainTabs",
-                         params: {
-                            screen: "PatientDashboard",
-                            params: { email: email }
-                        }
+                    routes: [{ name: "MainTabs", params: { email: email }
                      }],
                 });
             } else {

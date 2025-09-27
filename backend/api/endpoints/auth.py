@@ -275,7 +275,7 @@ async def login(login_data: UserLogin):
         # email_sent = await send_verification_email(login_data.email, two_fa_code)
         # print(f"[DEBUG] Email sent? {email_sent}")
         return {
-            "message": "2FA code sent to your email" if email_sent else "2FA required - email service unavailable",
+            "message": "2FA code sent to your email",
             "requires_2fa": True,
             "user_id": user_id
         }
@@ -356,36 +356,36 @@ async def verify_2fa(verify_data: VerifyCodeRequest):
         print(f"2FA verification error: {e}")
         raise HTTPException(status_code=500, detail="2FA verification failed")
 
-@router.post("/resend-code")
-async def resend_verification_code(resend_data: ResendCodeRequest):
-    """Resend verification or 2FA code."""
-    try:
-        if resend_data.email not in verification_codes:
-            raise HTTPException(status_code=400, detail="No active verification for this email")
+# @router.post("/resend-code")
+# async def resend_verification_code(resend_data: ResendCodeRequest):
+#     """Resend verification or 2FA code."""
+#     try:
+#         if resend_data.email not in verification_codes:
+#             raise HTTPException(status_code=400, detail="No active verification for this email")
         
-        # Generate new code
-        new_code = generate_verification_code()
-        stored_data = verification_codes[resend_data.email]
+#         # Generate new code
+#         new_code = generate_verification_code()
+#         stored_data = verification_codes[resend_data.email]
         
-        # Update with new code and extended time
-        verification_codes[resend_data.email] = {
-            **stored_data,
-            "code": new_code,
-            "expires": datetime.utcnow() + timedelta(minutes=10)
-        }
+#         # Update with new code and extended time
+#         verification_codes[resend_data.email] = {
+#             **stored_data,
+#             "code": new_code,
+#             "expires": datetime.utcnow() + timedelta(minutes=10)
+#         }
         
-        # Send new code
-        email_sent = await send_verification_email(resend_data.email, new_code)
+#         # Send new code
+#         email_sent = await send_verification_email(resend_data.email, new_code)
         
-        return {
-            "message": "New verification code sent" if email_sent else "Code regenerated - email service unavailable"
-        }
+#         return {
+#             "message": "New verification code sent" if email_sent else "Code regenerated - email service unavailable"
+#         }
         
-    except HTTPException:
-        raise
-    except Exception as e:
-        print(f"Resend code error: {e}")
-        raise HTTPException(status_code=500, detail="Failed to resend code")
+#     except HTTPException:
+#         raise
+#     except Exception as e:
+#         print(f"Resend code error: {e}")
+#         raise HTTPException(status_code=500, detail="Failed to resend code")
 
 @router.post("/logout")
 async def logout(user_id: str):

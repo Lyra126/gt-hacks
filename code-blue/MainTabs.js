@@ -11,6 +11,7 @@ import Timeline from './src/timeline';
 const Tab = createBottomTabNavigator();
 
 export default function MainTabs() {
+  // const email = route.params?.email;
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -28,7 +29,8 @@ export default function MainTabs() {
         tabBarInactiveTintColor: 'gray',
       })}
     >
-      <Tab.Screen name="Patient" component={PatientDashboard} />
+      {/* initialParams={{ email }} */}
+      <Tab.Screen name="Patient" component={PatientDashboard}  />
       {/* <Tab.Screen name="Doctor" component={DoctorDashboard} /> */}
       <Tab.Screen name="AI Chat" component={AIChat} />
       <Tab.Screen name="Trials" component={ClinicalTrials} />

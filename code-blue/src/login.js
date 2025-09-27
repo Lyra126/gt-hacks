@@ -51,8 +51,7 @@ const login = ({ onLogin, ...props }) => {
 
     return (
         <SafeAreaView  style={[globalStyles.AndroidSafeArea, styles.container]}>
-            {/* onPress={() => {navigation.navigate('PromptLoginSignUp')}} */}
-            <TouchableOpacity style={styles.backButton} > 
+            <TouchableOpacity style={styles.backButton} onPress={() => {navigation.navigate('PromptLoginSignUp')}} > 
                 <Text style={{fontSize: 37}}> ← </Text>
             </TouchableOpacity>
             <View style = {styles.loginInformation}>
@@ -153,8 +152,7 @@ const login = ({ onLogin, ...props }) => {
             </View>
             <View style={styles.footerView}>
                 <Text style={styles.footerText}>Don't Have Account?</Text>
-                {/* onPress={() => navigation.navigate('SignUp')} */}
-                <TouchableOpacity >
+                <TouchableOpacity onPress={() => navigation.navigate('SignUp')} >
                     <Text style={[styles.signup,{marginLeft: 3}]}> Sign Up</Text>
                 </TouchableOpacity>
             </View>
@@ -271,7 +269,7 @@ const styles = StyleSheet.create({
         color : "gray",
     },
     signup : {
-        color : "#65b439",
+        color : "#1765b3ff",
         textAlign: "center",
         fontWeight : "bold",
     },
@@ -298,7 +296,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     activeToggle: {
-        backgroundColor: '#62af49',
+        backgroundColor: '#2e83d8ff',
         shadowColor: '#000',
         shadowOffset: {
             width: 0,

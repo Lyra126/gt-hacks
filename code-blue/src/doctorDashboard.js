@@ -6,14 +6,20 @@ import { View, Text, StyleSheet, ScrollView, ActivityIndicator } from 'react-nat
 // Use 'http://localhost:8000' for the iOS simulator.
 const API_BASE_URL = 'http://10.0.2.2:8000';
 
-const DoctorDashboard = () => {
+const DoctorDashboard = ({route, email: propEmail}) => {
+  const email = route?.params?.email || propEmail || "";
   const [patients, setPatients] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    console.log("Fetching data for:", email);
+  }, [email]);
+
+  useEffect(() => {
     // IMPORTANT: Replace 'org-abc' with the actual ID of the logged-in organization
     const orgId = 'org-abc';
+    
 
     // // The fetch logic is now directly inside the component's effect
     // fetch(`${API_BASE_URL}/api/org/${orgId}/active-patients`)

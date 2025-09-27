@@ -5,10 +5,10 @@ import os
 from dotenv import load_dotenv
 from typing import IO
 import aiohttp
+from firebase_config import realtime_db 
 
 load_dotenv()
 
-# --- MedGemmaClient Class ---
 class MedGemmaClient:
     def __init__(self):
         self.api_key = os.getenv("MEDGEMMA_API_KEY")
@@ -24,11 +24,19 @@ class MedGemmaClient:
     
     async def generate(self, prompt: str) -> str:
         session = await self._get_session()
-        payload = { "input": { "openai_route": "/v1/completions", "openai_input": {
-            "model": "alibayram/medgemma:27b", "prompt": prompt, "temperature": 0.1, "max_tokens": 1024
-        }}}
+        payload = {
+            "input": {
+                "openai_route": "/v1/completions",
+                "openai_input": {
+                    "model": "alibayram/medgemma:27b",
+                    "prompt": prompt,
+                    "temperature": 0.1,
+                    "max_tokens": 1024
+                }
+            }
+        }
         try:
-            async with session.post(f"{self.base_url}/runsync", json=payload, timeout=60) as response: # type: ignore
+            async with session.post(f"{self.base_url}/runsync", json=payload, timeout=60) as response:  # type: ignore
                 response.raise_for_status()
                 result = await response.json()
                 if result.get('status') == 'COMPLETED':
@@ -39,10 +47,8 @@ class MedGemmaClient:
         except Exception as e:
             raise RuntimeError(f"MedGemma API error: {e}")
 
-# Initialize a single client instance for the service
 medgemma_client = MedGemmaClient()
 
-# --- Core Utility Functions ---
 
 def extract_text_from_pdf(pdf_file_stream: IO[bytes]) -> str:
     """Reads a PDF file stream and returns its text content."""
@@ -56,7 +62,11 @@ def extract_text_from_pdf(pdf_file_stream: IO[bytes]) -> str:
 async def generate_timeline_from_text(protocol_text: str) -> dict:
     """Analyzes text using MedGemma to extract a sequential timeline."""
     prompt = f"""
-    You are an expert at analyzing clinical trial protocols. Your task is to read the following text and extract a sequential timeline of the main stages. Return your response ONLY as a valid JSON object where keys are strings like "Stage 1" and values are summary strings.
+    You are an expert at analyzing clinical trial protocols. 
+    Task: Read the text and extract a sequential timeline of the main stages.
+    Return ONLY valid JSON where keys are "Stage 1", "Stage 2", etc., 
+    and values are summary strings.
+
     Text to Analyze:
     ---
     {protocol_text}
@@ -68,3 +78,22 @@ async def generate_timeline_from_text(protocol_text: str) -> dict:
     except Exception as e:
         print(f"Error parsing MedGemma response for timeline: {e}")
         return {"error": "Failed to generate a valid timeline from the provided text."}
+
+
+async def save_timeline_to_db(trial_id: str, timeline: dict) -> str:
+    """Saves the generated timeline into RTDB under clinicalTrials/{trial_id}/stages."""
+    try:
+        ref = realtime_db.reference(f'clinicalTrials/{trial_id}/stages')
+        ref.set(timeline)
+        return f"Timeline saved for trial '{trial_id}'."
+    except Exception as e:
+        return f"Error saving timeline: {e}"
+
+async def get_timeline_from_db(trial_id: str) -> dict:
+    """Fetches the saved timeline from RTDB for a trial."""
+    try:
+        ref = realtime_db.reference(f'clinicalTrials/{trial_id}/stages')
+        timeline = ref.get()
+        return timeline if timeline else {"error": f"No timeline found for trial '{trial_id}'."}
+    except Exception as e:
+        return {"error": f"Error fetching timeline: {e}"}

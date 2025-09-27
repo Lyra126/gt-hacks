@@ -1,0 +1,2879 @@
+{
+  "totalCount": 114356,
+  "studies": [
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT01331824",
+          "orgStudyIdInfo": {
+            "id": "GCO 10-1341"
+          },
+          "organization": {
+            "fullName": "Icahn School of Medicine at Mount Sinai",
+            "class": "OTHER"
+          },
+          "briefTitle": "Trial of Amrubicin as Second-Line Therapy in Patients With Advanced/Metastatic Refractory Urothelial Carcinoma",
+          "officialTitle": "Multi-Center Phase 2 Trial of Single-Agent Amrubicin as Second-Line Therapy in Patients With Advanced/Metastatic Refractory Urothelial Carcinoma"
+        },
+        "statusModule": {
+          "statusVerifiedDate": "2018-03",
+          "overallStatus": "TERMINATED",
+          "whyStopped": "due to a development decision by the funder",
+          "expandedAccessInfo": {
+            "hasExpandedAccess": false
+          },
+          "startDateStruct": {
+            "date": "2011-02"
+          },
+          "primaryCompletionDateStruct": {
+            "date": "2014-07",
+            "type": "ACTUAL"
+          },
+          "completionDateStruct": {
+            "date": "2015-07",
+            "type": "ACTUAL"
+          },
+          "studyFirstSubmitDate": "2011-04-06",
+          "studyFirstSubmitQcDate": "2011-04-07",
+          "studyFirstPostDateStruct": {
+            "date": "2011-04-08",
+            "type": "ESTIMATED"
+          },
+          "resultsFirstSubmitDate": "2015-10-15",
+          "resultsFirstSubmitQcDate": "2015-11-21",
+          "resultsFirstPostDateStruct": {
+            "date": "2015-12-24",
+            "type": "ESTIMATED"
+          },
+          "lastUpdateSubmitDate": "2018-03-22",
+          "lastUpdatePostDateStruct": {
+            "date": "2018-04-23",
+            "type": "ACTUAL"
+          }
+        },
+        "sponsorCollaboratorsModule": {
+          "responsibleParty": {
+            "type": "SPONSOR_INVESTIGATOR",
+            "investigatorFullName": "Matthew Galsky",
+            "investigatorTitle": "MD",
+            "investigatorAffiliation": "Icahn School of Medicine at Mount Sinai"
+          },
+          "leadSponsor": {
+            "name": "Matthew Galsky",
+            "class": "OTHER"
+          },
+          "collaborators": [
+            {
+              "name": "Celgene",
+              "class": "INDUSTRY"
+            }
+          ]
+        },
+        "oversightModule": {
+          "oversightHasDmc": true
+        },
+        "descriptionModule": {
+          "briefSummary": "The primary objective of this study is to determine in subjects with metastatic measurable bladder cancer (or urothelial cancers originating elsewhere in the genitourinary tract) who have progressed on 1 prior chemotherapeutic regimen the objective response rate to treatment with amrubicin. The secondary objectives will be to evaluate progression-free survival, survival at 1 year, and the safety of amrubicin as second-line therapy in patients with metastatic urothelial carcinoma.",
+          "detailedDescription": "Multiple small phase II trials exploring a variety of agents as second-line therapy for metastatic urothelial carcinoma have been performed. Overall, the most active of these agents have shown response rates of approximately 10-20% . Currently, there are no FDA approved agents for the second-line treatment of metastatic urothelial carcinoma.\n\nThe current study will explore the safety and activity of the novel anthracycline, amrubicin, as second-line chemotherapy in patients with advanced urothelial carcinoma.\n\nThe primary objective will be to evaluate the activity (as determined by objective response rate) of amrubicin as second-line chemotherapy in patients with metastatic urothelial carcinoma. The secondary objectives will be to evaluate progression-free survival, survival at 1 year, and the safety of amrubicin as second-line therapy in patients with metastatic urothelial carcinoma.\n\nSubjects will receive amrubicin IV daily x 3 days, every 21-days, with prophylactic granulocyte colony stimulating factor. This 21-day time period is referred to as a cycle. Subjects will undergo repeat computed tomography (CT) scans after every 2 cycles. In the absence of progressive cancer, or prohibitive side effects, subjects will receive up to 6 cycles of treatment with amrubicin."
+        },
+        "conditionsModule": {
+          "conditions": [
+            "Bladder Cancer"
+          ],
+          "keywords": [
+            "Bladder Cancer",
+            "Urothelial Cancer",
+            "Chemotherapy",
+            "Second-line",
+            "Metastatic"
+          ]
+        },
+        "designModule": {
+          "studyType": "INTERVENTIONAL",
+          "phases": [
+            "PHASE2"
+          ],
+          "designInfo": {
+            "allocation": "NA",
+            "interventionModel": "SINGLE_GROUP",
+            "primaryPurpose": "TREATMENT",
+            "maskingInfo": {
+              "masking": "NONE"
+            }
+          },
+          "enrollmentInfo": {
+            "count": 22,
+            "type": "ACTUAL"
+          }
+        },
+        "armsInterventionsModule": {
+          "armGroups": [
+            {
+              "label": "Amrubicin",
+              "type": "EXPERIMENTAL",
+              "description": "35 mg/m2/day intravenously",
+              "interventionNames": [
+                "Drug: Amrubicin"
+              ]
+            }
+          ],
+          "interventions": [
+            {
+              "type": "DRUG",
+              "name": "Amrubicin",
+              "description": "Patients will receive 35 mg/m2/day of amrubicin intravenously for 3 consecutive days as the initial dose starting on Day 1 of a 21-day cycle for up to 6 cycles",
+              "armGroupLabels": [
+                "Amrubicin"
+              ]
+            }
+          ]
+        },
+        "outcomesModule": {
+          "primaryOutcomes": [
+            {
+              "measure": "Objective Response Rate as Measured by Response Evaluation Criteria in Solid Tumors (RECIST 1.1)",
+              "description": "Response to treatment based on tumor measurements via CT chest, abdomen, and pelvis for restaging after every 2 cycles.\n\nPartial Response (PR): At least a 30% decrease in the sum of diameters of target lesions, taking as reference the baseline sum diameters.\n\nStable Disease (SD): Neither sufficient shrinkage to qualify for PR nor sufficient increase to qualify for PD, taking as reference the smallest sum diameters while on study.",
+              "timeFrame": "6 weeks"
+            }
+          ],
+          "secondaryOutcomes": [
+            {
+              "measure": "Progression-free Survival",
+              "description": "The median progression-free survival\n\nAfter the last dose of Amrubicin, patients will have follow-up every 3 months with a repeat CT scan of the chest, abdomen, and pelvis until the time of disease progression is documented.",
+              "timeFrame": "Every 3 months post Amrubicin administration"
+            },
+            {
+              "measure": "Overall Survival",
+              "description": "The median overall survival",
+              "timeFrame": "1 year"
+            },
+            {
+              "measure": "Safety as Measured by the Frequency and Type of Adverse Events as Per the Common Terminology for Adverse Events (CTCAE) Version 4.0.",
+              "description": "Types of adverse events listed in Adverse Event Section",
+              "timeFrame": "Day 1 of each treatment cycle; and 21 days after the last dose of amrubicin"
+            }
+          ]
+        },
+        "eligibilityModule": {
+          "eligibilityCriteria": "Inclusion Criteria:\n\n1. Written informed consent\n2. Age \\> 18 years\n3. Karnofsky performance status of ≥ 80%\n4. Histological or cytological proof of transitional cell carcinoma of the urothelial tract. The primary site may include: urethra, bladder, ureters, and renal pelvis.\n5. Progressive advanced/metastatic disease despite prior chemotherapy:\n\n   * Patients may have received one prior chemotherapy regimen.\n   * Prior chemotherapy may have been administered in the perioperative setting (neoadjuvant or adjuvant) or 1st line metastatic setting.\n6. Measurable disease according to RECIST 1.1\n7. Females of childbearing potential and males must be willing to use an effective method of contraception (hormonal or barrier method of birth control; abstinence) from the time consent is signed until 8 weeks after treatment discontinuation.\n8. Females of childbearing potential must have a negative pregnancy test within 7 days prior to being registered for protocol therapy.\n9. Adequate organ function including the following:\n\n   * Adequate bone marrow reserve: absolute neutrophil count (segmented and bands) (ANC) ≥ 1.5 x 109/L, platelet count ≥ 100 x 109/L, and hemoglobin ≥ 9 mg/L,\n   * Hepatic: bilirubin ≤ 1.5 x the upper limit of normal (ULN), ALT and AST ≤ 3.0 x ULN (or ≤ 5.0 x ULN in the presence of hepatic metastases)\n   * Renal: serum creatinine ≤ 1.5 x ULN or calculated creatinine clearance ≥ 60 mL/min,\n   * Cardiac: Left ventricular ejection fraction (LVEF) ≥ 50% or ≥ the lower limit of the institutional normal by echocardiogram (ECHO) or multiple gated acquisition scan (MUGA);\n\nExclusion Criteria:\n\n1. Has had major surgery within 30 days of starting study treatment.\n2. Has active CNS metastases. Subjects with neurological symptoms must undergo a head CT scan or brain MRI to exclude brain metastasis.\n3. Has a history of a prior malignancy with the exception of the following: adequately treated basal cell or squamous cell skin cancer, in situ cervical cancer, clinically localized prostate cancer treated with definitive local therapy and without evidence of recurrent disease and without the need for androgen deprivation therapy, or other cancer for which the subject has been disease-free for at least 5 years.\n4. Has had treatment with another anticancer agent or investigational agent within 30 days prior to being registered for protocol therapy.\n5. Has had prior radiation therapy to \\> 25% of the bone marrow.\n\n   * NOTE: No radiation therapy within 30 days prior to being registered for protocol therapy.\n6. Has a clinically significant infection as judged by the treating investigator.\n7. Pregnant or nursing females.\n8. Patients with known history of seropositive human immunodeficiency virus (HIV) or patients who are receiving immunosuppressive medications that would, in the opinion of the investigator, increase the risk of serious neutropenic complications.\n9. History of congestive heart failure\n10. History of recent myocardial infarction\n11. History of interstitial lung disease, pulmonary fibrosis or symptomatic pulmonary disease",
+          "healthyVolunteers": false,
+          "sex": "ALL",
+          "minimumAge": "18 Years",
+          "stdAges": [
+            "ADULT",
+            "OLDER_ADULT"
+          ]
+        },
+        "contactsLocationsModule": {
+          "overallOfficials": [
+            {
+              "name": "Matthew D Galsky, MD",
+              "affiliation": "Icahn School of Medicine at Mount Sinai",
+              "role": "PRINCIPAL_INVESTIGATOR"
+            }
+          ],
+          "locations": [
+            {
+              "facility": "Banner MD Anderson Cancer Center",
+              "city": "Gilbert",
+              "state": "Arizona",
+              "zip": "85234",
+              "country": "United States",
+              "geoPoint": {
+                "lat": 33.35283,
+                "lon": -111.78903
+              }
+            },
+            {
+              "facility": "Indiana University Simon Cancer Center",
+              "city": "Indianapolis",
+              "state": "Indiana",
+              "zip": "46202",
+              "country": "United States",
+              "geoPoint": {
+                "lat": 39.76838,
+                "lon": -86.15804
+              }
+            },
+            {
+              "facility": "Icahn School of Medicine at Mount Sinai",
+              "city": "New York",
+              "state": "New York",
+              "zip": "10029",
+              "country": "United States",
+              "geoPoint": {
+                "lat": 40.71427,
+                "lon": -74.00597
+              }
+            }
+          ]
+        }
+      },
+      "resultsSection": {
+        "participantFlowModule": {
+          "groups": [
+            {
+              "id": "FG000",
+              "title": "Amrubicin",
+              "description": "Patients with progressive metastatic urothelial cancer despite first-line chemotherapy. Amrubicin was initially administered at a dose of 40 mg/m2/day daily x 3 every 21-days and the dose was subsequently reduced to 35 mg/m2/day daily x 3 every 21-days."
+            }
+          ],
+          "periods": [
+            {
+              "title": "Overall Study",
+              "milestones": [
+                {
+                  "type": "STARTED",
+                  "achievements": [
+                    {
+                      "groupId": "FG000",
+                      "numSubjects": "22"
+                    }
+                  ]
+                },
+                {
+                  "type": "COMPLETED",
+                  "achievements": [
+                    {
+                      "groupId": "FG000",
+                      "numSubjects": "9"
+                    }
+                  ]
+                },
+                {
+                  "type": "NOT COMPLETED",
+                  "achievements": [
+                    {
+                      "groupId": "FG000",
+                      "numSubjects": "13"
+                    }
+                  ]
+                }
+              ],
+              "dropWithdraws": [
+                {
+                  "type": "Adverse Event",
+                  "reasons": [
+                    {
+                      "groupId": "FG000",
+                      "numSubjects": "2"
+                    }
+                  ]
+                },
+                {
+                  "type": "Death",
+                  "reasons": [
+                    {
+                      "groupId": "FG000",
+                      "numSubjects": "1"
+                    }
+                  ]
+                },
+                {
+                  "type": "Disease Progression",
+                  "reasons": [
+                    {
+                      "groupId": "FG000",
+                      "numSubjects": "9"
+                    }
+                  ]
+                },
+                {
+                  "type": "Withdrawal by Subject",
+                  "reasons": [
+                    {
+                      "groupId": "FG000",
+                      "numSubjects": "1"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "baselineCharacteristicsModule": {
+          "groups": [
+            {
+              "id": "BG000",
+              "title": "Amrubicin",
+              "description": "Patients with progressive metastatic urothelial cancer despite first-line chemotherapy. Amrubicin was initially administered at a dose of 40 mg/m2/day daily x 3 every 21-days and the dose was subsequently reduced to 35 mg/m2/day daily x 3 every 21-days."
+            }
+          ],
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "BG000",
+                  "value": "22"
+                }
+              ]
+            }
+          ],
+          "measures": [
+            {
+              "title": "Age, Continuous",
+              "paramType": "MEDIAN",
+              "dispersionType": "FULL_RANGE",
+              "unitOfMeasure": "years",
+              "classes": [
+                {
+                  "categories": [
+                    {
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "65",
+                          "lowerLimit": "58",
+                          "upperLimit": "79"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Sex: Female, Male",
+              "paramType": "COUNT_OF_PARTICIPANTS",
+              "unitOfMeasure": "Participants",
+              "classes": [
+                {
+                  "categories": [
+                    {
+                      "title": "Female",
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "4"
+                        }
+                      ]
+                    },
+                    {
+                      "title": "Male",
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "18"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Primary Site",
+              "paramType": "NUMBER",
+              "unitOfMeasure": "participants",
+              "classes": [
+                {
+                  "title": "Bladder",
+                  "categories": [
+                    {
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "16"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "title": "Renal Pelvis",
+                  "categories": [
+                    {
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "3"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "title": "Urethra",
+                  "categories": [
+                    {
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "3"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Prior \"first-line\" treatment",
+              "paramType": "NUMBER",
+              "unitOfMeasure": "participants",
+              "classes": [
+                {
+                  "title": "Neoadjuvant",
+                  "categories": [
+                    {
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "4"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "title": "Adjuvant",
+                  "categories": [
+                    {
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "4"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "title": "Metastatic",
+                  "categories": [
+                    {
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "14"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "First-line chemotherapy regimen",
+              "paramType": "NUMBER",
+              "unitOfMeasure": "participants",
+              "classes": [
+                {
+                  "title": "Gemcitabine + carboplatin",
+                  "categories": [
+                    {
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "7"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "title": "Gemcitabine + cisplatin",
+                  "categories": [
+                    {
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "12"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "title": "Gemcitabine + cisplatin + dovitinib",
+                  "categories": [
+                    {
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "title": "Gemcitabine + cisplatin + ipilimumab",
+                  "categories": [
+                    {
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "title": "Gemcitabine + doxorubicin + paclitaxel",
+                  "categories": [
+                    {
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Bellmunt prognostic factors",
+              "description": "The significant prognostic factors were as follows: hemoglobin level more than 10 g/dL, ECOG PS less than 1, absence of liver metastases, metastasis restricted to one organ, and AST and AP levels in the normal range.",
+              "paramType": "NUMBER",
+              "unitOfMeasure": "participants",
+              "classes": [
+                {
+                  "title": "0 poor prognostic factors",
+                  "categories": [
+                    {
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "3"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "title": "1 poor prognostic factors",
+                  "categories": [
+                    {
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "10"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "title": "2 poor prognostic factors",
+                  "categories": [
+                    {
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "6"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "title": "3 poor prognostic factors",
+                  "categories": [
+                    {
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "3"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Median time from prior chemotherapy",
+              "paramType": "MEDIAN",
+              "dispersionType": "FULL_RANGE",
+              "unitOfMeasure": "months",
+              "classes": [
+                {
+                  "categories": [
+                    {
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "6.8",
+                          "lowerLimit": "1.4",
+                          "upperLimit": "34.2"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "outcomeMeasuresModule": {
+          "outcomeMeasures": [
+            {
+              "type": "PRIMARY",
+              "title": "Objective Response Rate as Measured by Response Evaluation Criteria in Solid Tumors (RECIST 1.1)",
+              "description": "Response to treatment based on tumor measurements via CT chest, abdomen, and pelvis for restaging after every 2 cycles.\n\nPartial Response (PR): At least a 30% decrease in the sum of diameters of target lesions, taking as reference the baseline sum diameters.\n\nStable Disease (SD): Neither sufficient shrinkage to qualify for PR nor sufficient increase to qualify for PD, taking as reference the smallest sum diameters while on study.",
+              "reportingStatus": "POSTED",
+              "paramType": "NUMBER",
+              "dispersionType": "95% Confidence Interval",
+              "unitOfMeasure": "percentage of participants",
+              "timeFrame": "6 weeks",
+              "groups": [
+                {
+                  "id": "OG000",
+                  "title": "Amrubicin",
+                  "description": "Patients with progressive metastatic urothelial cancer despite first-line chemotherapy. Amrubicin was initially administered at a dose of 40 mg/m2/day daily x 3 every 21-days and the dose was subsequently reduced to 35 mg/m2/day daily x 3 every 21-days."
+                }
+              ],
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "OG000",
+                      "value": "22"
+                    }
+                  ]
+                }
+              ],
+              "classes": [
+                {
+                  "title": "Partial response",
+                  "categories": [
+                    {
+                      "measurements": [
+                        {
+                          "groupId": "OG000",
+                          "value": "13.6",
+                          "lowerLimit": "0",
+                          "upperLimit": "28"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "title": "Stable disease",
+                  "categories": [
+                    {
+                      "measurements": [
+                        {
+                          "groupId": "OG000",
+                          "value": "54.5",
+                          "lowerLimit": "33.7",
+                          "upperLimit": "75.3"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "SECONDARY",
+              "title": "Progression-free Survival",
+              "description": "The median progression-free survival\n\nAfter the last dose of Amrubicin, patients will have follow-up every 3 months with a repeat CT scan of the chest, abdomen, and pelvis until the time of disease progression is documented.",
+              "reportingStatus": "POSTED",
+              "paramType": "MEDIAN",
+              "dispersionType": "95% Confidence Interval",
+              "unitOfMeasure": "months",
+              "timeFrame": "Every 3 months post Amrubicin administration",
+              "groups": [
+                {
+                  "id": "OG000",
+                  "title": "Amrubicin",
+                  "description": "Patients with progressive metastatic urothelial cancer despite first-line chemotherapy. Amrubicin was initially administered at a dose of 40 mg/m2/day daily x 3 every 21-days and the dose was subsequently reduced to 35 mg/m2/day daily x 3 every 21-days."
+                }
+              ],
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "OG000",
+                      "value": "22"
+                    }
+                  ]
+                }
+              ],
+              "classes": [
+                {
+                  "categories": [
+                    {
+                      "measurements": [
+                        {
+                          "groupId": "OG000",
+                          "value": "3.4",
+                          "lowerLimit": "2.1",
+                          "upperLimit": "4.8"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "SECONDARY",
+              "title": "Overall Survival",
+              "description": "The median overall survival",
+              "reportingStatus": "POSTED",
+              "paramType": "MEDIAN",
+              "dispersionType": "95% Confidence Interval",
+              "unitOfMeasure": "months",
+              "timeFrame": "1 year",
+              "groups": [
+                {
+                  "id": "OG000",
+                  "title": "Amrubicin",
+                  "description": "Patients with progressive metastatic urothelial cancer despite first-line chemotherapy. Amrubicin was initially administered at a dose of 40 mg/m2/day daily x 3 every 21-days and the dose was subsequently reduced to 35 mg/m2/day daily x 3 every 21-days."
+                }
+              ],
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "OG000",
+                      "value": "22"
+                    }
+                  ]
+                }
+              ],
+              "classes": [
+                {
+                  "categories": [
+                    {
+                      "measurements": [
+                        {
+                          "groupId": "OG000",
+                          "value": "7.2",
+                          "lowerLimit": "4.2",
+                          "upperLimit": "10.1"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "SECONDARY",
+              "title": "Safety as Measured by the Frequency and Type of Adverse Events as Per the Common Terminology for Adverse Events (CTCAE) Version 4.0.",
+              "description": "Types of adverse events listed in Adverse Event Section",
+              "reportingStatus": "POSTED",
+              "paramType": "NUMBER",
+              "unitOfMeasure": "adverse events",
+              "timeFrame": "Day 1 of each treatment cycle; and 21 days after the last dose of amrubicin",
+              "groups": [
+                {
+                  "id": "OG000",
+                  "title": "Amrubicin",
+                  "description": "Patients with progressive metastatic urothelial cancer despite first-line chemotherapy. Amrubicin was initially administered at a dose of 40 mg/m2/day daily x 3 every 21-days and the dose was subsequently reduced to 35 mg/m2/day daily x 3 every 21-days."
+                }
+              ],
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "OG000",
+                      "value": "22"
+                    }
+                  ]
+                }
+              ],
+              "classes": [
+                {
+                  "categories": [
+                    {
+                      "measurements": [
+                        {
+                          "groupId": "OG000",
+                          "value": "117"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "adverseEventsModule": {
+          "frequencyThreshold": "0",
+          "eventGroups": [
+            {
+              "id": "EG000",
+              "title": "Amrubicin",
+              "description": "Patients with progressive metastatic urothelial cancer despite first-line chemotherapy. Amrubicin was initially administered at a dose of 40 mg/m2/day daily x 3 every 21-days and the dose was subsequently reduced to 35 mg/m2/day daily x 3 every 21-days.",
+              "seriousNumAffected": 3,
+              "seriousNumAtRisk": 22,
+              "otherNumAffected": 22,
+              "otherNumAtRisk": 22
+            }
+          ],
+          "seriousEvents": [
+            {
+              "term": "Febrile neutropenia",
+              "organSystem": "Blood and lymphatic system disorders",
+              "sourceVocabulary": "CTCAE (4.0)",
+              "assessmentType": "SYSTEMATIC_ASSESSMENT",
+              "stats": [
+                {
+                  "groupId": "EG000",
+                  "numEvents": 1,
+                  "numAffected": 1,
+                  "numAtRisk": 22
+                }
+              ]
+            },
+            {
+              "term": "Neutropenia",
+              "organSystem": "Blood and lymphatic system disorders",
+              "sourceVocabulary": "CTCAE (4.0)",
+              "assessmentType": "SYSTEMATIC_ASSESSMENT",
+              "stats": [
+                {
+                  "groupId": "EG000",
+                  "numEvents": 4,
+                  "numAffected": 3,
+                  "numAtRisk": 22
+                }
+              ]
+            }
+          ],
+          "otherEvents": [
+            {
+              "term": "Alopecia",
+              "organSystem": "Skin and subcutaneous tissue disorders",
+              "sourceVocabulary": "CTCAE (4.0)",
+              "assessmentType": "SYSTEMATIC_ASSESSMENT",
+              "stats": [
+                {
+                  "groupId": "EG000",
+                  "numAffected": 13,
+                  "numAtRisk": 22
+                }
+              ]
+            },
+            {
+              "term": "Anemia",
+              "organSystem": "Blood and lymphatic system disorders",
+              "sourceVocabulary": "CTCAE (4.0)",
+              "assessmentType": "SYSTEMATIC_ASSESSMENT",
+              "stats": [
+                {
+                  "groupId": "EG000",
+                  "numAffected": 10,
+                  "numAtRisk": 22
+                }
+              ]
+            },
+            {
+              "term": "Anorexia",
+              "organSystem": "General disorders",
+              "sourceVocabulary": "CTCAE (4.0)",
+              "assessmentType": "SYSTEMATIC_ASSESSMENT",
+              "stats": [
+                {
+                  "groupId": "EG000",
+                  "numAffected": 6,
+                  "numAtRisk": 22
+                }
+              ]
+            },
+            {
+              "term": "Cellulitis",
+              "organSystem": "Skin and subcutaneous tissue disorders",
+              "sourceVocabulary": "CTCAE (4.0)",
+              "assessmentType": "SYSTEMATIC_ASSESSMENT",
+              "stats": [
+                {
+                  "groupId": "EG000",
+                  "numAffected": 1,
+                  "numAtRisk": 22
+                }
+              ]
+            },
+            {
+              "term": "Conjunctival irritation",
+              "organSystem": "Eye disorders",
+              "sourceVocabulary": "CTCAE (4.0)",
+              "assessmentType": "SYSTEMATIC_ASSESSMENT",
+              "stats": [
+                {
+                  "groupId": "EG000",
+                  "numAffected": 1,
+                  "numAtRisk": 22
+                }
+              ]
+            },
+            {
+              "term": "Constipation",
+              "organSystem": "Gastrointestinal disorders",
+              "sourceVocabulary": "CTCAE (4.0)",
+              "assessmentType": "SYSTEMATIC_ASSESSMENT",
+              "stats": [
+                {
+                  "groupId": "EG000",
+                  "numAffected": 3,
+                  "numAtRisk": 22
+                }
+              ]
+            },
+            {
+              "term": "Creatinine increase",
+              "organSystem": "Renal and urinary disorders",
+              "sourceVocabulary": "CTCAE (4.0)",
+              "assessmentType": "SYSTEMATIC_ASSESSMENT",
+              "stats": [
+                {
+                  "groupId": "EG000",
+                  "numAffected": 1,
+                  "numAtRisk": 22
+                }
+              ]
+            },
+            {
+              "term": "Diarrhea",
+              "organSystem": "Gastrointestinal disorders",
+              "sourceVocabulary": "CTCAE (4.0)",
+              "assessmentType": "SYSTEMATIC_ASSESSMENT",
+              "stats": [
+                {
+                  "groupId": "EG000",
+                  "numAffected": 3,
+                  "numAtRisk": 22
+                }
+              ]
+            },
+            {
+              "term": "Dyspnea",
+              "organSystem": "Respiratory, thoracic and mediastinal disorders",
+              "sourceVocabulary": "CTCAE (4.0)",
+              "assessmentType": "SYSTEMATIC_ASSESSMENT",
+              "stats": [
+                {
+                  "groupId": "EG000",
+                  "numAffected": 3,
+                  "numAtRisk": 22
+                }
+              ]
+            },
+            {
+              "term": "Fatigue",
+              "organSystem": "General disorders",
+              "sourceVocabulary": "CTCAE (4.0)",
+              "assessmentType": "SYSTEMATIC_ASSESSMENT",
+              "stats": [
+                {
+                  "groupId": "EG000",
+                  "numAffected": 13,
+                  "numAtRisk": 22
+                }
+              ]
+            },
+            {
+              "term": "Fever",
+              "organSystem": "General disorders",
+              "sourceVocabulary": "CTCAE (4.0)",
+              "assessmentType": "SYSTEMATIC_ASSESSMENT",
+              "stats": [
+                {
+                  "groupId": "EG000",
+                  "numAffected": 1,
+                  "numAtRisk": 22
+                }
+              ]
+            },
+            {
+              "term": "Hypoalbuminemia",
+              "organSystem": "Metabolism and nutrition disorders",
+              "sourceVocabulary": "CTCAE (4.0)",
+              "assessmentType": "SYSTEMATIC_ASSESSMENT",
+              "stats": [
+                {
+                  "groupId": "EG000",
+                  "numAffected": 1,
+                  "numAtRisk": 22
+                }
+              ]
+            },
+            {
+              "term": "Hypomagnesemia",
+              "organSystem": "Metabolism and nutrition disorders",
+              "sourceVocabulary": "CTCAE (4.0)",
+              "assessmentType": "SYSTEMATIC_ASSESSMENT",
+              "stats": [
+                {
+                  "groupId": "EG000",
+                  "numAffected": 1,
+                  "numAtRisk": 22
+                }
+              ]
+            },
+            {
+              "term": "Hyponatremia",
+              "organSystem": "Metabolism and nutrition disorders",
+              "sourceVocabulary": "CTCAE (4.0)",
+              "assessmentType": "SYSTEMATIC_ASSESSMENT",
+              "stats": [
+                {
+                  "groupId": "EG000",
+                  "numAffected": 2,
+                  "numAtRisk": 22
+                }
+              ]
+            },
+            {
+              "term": "Leukopenia",
+              "organSystem": "Blood and lymphatic system disorders",
+              "sourceVocabulary": "CTCAE (4.0)",
+              "assessmentType": "SYSTEMATIC_ASSESSMENT",
+              "stats": [
+                {
+                  "groupId": "EG000",
+                  "numAffected": 3,
+                  "numAtRisk": 22
+                }
+              ]
+            },
+            {
+              "term": "Lymphopenia",
+              "organSystem": "Blood and lymphatic system disorders",
+              "sourceVocabulary": "CTCAE (4.0)",
+              "assessmentType": "SYSTEMATIC_ASSESSMENT",
+              "stats": [
+                {
+                  "groupId": "EG000",
+                  "numAffected": 1,
+                  "numAtRisk": 22
+                }
+              ]
+            },
+            {
+              "term": "Mucositis",
+              "organSystem": "Injury, poisoning and procedural complications",
+              "sourceVocabulary": "CTCAE (4.0)",
+              "assessmentType": "SYSTEMATIC_ASSESSMENT",
+              "stats": [
+                {
+                  "groupId": "EG000",
+                  "numAffected": 9,
+                  "numAtRisk": 22
+                }
+              ]
+            },
+            {
+              "term": "Nausea",
+              "organSystem": "General disorders",
+              "sourceVocabulary": "CTCAE (4.0)",
+              "assessmentType": "SYSTEMATIC_ASSESSMENT",
+              "stats": [
+                {
+                  "groupId": "EG000",
+                  "numAffected": 9,
+                  "numAtRisk": 22
+                }
+              ]
+            },
+            {
+              "term": "Neutropenia",
+              "organSystem": "Blood and lymphatic system disorders",
+              "sourceVocabulary": "CTCAE (4.0)",
+              "assessmentType": "SYSTEMATIC_ASSESSMENT",
+              "stats": [
+                {
+                  "groupId": "EG000",
+                  "numAffected": 4,
+                  "numAtRisk": 22
+                }
+              ]
+            },
+            {
+              "term": "Taste alteration",
+              "organSystem": "General disorders",
+              "sourceVocabulary": "CTCAE (4.0)",
+              "assessmentType": "SYSTEMATIC_ASSESSMENT",
+              "stats": [
+                {
+                  "groupId": "EG000",
+                  "numAffected": 2,
+                  "numAtRisk": 22
+                }
+              ]
+            },
+            {
+              "term": "Thrombocytopenia",
+              "organSystem": "Blood and lymphatic system disorders",
+              "sourceVocabulary": "CTCAE (4.0)",
+              "assessmentType": "SYSTEMATIC_ASSESSMENT",
+              "stats": [
+                {
+                  "groupId": "EG000",
+                  "numAffected": 10,
+                  "numAtRisk": 22
+                }
+              ]
+            },
+            {
+              "term": "Urinary frequency",
+              "organSystem": "Renal and urinary disorders",
+              "sourceVocabulary": "CTCAE (4.0)",
+              "assessmentType": "SYSTEMATIC_ASSESSMENT",
+              "stats": [
+                {
+                  "groupId": "EG000",
+                  "numAffected": 1,
+                  "numAtRisk": 22
+                }
+              ]
+            },
+            {
+              "term": "Vomiting",
+              "organSystem": "General disorders",
+              "sourceVocabulary": "CTCAE (4.0)",
+              "assessmentType": "SYSTEMATIC_ASSESSMENT",
+              "stats": [
+                {
+                  "groupId": "EG000",
+                  "numAffected": 7,
+                  "numAtRisk": 22
+                }
+              ]
+            },
+            {
+              "term": "Weakness",
+              "organSystem": "Nervous system disorders",
+              "sourceVocabulary": "CTCAE (4.0)",
+              "assessmentType": "SYSTEMATIC_ASSESSMENT",
+              "stats": [
+                {
+                  "groupId": "EG000",
+                  "numAffected": 2,
+                  "numAtRisk": 22
+                }
+              ]
+            },
+            {
+              "term": "Weight loss",
+              "organSystem": "General disorders",
+              "sourceVocabulary": "CTCAE (4.0)",
+              "assessmentType": "SYSTEMATIC_ASSESSMENT",
+              "stats": [
+                {
+                  "groupId": "EG000",
+                  "numAffected": 3,
+                  "numAtRisk": 22
+                }
+              ]
+            }
+          ]
+        },
+        "moreInfoModule": {
+          "limitationsAndCaveats": {
+            "description": "The trial was terminated prematurely due to the results of a phase 3 study seeking registration for amrubicin in small cell lung cancer in the United States, leading the industry funder to discontinue further clinical development of amrubicin."
+          },
+          "certainAgreement": {
+            "piSponsorEmployee": true
+          },
+          "pointOfContact": {
+            "title": "Dr. Matthew D. Galsky",
+            "organization": "Icahn School of Medicine at Mount Sinai",
+            "email": "matthew.galsky@mssm.edu",
+            "phone": "212-241-6756"
+          }
+        }
+      },
+      "derivedSection": {
+        "miscInfoModule": {
+          "versionHolder": "2025-09-26"
+        },
+        "conditionBrowseModule": {
+          "meshes": [
+            {
+              "id": "D001749",
+              "term": "Urinary Bladder Neoplasms"
+            },
+            {
+              "id": "D009362",
+              "term": "Neoplasm Metastasis"
+            }
+          ],
+          "ancestors": [
+            {
+              "id": "D014571",
+              "term": "Urologic Neoplasms"
+            },
+            {
+              "id": "D014565",
+              "term": "Urogenital Neoplasms"
+            },
+            {
+              "id": "D009371",
+              "term": "Neoplasms by Site"
+            },
+            {
+              "id": "D009369",
+              "term": "Neoplasms"
+            },
+            {
+              "id": "D052776",
+              "term": "Female Urogenital Diseases"
+            },
+            {
+              "id": "D005261",
+              "term": "Female Urogenital Diseases and Pregnancy Complications"
+            },
+            {
+              "id": "D000091642",
+              "term": "Urogenital Diseases"
+            },
+            {
+              "id": "D001745",
+              "term": "Urinary Bladder Diseases"
+            },
+            {
+              "id": "D014570",
+              "term": "Urologic Diseases"
+            },
+            {
+              "id": "D052801",
+              "term": "Male Urogenital Diseases"
+            },
+            {
+              "id": "D009385",
+              "term": "Neoplastic Processes"
+            },
+            {
+              "id": "D010335",
+              "term": "Pathologic Processes"
+            },
+            {
+              "id": "D013568",
+              "term": "Pathological Conditions, Signs and Symptoms"
+            }
+          ]
+        },
+        "interventionBrowseModule": {
+          "meshes": [
+            {
+              "id": "C055866",
+              "term": "amrubicin"
+            }
+          ]
+        }
+      },
+      "hasResults": true
+    },
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT00354224",
+          "orgStudyIdInfo": {
+            "id": "MUSC-100829"
+          },
+          "secondaryIdInfos": [
+            {
+              "id": "MUSC-OX-33-064"
+            },
+            {
+              "id": "MUSC-HR-11497"
+            },
+            {
+              "id": "CDR0000484638",
+              "type": "REGISTRY",
+              "domain": "PDQ (Physician Data Query)"
+            }
+          ],
+          "organization": {
+            "fullName": "Medical University of South Carolina",
+            "class": "OTHER"
+          },
+          "briefTitle": "Capecitabine and Oxaliplatin in Treating Patients With Locally Advanced, Unresectable, or Metastatic Stomach Cancer",
+          "officialTitle": "A Phase II Study of XELOX in Locally Advanced or Metastatic Gastric Cancer"
+        },
+        "statusModule": {
+          "statusVerifiedDate": "2018-07",
+          "overallStatus": "TERMINATED",
+          "whyStopped": "due to low accrual",
+          "expandedAccessInfo": {
+            "hasExpandedAccess": false
+          },
+          "startDateStruct": {
+            "date": "2005-01",
+            "type": "ACTUAL"
+          },
+          "primaryCompletionDateStruct": {
+            "date": "2008-08",
+            "type": "ACTUAL"
+          },
+          "completionDateStruct": {
+            "date": "2008-08",
+            "type": "ACTUAL"
+          },
+          "studyFirstSubmitDate": "2006-07-19",
+          "studyFirstSubmitQcDate": "2006-07-19",
+          "studyFirstPostDateStruct": {
+            "date": "2006-07-20",
+            "type": "ESTIMATED"
+          },
+          "resultsFirstSubmitDate": "2018-05-04",
+          "resultsFirstSubmitQcDate": "2018-07-13",
+          "resultsFirstPostDateStruct": {
+            "date": "2018-07-16",
+            "type": "ACTUAL"
+          },
+          "lastUpdateSubmitDate": "2018-07-13",
+          "lastUpdatePostDateStruct": {
+            "date": "2018-07-16",
+            "type": "ACTUAL"
+          }
+        },
+        "sponsorCollaboratorsModule": {
+          "responsibleParty": {
+            "type": "SPONSOR"
+          },
+          "leadSponsor": {
+            "name": "Medical University of South Carolina",
+            "class": "OTHER"
+          }
+        },
+        "oversightModule": {
+          "oversightHasDmc": true,
+          "isFdaRegulatedDrug": true,
+          "isFdaRegulatedDevice": false,
+          "isUsExport": false
+        },
+        "descriptionModule": {
+          "briefSummary": "RATIONALE: Drugs used in chemotherapy, such as capecitabine and oxaliplatin, work in different ways to stop the growth of tumor cells, either by killing the cells or by stopping them from dividing. Giving more than one drug (combination chemotherapy) may kill more tumor cells.\n\nPURPOSE: This phase II trial is studying how well giving capecitabine together with oxaliplatin works in treating patients with locally advanced, unresectable, or metastatic stomach cancer.",
+          "detailedDescription": "OBJECTIVES:\n\nPrimary\n\n* Determine the response proportion in patients with locally advanced, unresectable, or metastatic gastric cancer treated with capecitabine and oxaliplatin.\n\nSecondary\n\n* Determine the tolerability and toxicity of this regimen in these patients.\n* Determine the median and progression-free survival of patients treated with this regimen.\n\nOUTLINE: This is an open-label study.\n\nPatients receive oxaliplatin IV over 2 hours on day 1 and oral capecitabine twice daily on days 1-7. Treatment repeats every 14 days in the absence of unacceptable toxicity or disease progression.\n\nAfter completion of study treatment, patients are followed every 3 months for 1 year, every 6 months for 2 years, and then annually thereafter.\n\nPROJECTED ACCRUAL: A total of 46 patients will be accrued for this study."
+        },
+        "conditionsModule": {
+          "conditions": [
+            "Gastric Cancer"
+          ],
+          "keywords": [
+            "recurrent gastric cancer",
+            "stage III gastric cancer",
+            "stage IV gastric cancer"
+          ]
+        },
+        "designModule": {
+          "studyType": "INTERVENTIONAL",
+          "phases": [
+            "PHASE2"
+          ],
+          "designInfo": {
+            "allocation": "NA",
+            "interventionModel": "SINGLE_GROUP",
+            "primaryPurpose": "TREATMENT",
+            "maskingInfo": {
+              "masking": "NONE"
+            }
+          },
+          "enrollmentInfo": {
+            "count": 10,
+            "type": "ACTUAL"
+          }
+        },
+        "armsInterventionsModule": {
+          "armGroups": [
+            {
+              "label": "Oxaliplatin + Capecitabine",
+              "type": "EXPERIMENTAL",
+              "description": "Patients will receive Oxaliplatin 85 mg/m2/d on day 1, given as a 2-hour infusion in 250 mL of dextrose 5% repeated every 2 weeks. Capecitabine will be administered orally at a dose of 850 mg/m2 twice a day.",
+              "interventionNames": [
+                "Drug: capecitabine",
+                "Drug: oxaliplatin"
+              ]
+            }
+          ],
+          "interventions": [
+            {
+              "type": "DRUG",
+              "name": "capecitabine",
+              "armGroupLabels": [
+                "Oxaliplatin + Capecitabine"
+              ]
+            },
+            {
+              "type": "DRUG",
+              "name": "oxaliplatin",
+              "armGroupLabels": [
+                "Oxaliplatin + Capecitabine"
+              ]
+            }
+          ]
+        },
+        "outcomesModule": {
+          "primaryOutcomes": [
+            {
+              "measure": "Response Rate as Determined by RECIST.",
+              "description": "Per Response Evaluation Criteria In Solid Tumors Criteria for target lesions and assessed by MRI: Complete Response (CR), Disappearance of all target lesions; Partial Response (PR), \\>=30% decrease in the sum of the longest diameter of target lesions; Overall Response (OR) = CR + PR.",
+              "timeFrame": "Every 6 weeks through study completion for up to about 18 weeks"
+            }
+          ],
+          "secondaryOutcomes": [
+            {
+              "measure": "Number of Adverse Events",
+              "timeFrame": "From the start of study treatment through study completion for up to about 18 weeks"
+            },
+            {
+              "measure": "Progression-free Survival",
+              "timeFrame": "Every 6 weeks through study completion for up to about 18 weeks"
+            }
+          ]
+        },
+        "eligibilityModule": {
+          "eligibilityCriteria": "DISEASE CHARACTERISTICS:\n\n* Histologically or cytologically confirmed gastric cancer\n\n  * Locally advanced, unresectable, or metastatic disease\n* Measurable disease, defined as at least 1 lesion that can be accurately measured in ≥ 1 dimension as ≥ 20 mm with conventional techniques or as ≥ 10 mm with spiral CT scan\n* No known brain metastases\n\nPATIENT CHARACTERISTICS:\n\n* ECOG performance status (PS) 0-2 or Karnofsky PS 60-100%\n* WBC ≥ 3,000/mm³\n* Absolute neutrophil count ≥ 1,500/mm³\n* Platelet count ≥ 100,000/mm³\n* Bilirubin normal\n* AST/ALT ≤ 2.5 times upper limit of normal\n* Creatinine ≤ 1.5 mg/dL\n* Not pregnant or nursing\n* Negative pregnancy test\n* Fertile patients must use effective contraception during study and for 6 months after completion of study treatment\n* Able to swallow\n* No history of allergic reactions attributed to compounds of similar chemical or biologic composition to fluoropyrimidines or platinum chemotherapy agents\n* No uncontrolled intercurrent illness including, but not limited to the following:\n\n  * Ongoing or active infection\n  * Symptomatic congestive heart failure\n  * Unstable angina pectoris\n  * Cardiac arrhythmia\n  * Psychiatric illness or social situations that would preclude study compliance\n\nPRIOR CONCURRENT THERAPY:\n\n* More than 4 weeks since prior chemotherapy or radiotherapy (6 weeks for nitrosoureas or mitomycin C) and recovered\n* At least 6 months since prior radiotherapy with capecitabine as a radioenhancer\n* No concurrent combination antiretroviral therapy for HIV-positive patients\n* No other concurrent chemotherapy\n* No concurrent palliative radiotherapy\n* No concurrent hormonal therapy except for the following:\n\n  * Steroids for adrenal failure\n  * Hormones for nondisease related conditions (e.g., insulin for diabetes)\n  * Intermittent use of dexamethasone as an antiemetic\n* No other concurrent investigational agents\n* No other concurrent anticancer agents or therapies",
+          "healthyVolunteers": false,
+          "sex": "ALL",
+          "minimumAge": "18 Years",
+          "maximumAge": "120 Years",
+          "stdAges": [
+            "ADULT",
+            "OLDER_ADULT"
+          ]
+        },
+        "contactsLocationsModule": {
+          "overallOfficials": [
+            {
+              "name": "Uzair B. Chaudhary, MD",
+              "affiliation": "Medical University of South Carolina",
+              "role": "STUDY_CHAIR"
+            },
+            {
+              "name": "Gustavo Leone",
+              "affiliation": "Medical University of South Carolina, Hollings Cancer Center",
+              "role": "STUDY_CHAIR"
+            }
+          ],
+          "locations": [
+            {
+              "facility": "Hollings Cancer Center at Medical University of South Carolina",
+              "city": "Charleston",
+              "state": "South Carolina",
+              "zip": "29425",
+              "country": "United States",
+              "geoPoint": {
+                "lat": 32.77632,
+                "lon": -79.93275
+              }
+            }
+          ]
+        }
+      },
+      "resultsSection": {
+        "participantFlowModule": {
+          "groups": [
+            {
+              "id": "FG000",
+              "title": "Oxaliplatin + Capecitabine",
+              "description": "Patients will receive Oxaliplatin 85 mg/m2/d on day 1, given as a 2-hour infusion in 250 mL of dextrose 5% repeated every 2 weeks. Capecitabine will be administered orally at a dose of 850 mg/m2 twice a day.\n\ncapecitabine\n\noxaliplatin"
+            }
+          ],
+          "periods": [
+            {
+              "title": "Overall Study",
+              "milestones": [
+                {
+                  "type": "STARTED",
+                  "achievements": [
+                    {
+                      "groupId": "FG000",
+                      "numSubjects": "10"
+                    }
+                  ]
+                },
+                {
+                  "type": "COMPLETED",
+                  "achievements": [
+                    {
+                      "groupId": "FG000",
+                      "numSubjects": "10"
+                    }
+                  ]
+                },
+                {
+                  "type": "NOT COMPLETED",
+                  "achievements": [
+                    {
+                      "groupId": "FG000",
+                      "numSubjects": "0"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "baselineCharacteristicsModule": {
+          "groups": [
+            {
+              "id": "BG000",
+              "title": "Oxaliplatin + Capecitabine",
+              "description": "Patients will receive Oxaliplatin 85 mg/m2/d on day 1, given as a 2-hour infusion in 250 mL of dextrose 5% repeated every 2 weeks. Capecitabine will be administered orally at a dose of 850 mg/m2 twice a day.\n\ncapecitabine\n\noxaliplatin"
+            }
+          ],
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "BG000",
+                  "value": "10"
+                }
+              ]
+            }
+          ],
+          "measures": [
+            {
+              "title": "Age, Categorical",
+              "paramType": "COUNT_OF_PARTICIPANTS",
+              "unitOfMeasure": "Participants",
+              "classes": [
+                {
+                  "categories": [
+                    {
+                      "title": "<=18 years",
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "0"
+                        }
+                      ]
+                    },
+                    {
+                      "title": "Between 18 and 65 years",
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "2"
+                        }
+                      ]
+                    },
+                    {
+                      "title": ">=65 years",
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "8"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Sex: Female, Male",
+              "paramType": "COUNT_OF_PARTICIPANTS",
+              "unitOfMeasure": "Participants",
+              "classes": [
+                {
+                  "categories": [
+                    {
+                      "title": "Female",
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "4"
+                        }
+                      ]
+                    },
+                    {
+                      "title": "Male",
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "6"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Race (NIH/OMB)",
+              "paramType": "COUNT_OF_PARTICIPANTS",
+              "unitOfMeasure": "Participants",
+              "classes": [
+                {
+                  "categories": [
+                    {
+                      "title": "American Indian or Alaska Native",
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "0"
+                        }
+                      ]
+                    },
+                    {
+                      "title": "Asian",
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "0"
+                        }
+                      ]
+                    },
+                    {
+                      "title": "Native Hawaiian or Other Pacific Islander",
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "0"
+                        }
+                      ]
+                    },
+                    {
+                      "title": "Black or African American",
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "5"
+                        }
+                      ]
+                    },
+                    {
+                      "title": "White",
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "5"
+                        }
+                      ]
+                    },
+                    {
+                      "title": "More than one race",
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "0"
+                        }
+                      ]
+                    },
+                    {
+                      "title": "Unknown or Not Reported",
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Region of Enrollment",
+              "paramType": "COUNT_OF_PARTICIPANTS",
+              "unitOfMeasure": "Participants",
+              "classes": [
+                {
+                  "title": "United States",
+                  "categories": [
+                    {
+                      "measurements": [
+                        {
+                          "groupId": "BG000",
+                          "value": "10"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "outcomeMeasuresModule": {
+          "outcomeMeasures": [
+            {
+              "type": "PRIMARY",
+              "title": "Response Rate as Determined by RECIST.",
+              "description": "Per Response Evaluation Criteria In Solid Tumors Criteria for target lesions and assessed by MRI: Complete Response (CR), Disappearance of all target lesions; Partial Response (PR), \\>=30% decrease in the sum of the longest diameter of target lesions; Overall Response (OR) = CR + PR.",
+              "populationDescription": "this data was not collected.",
+              "reportingStatus": "POSTED",
+              "timeFrame": "Every 6 weeks through study completion for up to about 18 weeks",
+              "groups": [
+                {
+                  "id": "OG000",
+                  "title": "Oxaliplatin + Capecitabine",
+                  "description": "Patients will receive Oxaliplatin 85 mg/m2/d on day 1, given as a 2-hour infusion in 250 mL of dextrose 5% repeated every 2 weeks. Capecitabine will be administered orally at a dose of 850 mg/m2 twice a day.\n\ncapecitabine\n\noxaliplatin"
+                }
+              ],
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "OG000",
+                      "value": "0"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "SECONDARY",
+              "title": "Number of Adverse Events",
+              "reportingStatus": "POSTED",
+              "paramType": "NUMBER",
+              "unitOfMeasure": "Serious Adverse Events",
+              "timeFrame": "From the start of study treatment through study completion for up to about 18 weeks",
+              "groups": [
+                {
+                  "id": "OG000",
+                  "title": "Oxaliplatin + Capecitabine",
+                  "description": "Patients will receive Oxaliplatin 85 mg/m2/d on day 1, given as a 2-hour infusion in 250 mL of dextrose 5% repeated every 2 weeks. Capecitabine will be administered orally at a dose of 850 mg/m2 twice a day.\n\ncapecitabine\n\noxaliplatin"
+                }
+              ],
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "OG000",
+                      "value": "10"
+                    }
+                  ]
+                }
+              ],
+              "classes": [
+                {
+                  "categories": [
+                    {
+                      "measurements": [
+                        {
+                          "groupId": "OG000",
+                          "value": "4"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "SECONDARY",
+              "title": "Progression-free Survival",
+              "populationDescription": "data was not collected for this endpoint.",
+              "reportingStatus": "POSTED",
+              "timeFrame": "Every 6 weeks through study completion for up to about 18 weeks",
+              "groups": [
+                {
+                  "id": "OG000",
+                  "title": "Oxaliplatin + Capecitabine",
+                  "description": "Patients will receive Oxaliplatin 85 mg/m2/d on day 1, given as a 2-hour infusion in 250 mL of dextrose 5% repeated every 2 weeks. Capecitabine will be administered orally at a dose of 850 mg/m2 twice a day.\n\ncapecitabine\n\noxaliplatin"
+                }
+              ],
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "OG000",
+                      "value": "0"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "adverseEventsModule": {
+          "frequencyThreshold": "0",
+          "timeFrame": "From the start of study treatment through study completion for up to about 18 weeks",
+          "description": "data for non-serious adverse events was not collected.",
+          "eventGroups": [
+            {
+              "id": "EG000",
+              "title": "Oxaliplatin + Capecitabine",
+              "description": "Patients will receive Oxaliplatin 85 mg/m2/d on day 1, given as a 2-hour infusion in 250 mL of dextrose 5% repeated every 2 weeks. Capecitabine will be administered orally at a dose of 850 mg/m2 twice a day.\n\ncapecitabine\n\noxaliplatin",
+              "seriousNumAffected": 4,
+              "seriousNumAtRisk": 10,
+              "otherNumAffected": 0,
+              "otherNumAtRisk": 0
+            }
+          ],
+          "seriousEvents": [
+            {
+              "term": "cellulitis",
+              "organSystem": "Skin and subcutaneous tissue disorders",
+              "assessmentType": "SYSTEMATIC_ASSESSMENT",
+              "stats": [
+                {
+                  "groupId": "EG000",
+                  "numEvents": 1,
+                  "numAffected": 1,
+                  "numAtRisk": 10
+                }
+              ]
+            },
+            {
+              "term": "draining abdominal scar",
+              "organSystem": "General disorders",
+              "assessmentType": "SYSTEMATIC_ASSESSMENT",
+              "stats": [
+                {
+                  "groupId": "EG000",
+                  "numEvents": 1,
+                  "numAffected": 1,
+                  "numAtRisk": 10
+                }
+              ]
+            },
+            {
+              "term": "supraventricular tachycardia",
+              "organSystem": "Cardiac disorders",
+              "assessmentType": "SYSTEMATIC_ASSESSMENT",
+              "stats": [
+                {
+                  "groupId": "EG000",
+                  "numEvents": 1,
+                  "numAffected": 1,
+                  "numAtRisk": 10
+                }
+              ]
+            },
+            {
+              "term": "angina",
+              "organSystem": "Cardiac disorders",
+              "assessmentType": "SYSTEMATIC_ASSESSMENT",
+              "stats": [
+                {
+                  "groupId": "EG000",
+                  "numEvents": 1,
+                  "numAffected": 1,
+                  "numAtRisk": 10
+                }
+              ]
+            }
+          ]
+        },
+        "moreInfoModule": {
+          "certainAgreement": {
+            "piSponsorEmployee": true
+          },
+          "pointOfContact": {
+            "title": "Kate Anderton",
+            "organization": "Medical University of South Carolina",
+            "email": "anderton@musc.edu",
+            "phone": "843-792-2708"
+          }
+        }
+      },
+      "derivedSection": {
+        "miscInfoModule": {
+          "versionHolder": "2025-09-26"
+        },
+        "conditionBrowseModule": {
+          "meshes": [
+            {
+              "id": "D013274",
+              "term": "Stomach Neoplasms"
+            }
+          ],
+          "ancestors": [
+            {
+              "id": "D005770",
+              "term": "Gastrointestinal Neoplasms"
+            },
+            {
+              "id": "D004067",
+              "term": "Digestive System Neoplasms"
+            },
+            {
+              "id": "D009371",
+              "term": "Neoplasms by Site"
+            },
+            {
+              "id": "D009369",
+              "term": "Neoplasms"
+            },
+            {
+              "id": "D004066",
+              "term": "Digestive System Diseases"
+            },
+            {
+              "id": "D005767",
+              "term": "Gastrointestinal Diseases"
+            },
+            {
+              "id": "D013272",
+              "term": "Stomach Diseases"
+            }
+          ]
+        },
+        "interventionBrowseModule": {
+          "meshes": [
+            {
+              "id": "D000069287",
+              "term": "Capecitabine"
+            },
+            {
+              "id": "D000077150",
+              "term": "Oxaliplatin"
+            }
+          ],
+          "ancestors": [
+            {
+              "id": "D003841",
+              "term": "Deoxycytidine"
+            },
+            {
+              "id": "D003562",
+              "term": "Cytidine"
+            },
+            {
+              "id": "D011741",
+              "term": "Pyrimidine Nucleosides"
+            },
+            {
+              "id": "D011743",
+              "term": "Pyrimidines"
+            },
+            {
+              "id": "D006573",
+              "term": "Heterocyclic Compounds, 1-Ring"
+            },
+            {
+              "id": "D006571",
+              "term": "Heterocyclic Compounds"
+            },
+            {
+              "id": "D005472",
+              "term": "Fluorouracil"
+            },
+            {
+              "id": "D014498",
+              "term": "Uracil"
+            },
+            {
+              "id": "D011744",
+              "term": "Pyrimidinones"
+            },
+            {
+              "id": "D003853",
+              "term": "Deoxyribonucleosides"
+            },
+            {
+              "id": "D009705",
+              "term": "Nucleosides"
+            },
+            {
+              "id": "D009706",
+              "term": "Nucleic Acids, Nucleotides, and Nucleosides"
+            },
+            {
+              "id": "D056831",
+              "term": "Coordination Complexes"
+            },
+            {
+              "id": "D009930",
+              "term": "Organic Chemicals"
+            }
+          ]
+        }
+      },
+      "hasResults": true
+    },
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT01907880",
+          "orgStudyIdInfo": {
+            "id": "2011349-01H"
+          },
+          "organization": {
+            "fullName": "Ottawa Hospital Research Institute",
+            "class": "OTHER"
+          },
+          "briefTitle": "The ODYSSEY TRIAL Phase IV Trial Evaluating the Palliative Benefit of Pamidronate or Zoledronic Acid in Breast Cancer",
+          "officialTitle": "A Randomized, Double-blind, Placebo-controlled, Phase IV Trial Evaluating the Palliative Benefit of Either Continuing Pamidronate or Switching to Second-line Zoledronic Acid in Breast Cancer Patients With High-risk Bone Metastases.",
+          "acronym": "ER11-03"
+        },
+        "statusModule": {
+          "statusVerifiedDate": "2016-09",
+          "overallStatus": "COMPLETED",
+          "expandedAccessInfo": {
+            "hasExpandedAccess": false
+          },
+          "startDateStruct": {
+            "date": "2012-08"
+          },
+          "primaryCompletionDateStruct": {
+            "date": "2016-01",
+            "type": "ACTUAL"
+          },
+          "completionDateStruct": {
+            "date": "2016-01",
+            "type": "ACTUAL"
+          },
+          "studyFirstSubmitDate": "2013-07-22",
+          "studyFirstSubmitQcDate": "2013-07-24",
+          "studyFirstPostDateStruct": {
+            "date": "2013-07-25",
+            "type": "ESTIMATED"
+          },
+          "lastUpdateSubmitDate": "2017-07-05",
+          "lastUpdatePostDateStruct": {
+            "date": "2017-07-07",
+            "type": "ACTUAL"
+          }
+        },
+        "sponsorCollaboratorsModule": {
+          "responsibleParty": {
+            "type": "SPONSOR"
+          },
+          "leadSponsor": {
+            "name": "Ottawa Hospital Research Institute",
+            "class": "OTHER"
+          },
+          "collaborators": [
+            {
+              "name": "Canadian Breast Cancer Foundation",
+              "class": "OTHER"
+            }
+          ]
+        },
+        "oversightModule": {
+          "oversightHasDmc": true
+        },
+        "descriptionModule": {
+          "briefSummary": "Metastatic breast cancer patients with bone involvement who are at high-risk of subsequent skeletal related event (SRE), defined as radiotherapy or surgery to the bone, pathological fracture, spinal cord compression, or hypercalcemia (as reflected through: elevated sCTX or bone pain or a prior SRE despite receiving standard bisphosphonate therapy) should experience a decrease in the surrogate marker, sCTX, at week 12 if switched to zoledronic acid compared with those patients who continue on intravenous pamidronate (i.e. current standard of care). The investigators propose that a drop in sCTX will correlate with improved pain, quality of life and a reduced incidence of further SREs.",
+          "detailedDescription": "This study will be a prospective, randomized, double-blind, placebo controlled, Phase IV study of pamidronate vs. zoledronic acid in women with breast cancer and bone metastases. Patients who are at high-risk of subsequent SREs will be screened for entry into this study. High-risk will be defined as fulfilling one or more of the following criteria: elevated sCTX (\\>400ng/L) and/or bone pain and/or a prior SRE and/or progression of bone disease (by imaging) despite at least 3 months of pamidronate therapy. Patients who meet the eligibility criteria, will be randomized to receive 3 cycles of intravenous zoledronic acid (4mg intravenously over 15 minutes) or to continue their standard dose of pamidronate. Both treatments will be given at 4 week intervals. Patients will be stratified according to whether or not they have had a SRE prior to study entry, progressive bone disease or bone pain. In order for the study to be double-blind, patients will receive two infusions simultaneously, at each study visit, one of the active drug and another of the placebo. After completing 3 cycles of study treatment, patients will resume their monthly intravenous pamidronate infusions as per current standard of care."
+        },
+        "conditionsModule": {
+          "conditions": [
+            "Breast Cancer"
+          ],
+          "keywords": [
+            "breast",
+            "bone",
+            "pain"
+          ]
+        },
+        "designModule": {
+          "studyType": "INTERVENTIONAL",
+          "phases": [
+            "PHASE4"
+          ],
+          "designInfo": {
+            "allocation": "RANDOMIZED",
+            "interventionModel": "PARALLEL",
+            "primaryPurpose": "TREATMENT",
+            "maskingInfo": {
+              "masking": "TRIPLE",
+              "whoMasked": [
+                "PARTICIPANT",
+                "CARE_PROVIDER",
+                "INVESTIGATOR"
+              ]
+            }
+          },
+          "enrollmentInfo": {
+            "count": 74,
+            "type": "ACTUAL"
+          }
+        },
+        "armsInterventionsModule": {
+          "armGroups": [
+            {
+              "label": "Pamidronate and placebo",
+              "type": "ACTIVE_COMPARATOR",
+              "description": "Patients will receive two infusions simultaneously, at each study visit, one of Pamidronate and another of the placebo. After completing 3 cycles of study treatment, patients will resume their monthly intravenous pamidronate infusions as per current standard of care.",
+              "interventionNames": [
+                "Drug: Pamidronate",
+                "Drug: placebo"
+              ]
+            },
+            {
+              "label": "Zoledronic acid and placebo",
+              "type": "ACTIVE_COMPARATOR",
+              "description": "Patients will receive two infusions simultaneously, at each study visit, one of Zoledronic acid and another of the placebo. After completing 3 cycles of study treatment, patients will resume their monthly intravenous pamidronate infusions as per current standard of care.",
+              "interventionNames": [
+                "Drug: Zoledronic acid",
+                "Drug: placebo"
+              ]
+            }
+          ],
+          "interventions": [
+            {
+              "type": "DRUG",
+              "name": "Pamidronate",
+              "description": "90mg IV once every 4 weeks for 3 cycles",
+              "armGroupLabels": [
+                "Pamidronate and placebo"
+              ],
+              "otherNames": [
+                "ADP Sodium",
+                "Aredia®"
+              ]
+            },
+            {
+              "type": "DRUG",
+              "name": "Zoledronic acid",
+              "description": "4mg IV every 4 weeks for 3 cycles",
+              "armGroupLabels": [
+                "Zoledronic acid and placebo"
+              ],
+              "otherNames": [
+                "Reclast",
+                "Zometa",
+                "Aclasta"
+              ]
+            },
+            {
+              "type": "DRUG",
+              "name": "placebo",
+              "armGroupLabels": [
+                "Pamidronate and placebo",
+                "Zoledronic acid and placebo"
+              ]
+            }
+          ]
+        },
+        "outcomesModule": {
+          "primaryOutcomes": [
+            {
+              "measure": "sCTX values",
+              "description": "To compare the proportion of high-risk metastatic breast cancer patients with bone metastases that will achieve a decrease in sCTX (surrogate for decrease risk of SREs) in the zoledronic and pamidronate treatment arms.",
+              "timeFrame": "baseline, 1 week post treatment, week 4, week 8, week 12"
+            }
+          ],
+          "secondaryOutcomes": [
+            {
+              "measure": "Palliative response",
+              "description": "To determine the proportion of high-risk metastatic breast cancer patients that will achieve a significant improvement in palliative response (18) (defined as a two unit drop in their worst pain score, based on a brief pain inventory questionnaire for two consecutive measurements at least one month apart) in the zoledronic and pamidronate treatment arms.",
+              "timeFrame": "baseline, week 1, week 4, week 8, week 12."
+            }
+          ],
+          "otherOutcomes": [
+            {
+              "measure": "predictor of pain benefit",
+              "description": "To assess whether a drop in sCTX one week post infusion of zoledronic acid is a predictor of pain benefit at week 12. We will test the strength of the association in sCTX drop (any drop from baseline level) at week 1 and palliative response when measured at week 12, using the validated BPI and FACT-BP questionnaires",
+              "timeFrame": "week 1 and week 12"
+            }
+          ]
+        },
+        "eligibilityModule": {
+          "eligibilityCriteria": "Inclusion Criteria:\n\n1. Metastatic breast cancer to the bone with radiologically confirmed bone metastases\n2. High-risk of subsequent SRE as reflected through either: elevated serum CTX (\\> 400ng/L) and/or bone pain (using BPI) and/or prior SRE while on bisphosphonate therapy and/or progressive bone metastasis (by imaging)\n3. On pamidronate therapy for at least 3 months\n4. ECOG ≤ 2 and life expectancy \\> 3 months\n5. Serum creatinine ≤ 2.0 × ULN (zoledronic acid or pamidronate to be renal dosed as per institution standard)\n6. No changes in systemic treatment in the 4 weeks prior to study entry or anticipated changes in the 4 weeks after entering the study. Markers of bone formation can be affected by a change in systemic therapies\n7. Ability to take calcium and Vitamin D as per Health Canada recommended daily doses for the duration of the study\n8. Ability to provide informed consent and complete study evaluations.\n\nExclusion Criteria:\n\n1. Patients with acute symptomatic pathological fractures or acute spinal cord compression until such time as the appropriate management (surgery and/or radiotherapy) has been completed\n2. Acute hypercalcemia (\\>3.5 mmol/L)\n3. Hypersensitivity to any bisphosphonate\n4. Patients with rapidly progressive non-bone metastases for whom delaying a change in systemic anti-cancer treatment for the 1 month biochemical marker evaluation period could have a detrimental impact on patient outcome.\n5. Renal dysfunction (≥ 2x creatinine of the upper limit of normal )\n6. Pregnancy or lactation\n7. Patients with dental abscesses or patients potentially requiring tooth extraction while on study",
+          "healthyVolunteers": false,
+          "sex": "FEMALE",
+          "minimumAge": "18 Years",
+          "stdAges": [
+            "ADULT",
+            "OLDER_ADULT"
+          ]
+        },
+        "contactsLocationsModule": {
+          "overallOfficials": [
+            {
+              "name": "Mark Clemons, Dr.",
+              "affiliation": "The Ottawa Hospital",
+              "role": "PRINCIPAL_INVESTIGATOR"
+            }
+          ],
+          "locations": [
+            {
+              "facility": "The Ottawa Hospital Cancer Centre",
+              "city": "Ottawa",
+              "state": "Ontario",
+              "zip": "K1H 8L6",
+              "country": "Canada",
+              "geoPoint": {
+                "lat": 45.41117,
+                "lon": -75.69812
+              }
+            }
+          ]
+        },
+        "ipdSharingStatementModule": {
+          "ipdSharing": "YES",
+          "description": "results will be published."
+        }
+      },
+      "derivedSection": {
+        "miscInfoModule": {
+          "versionHolder": "2025-09-26"
+        },
+        "conditionBrowseModule": {
+          "meshes": [
+            {
+              "id": "D001943",
+              "term": "Breast Neoplasms"
+            },
+            {
+              "id": "D010146",
+              "term": "Pain"
+            }
+          ],
+          "ancestors": [
+            {
+              "id": "D009371",
+              "term": "Neoplasms by Site"
+            },
+            {
+              "id": "D009369",
+              "term": "Neoplasms"
+            },
+            {
+              "id": "D001941",
+              "term": "Breast Diseases"
+            },
+            {
+              "id": "D012871",
+              "term": "Skin Diseases"
+            },
+            {
+              "id": "D017437",
+              "term": "Skin and Connective Tissue Diseases"
+            },
+            {
+              "id": "D009461",
+              "term": "Neurologic Manifestations"
+            },
+            {
+              "id": "D012816",
+              "term": "Signs and Symptoms"
+            },
+            {
+              "id": "D013568",
+              "term": "Pathological Conditions, Signs and Symptoms"
+            }
+          ]
+        },
+        "interventionBrowseModule": {
+          "meshes": [
+            {
+              "id": "D000077268",
+              "term": "Pamidronate"
+            },
+            {
+              "id": "D000077211",
+              "term": "Zoledronic Acid"
+            }
+          ],
+          "ancestors": [
+            {
+              "id": "D004164",
+              "term": "Diphosphonates"
+            },
+            {
+              "id": "D063065",
+              "term": "Organophosphonates"
+            },
+            {
+              "id": "D009943",
+              "term": "Organophosphorus Compounds"
+            },
+            {
+              "id": "D009930",
+              "term": "Organic Chemicals"
+            },
+            {
+              "id": "D007093",
+              "term": "Imidazoles"
+            },
+            {
+              "id": "D001393",
+              "term": "Azoles"
+            },
+            {
+              "id": "D006573",
+              "term": "Heterocyclic Compounds, 1-Ring"
+            },
+            {
+              "id": "D006571",
+              "term": "Heterocyclic Compounds"
+            }
+          ]
+        }
+      },
+      "hasResults": false
+    },
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT03556280",
+          "orgStudyIdInfo": {
+            "id": "CA-0005"
+          },
+          "organization": {
+            "fullName": "Cognito Therapeutics, Inc.",
+            "class": "INDUSTRY"
+          },
+          "briefTitle": "Multi-Center Study of Sensory Stimulation to Improve Brain Function",
+          "officialTitle": "Multi-Center Study of Sensory Stimulation to Improve Brain Function (Overture Study)",
+          "acronym": "Overture"
+        },
+        "statusModule": {
+          "statusVerifiedDate": "2021-08",
+          "overallStatus": "ACTIVE_NOT_RECRUITING",
+          "expandedAccessInfo": {
+            "hasExpandedAccess": false
+          },
+          "startDateStruct": {
+            "date": "2018-04-24",
+            "type": "ACTUAL"
+          },
+          "primaryCompletionDateStruct": {
+            "date": "2020-08-01",
+            "type": "ACTUAL"
+          },
+          "completionDateStruct": {
+            "date": "2021-09",
+            "type": "ESTIMATED"
+          },
+          "studyFirstSubmitDate": "2018-05-22",
+          "studyFirstSubmitQcDate": "2018-06-12",
+          "studyFirstPostDateStruct": {
+            "date": "2018-06-14",
+            "type": "ACTUAL"
+          },
+          "lastUpdateSubmitDate": "2021-08-23",
+          "lastUpdatePostDateStruct": {
+            "date": "2021-08-24",
+            "type": "ACTUAL"
+          }
+        },
+        "sponsorCollaboratorsModule": {
+          "responsibleParty": {
+            "type": "SPONSOR"
+          },
+          "leadSponsor": {
+            "name": "Cognito Therapeutics, Inc.",
+            "class": "INDUSTRY"
+          }
+        },
+        "oversightModule": {
+          "isFdaRegulatedDrug": false,
+          "isFdaRegulatedDevice": true,
+          "isUnapprovedDevice": true
+        },
+        "descriptionModule": {
+          "briefSummary": "The Overture Study is a randomized, controlled, single-blind multi-center clinical trial using the GammaSense Stimulation system to study safety, tolerability, and efficacy in people with mild to moderate cognitive impairment.",
+          "detailedDescription": "The Overture Study (CA-0005) is a Phase I/II randomized, controlled, single-blind multi-center clinical trial using the GammaSense Stimulation device to study safety, adherence rates and efficacy in subjects with mild to moderate cognitive impairment (MMSE 14-26) who are age 55 and older.\n\nSubjects who pass screening will be randomized (ratio 2:1 Treatment to Control). Subjects and their caregivers will be blinded to their randomization group, as will key raters at each site. The device will be used for 60 minutes daily during the 6-month therapy phase, followed by a one month safety follow-up visit."
+        },
+        "conditionsModule": {
+          "conditions": [
+            "Alzheimer Disease",
+            "Cognitive Impairment",
+            "Mild Cognitive Impairment",
+            "Dementia Alzheimers",
+            "Dementia, Mild",
+            "Dementia, Alzheimer Type",
+            "Dementia of Alzheimer Type",
+            "Dementia",
+            "Cognitive Impairment, Mild",
+            "Cognitive Decline"
+          ],
+          "keywords": [
+            "Dementia",
+            "Alzheimer's Disease",
+            "Cognitive Impairment"
+          ]
+        },
+        "designModule": {
+          "studyType": "INTERVENTIONAL",
+          "phases": [
+            "NA"
+          ],
+          "designInfo": {
+            "allocation": "RANDOMIZED",
+            "interventionModel": "PARALLEL",
+            "primaryPurpose": "TREATMENT",
+            "maskingInfo": {
+              "masking": "TRIPLE",
+              "whoMasked": [
+                "PARTICIPANT",
+                "CARE_PROVIDER",
+                "OUTCOMES_ASSESSOR"
+              ]
+            }
+          },
+          "enrollmentInfo": {
+            "count": 60,
+            "type": "ESTIMATED"
+          }
+        },
+        "armsInterventionsModule": {
+          "armGroups": [
+            {
+              "label": "Treatment Group",
+              "type": "EXPERIMENTAL",
+              "description": "Will use the Active GammaSense Stimulation System.",
+              "interventionNames": [
+                "Device: GammaSense Stimulation System (Active Settings)"
+              ]
+            },
+            {
+              "label": "Control Group",
+              "type": "SHAM_COMPARATOR",
+              "description": "Will use the Sham GammaSense Stimulation System.",
+              "interventionNames": [
+                "Device: GammaSense Stimulation System (Sham Settings)"
+              ]
+            }
+          ],
+          "interventions": [
+            {
+              "type": "DEVICE",
+              "name": "GammaSense Stimulation System (Active Settings)",
+              "description": "Proprietary auditory and visual sensory stimulation device.",
+              "armGroupLabels": [
+                "Treatment Group"
+              ]
+            },
+            {
+              "type": "DEVICE",
+              "name": "GammaSense Stimulation System (Sham Settings)",
+              "description": "Proprietary auditory and visual sensory stimulation device.",
+              "armGroupLabels": [
+                "Control Group"
+              ]
+            }
+          ]
+        },
+        "outcomesModule": {
+          "primaryOutcomes": [
+            {
+              "measure": "Alzheimer's Disease Assessment Scale- Cognitive Subscale (ADAS-Cog)",
+              "description": "A widely accepted, validated measure of cognitive function in Alzheimer's Disease consisting of 14 questions that result in a score ranging from 0 to 90 with higher scores representing greater cognitive impairment",
+              "timeFrame": "Quarterly over 6 months"
+            }
+          ],
+          "secondaryOutcomes": [
+            {
+              "measure": "Amyloid PET/CT",
+              "timeFrame": "Quarterly over 6 months"
+            }
+          ]
+        },
+        "eligibilityModule": {
+          "eligibilityCriteria": "Inclusion Criteria:\n\n* \\>= 55 Years old\n* MMSE 14-26\n* Prodromal Alzheimer's Disease (AD), AD or Mild Cognitive Impairment (MCI) due to AD\n* Participation of a caregiver\n\nExclusion Criteria:\n\n* Profound hearing or visual impairment\n* Seizure Disorder\n* Use of memantine (Namenda or Namzaric)\n* Implantable devices (non-MR compatible)",
+          "healthyVolunteers": false,
+          "sex": "ALL",
+          "minimumAge": "55 Years",
+          "stdAges": [
+            "ADULT",
+            "OLDER_ADULT"
+          ]
+        },
+        "contactsLocationsModule": {
+          "locations": [
+            {
+              "facility": "Brain Matters Research",
+              "city": "Delray Beach",
+              "state": "Florida",
+              "zip": "33445",
+              "country": "United States",
+              "geoPoint": {
+                "lat": 26.46146,
+                "lon": -80.07282
+              }
+            },
+            {
+              "facility": "Brain Matters Research",
+              "city": "Stuart",
+              "state": "Florida",
+              "zip": "34994",
+              "country": "United States",
+              "geoPoint": {
+                "lat": 27.19755,
+                "lon": -80.25283
+              }
+            },
+            {
+              "facility": "ActivMed Practices & Research, Inc",
+              "city": "Methuen",
+              "state": "Massachusetts",
+              "zip": "01844",
+              "country": "United States",
+              "geoPoint": {
+                "lat": 42.7262,
+                "lon": -71.19089
+              }
+            },
+            {
+              "facility": "Boston Center for Memory",
+              "city": "Newton",
+              "state": "Massachusetts",
+              "zip": "02459",
+              "country": "United States",
+              "geoPoint": {
+                "lat": 42.33704,
+                "lon": -71.20922
+              }
+            },
+            {
+              "facility": "The Cognitive and Research Center of New Jersey",
+              "city": "Springfield",
+              "state": "New Jersey",
+              "zip": "07081",
+              "country": "United States",
+              "geoPoint": {
+                "lat": 40.70491,
+                "lon": -74.31723
+              }
+            }
+          ]
+        },
+        "referencesModule": {
+          "references": [
+            {
+              "pmid": "40082316",
+              "type": "DERIVED",
+              "citation": "Carbonell F, Zijdenbos AP, Hempel E, Hajos M, Bedell BJ. A novel method for harmonization of PET image spatial resolution without phantoms. EJNMMI Phys. 2025 Mar 14;12(1):23. doi: 10.1186/s40658-025-00740-9."
+            },
+            {
+              "pmid": "38515445",
+              "type": "DERIVED",
+              "citation": "Hajos M, Boasso A, Hempel E, Shpokayte M, Konisky A, Seshagiri CV, Fomenko V, Kwan K, Nicodemus-Johnson J, Hendrix S, Vaughan B, Kern R, Megerian JT, Malchano Z. Safety, tolerability, and efficacy estimate of evoked gamma oscillation in mild to moderate Alzheimer's disease. Front Neurol. 2024 Mar 6;15:1343588. doi: 10.3389/fneur.2024.1343588. eCollection 2024."
+            },
+            {
+              "pmid": "34630050",
+              "type": "DERIVED",
+              "citation": "Cimenser A, Hempel E, Travers T, Strozewski N, Martin K, Malchano Z, Hajos M. Sensory-Evoked 40-Hz Gamma Oscillation Improves Sleep and Daily Living Activities in Alzheimer's Disease Patients. Front Syst Neurosci. 2021 Sep 24;15:746859. doi: 10.3389/fnsys.2021.746859. eCollection 2021."
+            }
+          ]
+        }
+      },
+      "derivedSection": {
+        "miscInfoModule": {
+          "versionHolder": "2025-09-26",
+          "submissionTracking": {
+            "estimatedResultsFirstSubmitDate": "2024-04-29",
+            "submissionInfos": [
+              {
+                "releaseDate": "2024-04-29",
+                "resetDate": "2024-05-22",
+                "mcpReleaseN": 7
+              }
+            ]
+          }
+        },
+        "conditionBrowseModule": {
+          "meshes": [
+            {
+              "id": "D000544",
+              "term": "Alzheimer Disease"
+            },
+            {
+              "id": "D060825",
+              "term": "Cognitive Dysfunction"
+            },
+            {
+              "id": "D003704",
+              "term": "Dementia"
+            },
+            {
+              "id": "D008224",
+              "term": "Lymphoma, Follicular"
+            }
+          ],
+          "ancestors": [
+            {
+              "id": "D001927",
+              "term": "Brain Diseases"
+            },
+            {
+              "id": "D002493",
+              "term": "Central Nervous System Diseases"
+            },
+            {
+              "id": "D009422",
+              "term": "Nervous System Diseases"
+            },
+            {
+              "id": "D024801",
+              "term": "Tauopathies"
+            },
+            {
+              "id": "D019636",
+              "term": "Neurodegenerative Diseases"
+            },
+            {
+              "id": "D019965",
+              "term": "Neurocognitive Disorders"
+            },
+            {
+              "id": "D001523",
+              "term": "Mental Disorders"
+            },
+            {
+              "id": "D003072",
+              "term": "Cognition Disorders"
+            },
+            {
+              "id": "D008228",
+              "term": "Lymphoma, Non-Hodgkin"
+            },
+            {
+              "id": "D008223",
+              "term": "Lymphoma"
+            },
+            {
+              "id": "D009370",
+              "term": "Neoplasms by Histologic Type"
+            },
+            {
+              "id": "D009369",
+              "term": "Neoplasms"
+            },
+            {
+              "id": "D008232",
+              "term": "Lymphoproliferative Disorders"
+            },
+            {
+              "id": "D008206",
+              "term": "Lymphatic Diseases"
+            },
+            {
+              "id": "D006425",
+              "term": "Hemic and Lymphatic Diseases"
+            },
+            {
+              "id": "D007160",
+              "term": "Immunoproliferative Disorders"
+            },
+            {
+              "id": "D007154",
+              "term": "Immune System Diseases"
+            }
+          ]
+        }
+      },
+      "hasResults": false
+    },
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT00147680",
+          "orgStudyIdInfo": {
+            "id": "UPSC - 001"
+          },
+          "organization": {
+            "fullName": "Queensland Centre for Gynaecological Cancer",
+            "class": "OTHER_GOV"
+          },
+          "briefTitle": "Uterine Papillary Serous Cancer (UPSC) Trial",
+          "officialTitle": "Prospective, Non-randomised Phase 2 Clinical Trial of Carboplatin Plus Paclitaxel With Sequential Radical Pelvic Radiotherapy for Uterine Serous Papillary Cancer"
+        },
+        "statusModule": {
+          "statusVerifiedDate": "2012-02",
+          "overallStatus": "COMPLETED",
+          "expandedAccessInfo": {
+            "hasExpandedAccess": false
+          },
+          "startDateStruct": {
+            "date": "2004-09"
+          },
+          "primaryCompletionDateStruct": {
+            "date": "2008-06",
+            "type": "ACTUAL"
+          },
+          "completionDateStruct": {
+            "date": "2009-10",
+            "type": "ACTUAL"
+          },
+          "studyFirstSubmitDate": "2005-09-06",
+          "studyFirstSubmitQcDate": "2005-09-06",
+          "studyFirstPostDateStruct": {
+            "date": "2005-09-07",
+            "type": "ESTIMATED"
+          },
+          "lastUpdateSubmitDate": "2012-02-01",
+          "lastUpdatePostDateStruct": {
+            "date": "2012-02-02",
+            "type": "ESTIMATED"
+          }
+        },
+        "sponsorCollaboratorsModule": {
+          "responsibleParty": {
+            "oldNameTitle": "Prof Andreas Obermair",
+            "oldOrganization": "Queensland Centre for Gynaecological Cancer"
+          },
+          "leadSponsor": {
+            "name": "Queensland Centre for Gynaecological Cancer",
+            "class": "OTHER_GOV"
+          }
+        },
+        "oversightModule": {
+          "oversightHasDmc": false
+        },
+        "descriptionModule": {
+          "briefSummary": "This study will be an open, non-randomised, clinical phase 2 trial, which will involve 30 women diagnosed with uterine papillary serous cancer. The researchers will investigate the effect of four cycles of paclitaxel/carboplatin, followed by whole pelvic external beam radiotherapy to a standard pelvis field (50.4 Gy) with or without a para-aortic boost with respect to the safety and efficacy of treatment, and patterns of recurrence.",
+          "detailedDescription": "Trial Objectives:\n\n* To assess the safety and efficacy of the combination of Paclitaxel and Carboplatin +/- pelvic radiotherapy in the treatment of UPSC.\n* To observe the patterns of recurrence following the administration of the combination of Paclitaxel and Carboplatin +/- pelvic radiotherapy in the treatment of UPSC.\n* To assess the QOL, overall survival and disease free survival.\n\nTreatment\n\nSurgery: Total abdominal hysterectomy, bilateral salpingo-oophorectomy, +/- pelvic and aortic node sampling, omentectomy, peritoneal cytology.\n\nChemotherapy: Chemotherapy commences at the surgeon's and the medical oncologist's discretion and the time between surgery and start of chemotherapy will be recorded. One treatment cycle consists of 3 weeks.\n\nPaclitaxel and Carboplatin will be administered as follows:\n\nDay 1:\n\n* Diphenhydramine 50 mg IV or po or phenergan 12.5 - 25 mg IV\n* Cimetidine 300 mg or ranitidine 50 mg IV\n* Dexamethasone 20 mg IV\n* Paclitaxel 175 mg/m2\n* Carboplatin AUC 6\n\nDay 22: Repeat the cycle. This is Day 1 of the second cycle.\n\nDay 43: Repeat the cycle. This is Day 1 of the third cycle.\n\nDay 64: Repeat the cycle. This is Day 1 of the fourth cycle.\n\nDay 85: After the fourth cycle of chemotherapy patients\n\nPatients with stage 4 disease will continue with chemotherapy for a total of 6 cycles.\n\nPatients with surgical stage 1b to 3c disease will receive whole pelvis external beam radiotherapy (50.4 Gy RD over 5 and a half weeks +/- paraaortic boost +/- vaginal vault brachytherapy boost). Radiotherapy will start 4 to 6 weeks after commencement of chemotherapy when the haematological count has recovered."
+        },
+        "conditionsModule": {
+          "conditions": [
+            "Uterine Cancer"
+          ],
+          "keywords": [
+            "Uterine Papillary Serous Carcinoma (UPSC)"
+          ]
+        },
+        "designModule": {
+          "studyType": "INTERVENTIONAL",
+          "phases": [
+            "PHASE2"
+          ],
+          "designInfo": {
+            "allocation": "NON_RANDOMIZED",
+            "interventionModel": "SINGLE_GROUP",
+            "primaryPurpose": "TREATMENT",
+            "maskingInfo": {
+              "masking": "NONE"
+            }
+          },
+          "enrollmentInfo": {
+            "count": 30,
+            "type": "ESTIMATED"
+          }
+        },
+        "armsInterventionsModule": {
+          "interventions": [
+            {
+              "type": "DRUG",
+              "name": "Paclitaxel, Carboplatin"
+            }
+          ]
+        },
+        "outcomesModule": {
+          "primaryOutcomes": [
+            {
+              "measure": "To assess the safety and efficacy of the combination of paclitaxel and carboplatin plus/minus (+/-) pelvic radiotherapy in the treatment of UPSC"
+            },
+            {
+              "measure": "To observe the patterns of recurrence following the administration of the combination of paclitaxel and carboplatin +/- pelvic radiotherapy in the treatment of UPSC"
+            }
+          ],
+          "secondaryOutcomes": [
+            {
+              "measure": "To assess the quality of life (QOL), overall survival and disease free survival"
+            }
+          ]
+        },
+        "eligibilityModule": {
+          "eligibilityCriteria": "Inclusion Criteria:\n\n* Patients with histologically confirmed UPSC at surgical stage 1b to 4 disease. The serous-papillary component of the specimen must be at least 30 percent. Patients with surgical stage 1a disease should not be enrolled.\n* Females aged \\>= 18 years old.\n* Eastern Cooperative Oncology Group (ECOG) performance status 0, 1, or 2.\n* Patients may not have received any prior chemotherapy regimens for UPSC.\n* Patients must have adequate bone marrow, renal, hepatic and neurologic function.\n* Patients must be informed of the investigational nature of the study and sign an informed consent form.\n* Patients with previous malignancy are eligible only if the patient has been disease-free for \\>= 5 years.\n\nExclusion Criteria:\n\n* Patients with pre-existing \\>= grade 2 neurotoxicity.\n* Patients with uncontrolled hypertension, (systolic blood pressure \\>180 mm Hg or diastolic blood pressure \\>100 mm Hg) or uncontrolled cardiac arrhythmia or diabetes mellitus\n* Patients with a history of other malignancy within the last 5 years that could affect the diagnosis or assessment of UPSC.\n* Patients who have a history of serious cardiac disease that is not adequately controlled are not allowed. Patients with documented myocardial infarction within 6 months preceding study entry; congestive heart failure; unstable angina; a clinically significant pericardial effusion; or arrhythmias are also ineligible.\n* Patients with an active serious infection or other serious underlying medical condition that would otherwise impair their ability to receive protocol treatment.\n* Serious medical or psychiatric illnesses that would prevent informed consent. Dementia or significantly altered mental status that would prohibit the understanding and/or giving of informed consent.\n* Patients with prior significant allergic reactions to drugs containing cremophor, such as cyclosporine, or vitamin K are not eligible. A significant reaction may be defined as, but is not limited to, the description of grade \\>= 3 allergic reactions using the Common Toxicity Criteria (CTC). Patients with known hypersensitivity to paclitaxel, carboplatin or Cremophor EL.\n* Patients who have received prior whole pelvis radiotherapy.\n* Patients with uncontrolled pelvic inflammatory disease that would contraindicate pelvic radiotherapy.\n* Patients who are pregnant or breast-feeding.\n* Patients receiving other investigational therapy.",
+          "healthyVolunteers": false,
+          "sex": "FEMALE",
+          "minimumAge": "18 Years",
+          "stdAges": [
+            "ADULT",
+            "OLDER_ADULT"
+          ]
+        },
+        "contactsLocationsModule": {
+          "overallOfficials": [
+            {
+              "name": "Andreas Obermair",
+              "affiliation": "QCGC",
+              "role": "PRINCIPAL_INVESTIGATOR"
+            }
+          ],
+          "locations": [
+            {
+              "facility": "QCGC, Royal Brisbane and Women's Hospital",
+              "city": "Herston",
+              "state": "Queensland",
+              "zip": "4029",
+              "country": "Australia",
+              "geoPoint": {
+                "lat": -27.44453,
+                "lon": 153.01852
+              }
+            },
+            {
+              "facility": "Mater Adult Public Hospital",
+              "city": "South Brisbane",
+              "state": "Queensland",
+              "zip": "4101",
+              "country": "Australia",
+              "geoPoint": {
+                "lat": -27.48034,
+                "lon": 153.02049
+              }
+            }
+          ]
+        }
+      },
+      "derivedSection": {
+        "miscInfoModule": {
+          "versionHolder": "2025-09-26"
+        },
+        "conditionBrowseModule": {
+          "meshes": [
+            {
+              "id": "D014594",
+              "term": "Uterine Neoplasms"
+            }
+          ],
+          "ancestors": [
+            {
+              "id": "D005833",
+              "term": "Genital Neoplasms, Female"
+            },
+            {
+              "id": "D014565",
+              "term": "Urogenital Neoplasms"
+            },
+            {
+              "id": "D009371",
+              "term": "Neoplasms by Site"
+            },
+            {
+              "id": "D009369",
+              "term": "Neoplasms"
+            },
+            {
+              "id": "D014591",
+              "term": "Uterine Diseases"
+            },
+            {
+              "id": "D005831",
+              "term": "Genital Diseases, Female"
+            },
+            {
+              "id": "D052776",
+              "term": "Female Urogenital Diseases"
+            },
+            {
+              "id": "D005261",
+              "term": "Female Urogenital Diseases and Pregnancy Complications"
+            },
+            {
+              "id": "D000091642",
+              "term": "Urogenital Diseases"
+            },
+            {
+              "id": "D000091662",
+              "term": "Genital Diseases"
+            }
+          ]
+        },
+        "interventionBrowseModule": {
+          "meshes": [
+            {
+              "id": "C053518",
+              "term": "CP protocol"
+            }
+          ]
+        }
+      },
+      "hasResults": false
+    }
+  ],
+  "nextPageToken": "ZVNj7o2Elu8o3lpiDNb8pLb-mpOQJJxtY"
+}

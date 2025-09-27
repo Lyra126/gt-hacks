@@ -7,47 +7,66 @@ import globalStyles from "./styles/globalStyles";
 import Fontisto from "react-native-vector-icons/Fontisto";
 import axios from 'axios'; 
 
-const login = ({ onLogin, ...props }) => {
+const API_BASE = "http://100.66.11.34:8000/api";
+
+const login = ({ setIsLoggedIn }) => {
     const navigation = useNavigation();
     const [email,setEmail]=  useState("");
     const [password,setPassword]=  useState("");
-    const [error, setError] = useState("");
+    const [error, setErrorMessage] = useState("");
     const [userType, setUserType] = useState('patient'); // 'patient' or 'crc'
     
-    const handleSignIn = () =>{
-        setError("");
-        axios.get(`http://192.168.1.159:8080/users/get?email=${email}&password=${password}`)
-        .then((response) => {
-            const userData = response.data;
-            if (userData) {
-                // Login successful, will navigate user to the home page
-                // onLogin(email);
-            // }  else if (data.status === "fail") {
-            //     // Login failed
-            //     setError(data.message || "Incorrect email or password. Please try again.");
-            } else {
-                // Handle unexpected status
-                setError("Unexpected response. Please try again.");
-            }
-        })
-        .catch((error) => {
-            // Error handling
-            if (error.response) {
-                if (error.response.status === 404) {
-                    // Handle 404 not found
-                    setError("User not found. Please check your email and password.");
-                } else {
-                    // Handle other errors
-                    setError(`Error: ${error.response.data.message || "An issue occurred. Please try again later."}`);
-                }
-            } else {
-                // Handle network or other errors
-                console.error("Error signing in:", error);
-                setError("There was an issue signing in. Please try again later.");
-            }
-        });
+    const handleSignIn = async () => {
+        if (!email || !password) {
+            setErrorMessage("All fields are required.");
+            return;
+        }
 
-      }
+        try {
+            setErrorMessage("");
+            console.log("Logging in with:", { email, password, userType });
+
+            const res = await axios.post(`${API_BASE}/login`, {
+                email,
+                password,
+                userType,
+            });
+
+            console.log("Login response:", res.data);
+
+            // // If 2FA is required, navigate to VerifyEmail
+            // if (res.data.requires_2fa) {
+            //     navigation.navigate("VerifyEmail", { email, isLogin: true });
+            // } else {
+            // If no 2FA required, navigate directly to timeline
+            if (userType === 'patient') {
+                setIsLoggedIn(true);
+                navigation.reset({
+                    index: 0,
+                    routes: [{ name: "MainTabs" }],
+                });
+            } else {
+                navigation.reset({
+                    index: 0,
+                    routes: [{ name: "DoctorDashboard" }],
+                });
+            }
+            
+            // }
+        } catch (err) {
+            console.error("Login error:", err.response?.data || err.message);
+            const detail = err.response?.data?.detail;
+            if (Array.isArray(detail)) {
+                setErrorMessage(detail.map(d => d.msg).join(", "));
+            } else if (typeof detail === "string") {
+                setErrorMessage(detail);
+            } else {
+                setErrorMessage("Login failed");
+            }
+        }
+    };
+
+
 
     return (
         <SafeAreaView  style={[globalStyles.AndroidSafeArea, styles.container]}>

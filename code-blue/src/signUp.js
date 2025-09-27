@@ -9,7 +9,7 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import axios from 'axios';
 
-
+const API_BASE = "http://100.66.11.34:8000/api"; 
 const SignUp = ({ onLogin, ...props }) => {
     const navigation = useNavigation();
     const [email, setEmail] = useState('');
@@ -17,61 +17,38 @@ const SignUp = ({ onLogin, ...props }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    const [userType, setUserType] = useState('patient'); // 'patient' or 'crc' 
 
-    const handleSubmit = () => {
+    const handleSubmit = async() => {
         if (!name || !email || !password) {
             setErrorMessage("All fields are required.");
             return;
         }
         
-        setErrorMessage(""); 
-        console.log("creating user...");
-        axios.get(`http://192.168.1.159:8080/users/get?email=${email}`)
-            .then((response) => {
-                const userData = response.data;
-                if (userData) {
-                    console.log("user exists");
-                    // User exists, proceed with login
-                    onLogin(email);
-                } else {
-                    console.log("user doesn't exist");
-                    // User not found, create a new user
-                    axios.post('http://192.168.1.159:8080/users/createUser', {
-                        email_address: email,
-                        name: name,
-                        username: name,
-                        password: password
-                    })
-                    .then((response) => {
-                        console.log('User created successfully:', response.data);
-                        // Proceed with login after creating the user
-                        onLogin(email);
-                    })
-                    .catch((error) => {
-                        console.error('Error creating user:', error);
-                        setErrorMessage('Error creating user. Please try again.');
-                    });
-                }
-            })
-            .catch((error) => {
-                console.log("user doesn't exist");
-                    // User not found, create a new user
-                    axios.post('http://192.168.1.159:8080/users/createUser', {
-                        email_address: email,
-                        name: username,
-                        username: username,
-                        password: password
-                    })
-                    .then((response) => {
-                        console.log('User created successfully:', response.data);
-                        // Proceed with login after creating the user
-                        onLogin(email);
-                    })
-                    .catch((error) => {
-                        console.error('Error creating user:', error);
-                        setErrorMessage('Error creating user. Please try again.');
-                    });
+       try {
+            setErrorMessage("");
+            console.log("Signing up with:", { email, password, name });
+            const res = await axios.post(`${API_BASE}/signup`, {
+                email,
+                password,
+                name,
+                userType,
             });
+            console.log("Signup response:", res.data);
+
+            // After signup, navigate to Verify screen
+            navigation.navigate("VerifyEmail", { email, isLogin: false});
+        } catch (err) {
+            console.error("Signup error:", err.response?.data || err.message);
+            if (Array.isArray(detail)) {
+                // join all messages into a single string
+                setErrorMessage(detail.map(d => d.msg).join(", "));
+            } else if (typeof detail === "string") {
+                setErrorMessage(detail);
+            } else {
+                setErrorMessage("Signup failed");
+            }
+        }
     };
 
     return (
@@ -83,6 +60,39 @@ const SignUp = ({ onLogin, ...props }) => {
                 <Text style={styles.welcomeBack}>Let's get started!</Text>
                 <Text style = {styles.welcomeText}>Just a few more steps until you join our family!</Text>
                 <View style={styles.inputView}>
+                    <View style={styles.toggleContainer}>
+                    <View style={styles.toggleButtons}>
+                        <TouchableOpacity 
+                            style={[
+                                styles.toggleButton, 
+                                userType === 'patient' ? styles.activeToggle : styles.inactiveToggle
+                            ]}
+                            onPress={() => setUserType('patient')}
+                        >
+                            <Text style={[
+                                styles.toggleText,
+                                userType === 'patient' ? styles.activeToggleText : styles.inactiveToggleText
+                            ]}>
+                                Patient
+                            </Text>
+                        </TouchableOpacity>
+                        
+                        <TouchableOpacity 
+                            style={[
+                                styles.toggleButton, 
+                                userType === 'organizer' ? styles.activeToggle : styles.inactiveToggle
+                            ]}
+                            onPress={() => setUserType('organizer')}
+                        >
+                            <Text style={[
+                                styles.toggleText,
+                                userType === 'organizer' ? styles.activeToggleText : styles.inactiveToggleText
+                            ]}>
+                                CRC
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                    </View>
                     <View style={styles.inputSection}>
                         <Ionicons name="person" size={20} color="#000" />
                         <TextInput
@@ -189,7 +199,7 @@ const styles = StyleSheet.create({
         width : 170
     },
     inputView : {
-        marginTop: 50,
+        marginTop: 20,
         gap : 18,
         width : "100%",
         marginBottom: 20
@@ -272,7 +282,47 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         textAlign: 'center',
     },
-
+    toggleContainer: {
+        marginBottom: 20,
+    },
+    toggleButtons: {
+        flexDirection: 'row',
+        backgroundColor: '#f0f0f0',
+        borderRadius: 25,
+        padding: 4,
+    },
+    toggleButton: {
+        flex: 1,
+        paddingVertical: 12,
+        paddingHorizontal: 20,
+        borderRadius: 20,
+        alignItems: 'center',
+    },
+    activeToggle: {
+        backgroundColor: '#2e83d8ff',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.1,
+        shadowRadius: 3,
+        elevation: 3,
+    },
+    inactiveToggle: {
+        backgroundColor: 'transparent',
+    },
+    toggleText: {
+        fontSize: 14,
+        fontWeight: '600',
+        textAlign: 'center',
+    },
+    activeToggleText: {
+        color: 'white',
+    },
+    inactiveToggleText: {
+        color: '#666',
+    },
 });
 
 export default SignUp;

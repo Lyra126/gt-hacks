@@ -43,13 +43,13 @@ const login = ({ }) => {
             if (userType === 'patient') {
                 navigation.reset({
                     index: 0,
-                    routes: [{ name: "MainTabs", params: { email: email }
+                    routes: [{ name: "PatientTabs", params: { email: email }
                      }],
                 });
             } else {
                 navigation.reset({
                     index: 0,
-                    routes: [{ name: "DoctorDashboard" }],
+                    routes: [{ name: "DoctorTabs", params: { email: email }}]
                 });
             }
             

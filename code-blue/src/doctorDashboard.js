@@ -27,7 +27,7 @@ const DoctorDashboard = () => {
         setPatients(data.active_patients || []);
       })
       .catch(err => {
-        console.error("Failed to fetch active patients:", err);
+        console.error("Failed to fetch active doctors:", err);
         setError("Failed to load patient data.");
       })
       .finally(() => {
@@ -39,7 +39,7 @@ const DoctorDashboard = () => {
     return (
       <View style={[styles.container, styles.center]}>
         <ActivityIndicator size="large" color="#3498db" />
-        <Text style={styles.loadingText}>Loading Patients...</Text>
+        <Text style={styles.loadingText}>Loading ...</Text>
       </View>
     );
   }

@@ -7,12 +7,12 @@ import SignUp from './src/signUp';
 import Login from './src/login';
 import VerifyEmail from './src/verifyEmail';
 import Timeline from './src/timeline';
-import MainTabs from './MainTabs';
+import PatientTabs from './PatientTabs';
+import DoctorTabs from './DoctorTabs';
 
 const Stack = createStackNavigator();
 
 export default function App() {
-  // Replace this with real auth state
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
@@ -29,8 +29,8 @@ export default function App() {
             <Stack.Screen name="Timeline" component={Timeline} />
           </>
         )}
-        {/* MainTabs always exists */}
-        <Stack.Screen name="MainTabs" component={MainTabs} />
+        <Stack.Screen name="PatientTabs" component={PatientTabs} />
+        <Stack.Screen name="DoctorTabs" component={DoctorTabs} />
       </Stack.Navigator>
     </NavigationContainer>
   );

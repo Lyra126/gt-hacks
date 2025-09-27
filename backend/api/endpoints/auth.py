@@ -249,8 +249,8 @@ async def login(login_data: UserLogin):
             raise HTTPException(status_code=404, detail="User not found")
         
         # Check if user is verified
-        if not user_data.get('isVerified', False):
-            raise HTTPException(status_code=400, detail="Please verify your email first")
+        # if not user_data.get('isVerified', False):
+        #     raise HTTPException(status_code=400, detail="Please verify your email first")
         
         # Check user type matches
         if user_data['userType'] != login_data.userType:

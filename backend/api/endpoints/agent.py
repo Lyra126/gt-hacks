@@ -19,7 +19,7 @@ async def invoke_agent_endpoint(thread_id: str, request: AgentRequest):
         input_data = {"messages": [{"role": "user", "content": request.content}]}
         
         # Asynchronously invoke the agent from the service layer
-        result = await agent.ainvoke(input_data, config=config)
+        result = await agent.ainvoke(input_data, config=config) # type: ignore
         
         final_answer = result['messages'][-1].content
         return {"response": final_answer}

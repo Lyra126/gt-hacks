@@ -7,7 +7,7 @@ import globalStyles from "./styles/globalStyles";
 import Fontisto from "react-native-vector-icons/Fontisto";
 import axios from 'axios'; 
 
-const API_BASE = "http://100.66.12.93:8000/api";
+const API_BASE = "http://100.66.11.34:8000/api";
 
 const login = () => {
     const navigation = useNavigation();
@@ -49,7 +49,7 @@ const login = () => {
             } else {
                 navigation.reset({
                     index: 0,
-                    routes: [{ name: "DoctorTabs", params: { email: email }}]
+                    routes: [{ name: "CrcTabs", params: { email: email }}]
                 });
             }
             

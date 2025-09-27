@@ -6,7 +6,7 @@ import { View, Text, StyleSheet, ScrollView, ActivityIndicator } from 'react-nat
 // Use 'http://localhost:8000' for the iOS simulator.
 const API_BASE_URL = 'http://100.66.12.93:8000';
 
-const DoctorDashboard = ({route, email: propEmail}) => {
+const crcDashboard = ({route, email: propEmail}) => {
   const email = route?.params?.email || propEmail || "";
   const [patients, setPatients] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -60,7 +60,7 @@ const DoctorDashboard = ({route, email: propEmail}) => {
 
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.title}>Doctor Dashboard</Text>
+      <Text style={styles.title}>Clinical Trials Coordinator Dashboard</Text>
       
       <View style={styles.card}>
         <Text style={styles.cardTitle}>Active Patients ({patients.length})</Text>
@@ -115,4 +115,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default DoctorDashboard;
+export default crcDashboard;

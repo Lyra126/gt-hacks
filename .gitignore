@@ -37,3 +37,6 @@ Venv/
 
 # serverless
 .serverless/
+
+./package-lock.json
+./package.json

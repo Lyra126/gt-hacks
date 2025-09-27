@@ -7,7 +7,7 @@ import Login from './src/login';
 import VerifyEmail from './src/verifyEmail';
 import Timeline from './src/timeline';
 import PatientTabs from './PatientTabs';
-import DoctorTabs from './DoctorTabs';
+import CrcTabs from './CrcTabs';
 
 const Stack = createStackNavigator();
 
@@ -30,7 +30,7 @@ export default function App() {
             </>
           )}
           <Stack.Screen name="PatientTabs" component={PatientTabs} />
-          <Stack.Screen name="DoctorTabs" component={DoctorTabs} />
+          <Stack.Screen name="CrcTabs" component={CrcTabs} />
         </Stack.Navigator>
       </NavigationContainer>
   );

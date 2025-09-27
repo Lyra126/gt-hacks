@@ -1,14 +1,14 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
-import DoctorDashboard from './src/doctorDashboard';
+import crcDashboard from './src/crcDashboard';
 import AIChat from './src/aiChat';
-import ClinicalTrials from './src/clinicalTrials';
+import ClinicalTrialsCRC from './src/clinicalTrialsCRC';
 import Timeline from './src/timeline';
 
 const Tab = createBottomTabNavigator();
 
-export default function DoctorTabs({route}) {
+export default function CrcTabs({route}) {
   const email = route.params?.email;
 
   return (
@@ -28,14 +28,11 @@ export default function DoctorTabs({route}) {
       })}
     >
       <Tab.Screen name="Doctor">
-        {props => <DoctorDashboard {...props} email={email} />}
+        {props => <crcDashboard {...props} email={email} />}
       </Tab.Screen>
       <Tab.Screen name="Trials">
-        {props => <ClinicalTrials {...props} email={email} />}
+        {props => <ClinicalTrialsCRC {...props} email={email} />}
       </Tab.Screen>
-      {/* initialParams={{ email }} */}
-      {/* <Tab.Screen name="AI Chat" component={AIChat} /> */}
-      {/* <Tab.Screen name="Timeline (temp)" component={Timeline} /> */}
     </Tab.Navigator>
   );
 }

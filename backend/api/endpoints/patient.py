@@ -1,7 +1,7 @@
 # api/endpoints/patient.py
 from fastapi import APIRouter, HTTPException
 # Import the new function from your service file
-from services.deep_agent_service import generate_personalized_timeline
+from services.deep_agent_service import generate_personalized_timeline, get_patient_emr_for_dashboard
 
 router = APIRouter()
 
@@ -15,3 +15,16 @@ async def get_personalized_timeline_endpoint(patient_id: str, trial_id: str):
     if "error" in timeline:
         raise HTTPException(status_code=404, detail=timeline["error"])
     return timeline
+
+@router.get("/patient/{patient_id}/emr")
+async def get_emr_for_patient_dashboard(patient_id: str):
+    """
+    Fetches the EMR data for a specific patient to display on their dashboard.
+    """
+    try:
+        emr_data = await get_patient_emr_for_dashboard(patient_id)
+        return emr_data
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail="Failed to fetch EMR data.")

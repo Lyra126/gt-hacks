@@ -19,37 +19,32 @@ const SignUp = ({ onLogin, ...props }) => {
     const [errorMessage, setErrorMessage] = useState('');
     const [userType, setUserType] = useState('patient'); // 'patient' or 'crc' 
 
-    const handleSubmit = async() => {
-        if (!name || !email || !password) {
-            setErrorMessage("All fields are required.");
-            return;
-        }
-        
-       try {
-            setErrorMessage("");
-            console.log("Signing up with:", { email, password, name });
-            const res = await axios.post(`${API_BASE}/signup`, {
-                email,
-                password,
-                name,
-                userType,
-            });
-            console.log("Signup response:", res.data);
+    const handleSubmit = async () => {
+    if (!name || !email || !password) {
+        setErrorMessage("All fields are required.");
+        return;
+    }
+    
+    try {
+        setErrorMessage("");
+        await axios.post(`${API_BASE_URL}/api/signup`, {
+            email,
+            password,
+            name,
+            userType,
+        });
 
-            // After signup, navigate to Verify screen
-            // navigation.navigate("VerifyEmail", { email, isLogin: false});
-            navigation.navigate("Login", { email});
-        } catch (err) {
-            console.error("Signup error:", err.response?.data || err.message);
-            if (Array.isArray(detail)) {
-                // join all messages into a single string
-                setErrorMessage(detail.map(d => d.msg).join(", "));
-            } else if (typeof detail === "string") {
-                setErrorMessage(detail);
-            } else {
-                setErrorMessage("Signup failed");
-            }
-        }
+        // On success, alert the user and navigate them to the Login screen
+        Alert.alert(
+            "Account Created",
+            "Your account has been created successfully. Please log in to continue."
+        );
+        navigation.navigate("Login");
+
+    } catch (err) {
+        console.error("Signup error:", err.response?.data || err.message);
+        setErrorMessage(err.response?.data?.detail || "An unknown error occurred during sign-up.");
+    }
     };
 
     return (

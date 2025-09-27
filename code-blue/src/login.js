@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
+import { useAuth } from './AuthContext';
 import { View, Text, Image, StyleSheet, TouchableOpacity, Modal, SafeAreaView, ImageBackground,TextInput, Pressable, Alert} from "react-native";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -10,6 +11,7 @@ import axios from 'axios';
 const API_BASE = "http://100.66.12.93:8000/api";
 
 const login = () => {
+    const { login } = useAuth();
     const navigation = useNavigation();
     const [email,setEmail]=  useState("");
     const [password,setPassword]=  useState("");
@@ -17,7 +19,6 @@ const login = () => {
     const [userType, setUserType] = useState('patient'); // 'patient' or 'crc'
 
     const handleSignIn = async () => {
-        // setIsLoggedIn(true);
         if (!email || !password) {
             setErrorMessage("All fields are required.");
             return;
@@ -27,7 +28,7 @@ const login = () => {
             setErrorMessage("");
             console.log("Logging in with:", { email, password, userType });
 
-            const res = await axios.post(`${API_BASE}/login`, {
+            const res = await axios.post(`${API_BASE_URL}/api/login`, {
                 email,
                 password,
                 userType,
@@ -35,39 +36,16 @@ const login = () => {
 
             console.log("Login response:", res.data);
 
-            // // If 2FA is required, navigate to VerifyEmail
-            // if (res.data.requires_2fa) {
-            //     navigation.navigate("VerifyEmail", { email, isLogin: true });
-            // } else {
-            // If no 2FA required, navigate directly to timeline
-            if (userType === 'patient') {
-                navigation.reset({
-                    index: 0,
-                    routes: [{ name: "PatientTabs", params: { email: email }
-                     }],
-                });
-            } else {
-                navigation.reset({
-                    index: 0,
-                    routes: [{ name: "DoctorTabs", params: { email: email }}]
-                });
-            }
-            
-            // }
+            // This single line stores the user data globally and triggers the
+            // navigation change in App.js to show the main app screens.
+            await login(res.data);
+
         } catch (err) {
             console.error("Login error:", err.response?.data || err.message);
             const detail = err.response?.data?.detail;
-            if (Array.isArray(detail)) {
-                setErrorMessage(detail.map(d => d.msg).join(", "));
-            } else if (typeof detail === "string") {
-                setErrorMessage(detail);
-            } else {
-                setErrorMessage("Login failed");
-            }
+            setErrorMessage(detail || "Login failed. Please check your credentials.");
         }
     };
-
-
 
     return (
         <SafeAreaView  style={[globalStyles.AndroidSafeArea, styles.container]}>

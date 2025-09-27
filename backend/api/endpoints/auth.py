@@ -16,11 +16,12 @@ import bcrypt
 import jwt
 import traceback
 import time
-import firebase_config
+from firebase_config import realtime_db
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from dotenv import load_dotenv
 import ssl
+import hashlib
 
 load_dotenv()
 
@@ -107,8 +108,8 @@ def find_user_by_email(email: str):
     
     if users_query:
         # Return first match with user ID
-        user_id = list(users_query.keys())[0]
-        user_data = list(users_query.values())[0]
+        user_id = list(users_query.keys())[0] # type: ignore
+        user_data = list(users_query.values())[0] # type: ignore
         return user_id, user_data
     return None, None
 
@@ -144,64 +145,29 @@ async def send_verification_email(email: str, verification_code: str):
 # Authentication endpoints
 @router.post("/signup")
 async def sign_up(user_data: UserSignUp):
-    """Register a new user with email verification."""
-    try:
-        # Check if user already exists
-        existing_user_id, existing_user = find_user_by_email(user_data.email)
-        if existing_user_id:
-            raise HTTPException(status_code=400, detail="User with this email already exists")
-        
-        # Hash password
-        hashed_password = hash_password(user_data.password)
-        
-        # Create user document (initially unverified)
-        user_doc = {
-            'email': user_data.email,
-            'name': user_data.name,
-            'userType': user_data.userType,
-            'password': hashed_password,
-            'isVerified': False,
-            'createdAt': int(time.time()),  # Unix timestamp for Realtime DB
-        }
-        
-        # Add to Realtime Database
-        db_ref = get_db_ref()
-        users_ref = db_ref.child('users')
-        new_user_ref = users_ref.push(user_doc)
-        user_id = new_user_ref.key
-        
-        # Generate and send verification code
-        # verification_code = generate_verification_code()
-        # verification_codes[user_data.email] = {
-        #     "code": verification_code,
-        #     "expires": datetime.utcnow() + timedelta(minutes=10),
-        #     "verified": False,
-        #     "user_id": user_id
-        # }
-        
-        # # Send verification email
-        # email_sent = await send_verification_email(user_data.email, verification_code)
-        
-        # if not email_sent:
-        #     # If email fails, still return success but inform about manual verification
-        #     return {
-        #         "message": "User registered successfully. Email service unavailable - contact admin for verification.",
-        #         "user_id": user_id,
-        #         "requires_verification": True
-        #     }
-        
-        return {
-            "message": "User registered successfully.",
-            "user_id": user_id,
-            "requires_verification": True
-        }
-        
-    except HTTPException:
-        raise
-    except Exception as e:
-        print(f"Signup error: {e}")
-        traceback.print_exc()
-        raise HTTPException(status_code=500, detail="Registration failed")
+    user_id, existing_user = find_user_by_email(user_data.email)
+    if existing_user:
+        raise HTTPException(status_code=400, detail="User with this email already exists")
+
+    hashed_password = bcrypt.hashpw(user_data.password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+    
+    user_doc = {
+        'email': user_data.email,
+        'name': user_data.name,
+        'userType': user_data.userType,
+        'password': hashed_password,
+        'createdAt': int(time.time()),
+    }
+    
+    new_user_ref = realtime_db.reference('users').push(user_doc) # type: ignore
+    main_id = new_user_ref.key
+    emr_id = create_emr_id(main_id) # type: ignore
+    
+    # Store the emrId with the user's profile and create the EMR record
+    new_user_ref.update({'emrId': emr_id, 'mainId': main_id})
+    realtime_db.reference('emr_records').child(emr_id).set({'log': ['Patient account created.']})
+    
+    return {"message": "User registered successfully.", "mainId": main_id}
 
 @router.post("/verify-email")
 async def verify_email(verify_data: VerifyCodeRequest):
@@ -240,51 +206,25 @@ async def verify_email(verify_data: VerifyCodeRequest):
 
 @router.post("/login")
 async def login(login_data: UserLogin):
-    """Login user with email/password and send 2FA code."""
-    try:
-        # Find user by email
-        user_id, user_data = find_user_by_email(login_data.email)
-        
-        if not user_id or not user_data:
-            raise HTTPException(status_code=404, detail="User not found")
-        
-        # Check if user is verified
-        # if not user_data.get('isVerified', False):
-        #     raise HTTPException(status_code=400, detail="Please verify your email first")
-        
-        # Check user type matches
-        if user_data['userType'] != login_data.userType:
-            raise HTTPException(status_code=400, detail="Invalid user type")
-        
-        # # Verify password
-        # if not verify_password(login_data.password, user_data['password']):
-        #     raise HTTPException(status_code=401, detail="Invalid credentials")
-        
-        # # Generate and send 2FA code
-        # two_fa_code = generate_verification_code()
-        # print(f"[DEBUG] Generated verification code for {user_data["email"]}: {two_fa_code}")
-        # verification_codes[login_data.email] = {
-        #     "code": two_fa_code,
-        #     "expires": datetime.utcnow() + timedelta(minutes=5),
-        #     "verified": False,
-        #     "user_id": user_id,
-        #     "is_login": True
-        # }
-
-        # # Send 2FA code
-        # email_sent = await send_verification_email(login_data.email, two_fa_code)
-        # print(f"[DEBUG] Email sent? {email_sent}")
-        return {
-            "message": "2FA code sent to your email",
-            "requires_2fa": True,
-            "user_id": user_id
-        }
-        
-    except HTTPException:
-        raise
-    except Exception as e:
-        print(f"Login error: {e}")
-        raise HTTPException(status_code=500, detail="Login failed")
+    user_id, user_data = find_user_by_email(login_data.email)
+    if not user_data or not verify_password(login_data.password, user_data['password']):
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+    
+    token = jwt.encode(
+        {"user_id": user_id, "exp": datetime.utcnow() + timedelta(days=7)},
+        os.getenv("JWT_SECRET", "your-secret-key"),
+        algorithm="HS256"
+    )
+    
+    return {
+        "message": "Login successful",
+        "token": token,
+        "mainId": user_id,
+        "emrId": user_data.get('emrId'),
+        "name": user_data.get('name'),
+        "email": user_data.get('email'),
+        "userType": user_data.get('userType')
+    }
 
 @router.post("/verify-2fa")
 async def verify_2fa(verify_data: VerifyCodeRequest):
@@ -318,7 +258,7 @@ async def verify_2fa(verify_data: VerifyCodeRequest):
             raise HTTPException(status_code=404, detail="User not found")
         
         # Create JWT token
-        token = create_jwt_token(user_id, user_data['email'], user_data['userType'])
+        token = create_jwt_token(user_id, user_data['email'], user_data['userType']) # type: ignore
         
         # Store session in Realtime Database
         sessions_ref = db_ref.child('user_sessions').child(user_id)
@@ -344,9 +284,9 @@ async def verify_2fa(verify_data: VerifyCodeRequest):
             "token": token,
             "user": {
                 "id": user_id,
-                "email": user_data['email'],
-                "name": user_data['name'],
-                "userType": user_data['userType']
+                "email": user_data['email'], # type: ignore
+                "name": user_data['name'], # type: ignore
+                "userType": user_data['userType'] # type: ignore
             }
         }
         
@@ -405,3 +345,7 @@ async def logout(user_id: str):
     except Exception as e:
         print(f"Logout error: {e}")
         raise HTTPException(status_code=500, detail="Logout failed")
+    
+def create_emr_id(main_id: str) -> str:
+    """Creates a secure, one-way hash of the main ID to use as the EMR ID."""
+    return hashlib.sha256(main_id.encode()).hexdigest()

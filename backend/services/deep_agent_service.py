@@ -4,6 +4,7 @@ from langchain_openai import ChatOpenAI
 from deepagents import create_deep_agent
 from langgraph.checkpoint.redis import RedisSaver
 from firebase_config import realtime_db 
+import hashlib
 
 @tool
 def get_patient_profile(patient_id: str) -> str:
@@ -19,8 +20,9 @@ def get_patient_profile(patient_id: str) -> str:
 def get_patient_emr(patient_id: str) -> str:
     """Retrieves the patient's sensitive medical record (EMR/PHI) from 'emr_records'."""
     try:
-        print(f"RTDB: Fetching EMR from 'emr_records/{patient_id}'")
-        snapshot = realtime_db.reference(f'emr_records/{patient_id}').get()
+        emr_id = create_emr_id(patient_id) # <-- Derive the EMR ID
+        print(f"RTDB: Fetching EMR from 'emr_records/{emr_id}'")
+        snapshot = realtime_db.reference(f'emr_records/{emr_id}').get() # <-- Use the EMR ID
         return json.dumps(snapshot) if snapshot else f"No EMR for patient '{patient_id}'."
     except Exception as e:
         return f"Error fetching EMR: {e}"
@@ -42,10 +44,11 @@ def get_patient_emr(patient_id: str) -> str:
 def update_patient_emr(patient_id: str, new_entry: dict) -> str:
     """Appends a new JSON entry to a patient's EMR log in 'emr_records'."""
     try:
+        emr_id = create_emr_id(patient_id) # <-- Derive the EMR ID
         print(f"RTDB: Updating EMR log for patient '{patient_id}'")
-        ref = realtime_db.reference(f'emr_records/{patient_id}/log')
+        ref = realtime_db.reference(f'emr_records/{emr_id}/log') # <-- Use the EMR ID
         current_log = ref.get() or []
-        current_log.append(new_entry)  # type: ignore # append dict directly 
+        current_log.append(new_entry) # type: ignore
         ref.set(current_log)
         return "EMR updated successfully in Realtime DB."
     except Exception as e:
@@ -109,6 +112,10 @@ def update_checklist_item(patient_id: str, stage_number: int, item_description: 
         return f"Checklist item '{item_description}' for stage {stage_number} was successfully {status}."
     except Exception as e:
         return f"An error occurred while updating the checklist: {e}"
+
+def create_emr_id(main_id: str) -> str:
+    """Creates a secure, one-way hash of the main ID to use as the EMR ID."""
+    return hashlib.sha256(main_id.encode()).hexdigest()
 
 # --- Additional Service Functions ---
 async def generate_personalized_timeline(patient_id: str, trial_id: str) -> dict:

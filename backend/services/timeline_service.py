@@ -94,6 +94,6 @@ async def get_timeline_from_db(trial_id: str) -> dict:
     try:
         ref = realtime_db.reference(f'clinicalTrials/{trial_id}/stages')
         timeline = ref.get()
-        return timeline if timeline else {"error": f"No timeline found for trial '{trial_id}'."}
+        return timeline if timeline else {"error": f"No timeline found for trial '{trial_id}'."} # type: ignore
     except Exception as e:
         return {"error": f"Error fetching timeline: {e}"}

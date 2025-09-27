@@ -2,15 +2,17 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-// import DocumentPicker from 'react-native-document-picker';
-// import RNFS from 'react-native-fs'; 
 
-const PatientDashboard = ({route}) => {
-  // const { email } = route.params;
-  const email = ""
+
+const PatientDashboard = ({route, email: propEmail}) => {
+  const email = route?.params?.email || propEmail || "";
   const name = "John Doe"
   const API_BASE = "http://100.66.11.34:8000/api";
   const [error, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    console.log("Fetching data for:", email);
+  }, [email]);
   
   const emrData = {
     patientId: "PT-2024-7891",

@@ -10,12 +10,12 @@ import Timeline from './src/timeline';
 
 const Tab = createBottomTabNavigator();
 
-export default function PatientTabs() {
-  // const email = route.params?.email;
+export default function PatientTabs({route}) {
+  const email = route.params?.email;
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        headerShown: false, // hide header for tabs
+        headerShown: false, 
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           if (route.name === 'Patient') iconName = focused ? 'home' : 'home-outline';
@@ -28,10 +28,18 @@ export default function PatientTabs() {
         tabBarInactiveTintColor: 'gray',
       })}
     >
-      <Tab.Screen name="Patient" component={PatientDashboard}  />
-      <Tab.Screen name="AI Chat" component={AIChat} />
-      <Tab.Screen name="Trials" component={ClinicalTrials} />
-      <Tab.Screen name="Timeline (temp)" component={Timeline} />
+      <Tab.Screen name="Patient">
+        {props => <PatientDashboard {...props} email={email} />}
+      </Tab.Screen>
+      <Tab.Screen name="AI Chat">
+        {props => <AIChat {...props} email={email} />}
+      </Tab.Screen>
+      <Tab.Screen name="Trials">
+        {props => <ClinicalTrials {...props} email={email} />}
+      </Tab.Screen>
+      <Tab.Screen name="Timeline (temp)">
+        {props => <Timeline {...props} email={email} />}
+      </Tab.Screen>
     </Tab.Navigator>
   );
 }

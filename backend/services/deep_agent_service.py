@@ -5,7 +5,6 @@ from deepagents import create_deep_agent
 from langgraph.checkpoint.redis import RedisSaver
 from firebase_config import realtime_db 
 
-
 @tool
 def get_patient_profile(patient_id: str) -> str:
     """Retrieves a patient's personal profile (PII) like first name, last name, and email from 'users'."""
@@ -46,7 +45,7 @@ def update_patient_emr(patient_id: str, new_entry: dict) -> str:
         print(f"RTDB: Updating EMR log for patient '{patient_id}'")
         ref = realtime_db.reference(f'emr_records/{patient_id}/log')
         current_log = ref.get() or []
-        current_log.append(new_entry)  # append dict directly
+        current_log.append(new_entry)  # type: ignore # append dict directly 
         ref.set(current_log)
         return "EMR updated successfully in Realtime DB."
     except Exception as e:

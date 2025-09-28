@@ -2,7 +2,7 @@ import json
 from langchain_core.tools import tool
 from langchain_openai import ChatOpenAI
 from deepagents import create_deep_agent
-from langgraph.checkpoint.redis import RedisSaver
+from langgraph.checkpoint.redis import RedisSaver 
 from firebase_config import realtime_db 
 import hashlib
 
@@ -222,7 +222,7 @@ async def get_available_trials() -> list:
     """
     try:
         print("RTDB: Fetching all clinical trials")
-        all_trials = realtime_db.reference('trials').get() or {}
+        all_trials = realtime_db.reference('clinicalTrials').get() or {}
         
         available_trials = []
         for trial_id, trial_data in all_trials.items(): # type: ignore
@@ -285,4 +285,9 @@ agent = create_deep_agent(
     model=llm,
 )
 
-agent.checkpointer = RedisSaver.from_conn_string("redis://localhost:6379")  # type: ignore
+try:
+    agent.checkpointer = RedisSaver.from_conn_string("redis://localhost:6379") # type: ignore
+    print("Redis checkpointer configured successfully")
+except Exception as e:
+    print(f"Warning: Could not configure Redis checkpointer: {e}")
+    print("Agent will run without persistence")

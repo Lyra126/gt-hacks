@@ -30,7 +30,7 @@ async def get_trial_stages_endpoint(trial_id: str):
             raise HTTPException(status_code=404, detail=f"Trial {trial_id} not found")
         
         # Extract stages from the trial data
-        stages = trial_data.get('stages')
+        stages = trial_data.get('stages') # type: ignore
         
         if not stages:
             raise HTTPException(status_code=404, detail=f"No stages found for trial {trial_id}")

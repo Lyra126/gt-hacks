@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, Modal, SafeAreaView, ActivityIndicator } from 'react-native';
 import ClinicalTrialTimeline from './timeline'; // Make sure this path is correct
 
-const API_BASE_URL = 'http://100.66.11.34:8000/api';
+const API_BASE_URL = 'http://100.66.12.93:8000/api';
 
 const ClinicalTrials = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -32,97 +32,6 @@ const ClinicalTrials = () => {
     } catch (err) {
       console.error('Error fetching clinical trials:', err);
       setError('Failed to load clinical trials. Please try again later.');
-      // Fallback to hardcoded data if API fails
-      setAllTrials([
-    {
-      id: 1,
-      title: 'DIABETES-CARE-2025',
-      status: 'Recruiting',
-      distance: '2.3 miles',
-      location: 'Emory University Hospital, Atlanta, GA',
-      description: 'A phase III trial evaluating a new glucose monitoring system for Type 2 diabetes patients with improved accuracy and continuous tracking capabilities.',
-      sponsor: 'Emory Healthcare',
-      insurance: 'Most Major Insurance Accepted',
-      condition: 'Diabetes'
-    },
-    {
-      id: 2,
-      title: 'HYPERTENSION-NOVA Study',
-      status: 'Active',
-      distance: '5.7 miles',
-      location: 'Piedmont Atlanta Hospital, Atlanta, GA',
-      description: 'Study comparing effectiveness of combination therapy versus traditional treatment approaches for managing hypertension in adults aged 30-65.',
-      sponsor: 'Piedmont Healthcare',
-      insurance: 'Medicare, Medicaid, Private',
-      condition: 'Hypertension'
-    },
-    {
-      id: 3,
-      title: 'RESPIRATORY-WELLNESS Initiative',
-      status: 'Recruiting',
-      distance: '8.2 miles',
-      location: 'Children\'s Healthcare of Atlanta, Atlanta, GA',
-      description: 'Research on personalized asthma management using AI-powered inhaler technology and environmental monitoring for better outcomes.',
-      sponsor: 'Children\'s Healthcare of Atlanta',
-      insurance: 'All Insurance Plans Accepted',
-      condition: 'Asthma'
-    },
-    {
-      id: 4,
-      title: 'CARDIO-PROTECT Trial',
-      status: 'Active',
-      distance: '12.1 miles',
-      location: 'Northside Hospital, Atlanta, GA',
-      description: 'Phase II study investigating novel cardiac protection strategies for patients undergoing major cardiovascular procedures.',
-      sponsor: 'Northside Hospital',
-      insurance: 'Private Insurance Only',
-      condition: 'Cardiovascular'
-    },
-    {
-      id: 5,
-      title: 'ALZHEIMER-PREVENTION Study',
-      status: 'Recruiting',
-      distance: '15.4 miles',
-      location: 'Georgia Institute of Technology, Atlanta, GA',
-      description: 'Longitudinal study examining early intervention strategies for cognitive decline prevention in at-risk populations aged 55+.',
-      sponsor: 'Georgia Tech Research Institute',
-      insurance: 'Medicare, Private Insurance',
-      condition: 'Alzheimer\'s'
-    },
-    {
-      id: 6,
-      title: 'CANCER-IMMUNOTHERAPY Trial',
-      status: 'Active',
-      distance: '3.8 miles',
-      location: 'Winship Cancer Institute, Atlanta, GA',
-      description: 'Phase I/II trial testing combination immunotherapy approaches for advanced solid tumors with promising early results.',
-      sponsor: 'Winship Cancer Institute',
-      insurance: 'All Major Insurance Plans',
-      condition: 'Cancer'
-    },
-    {
-      id: 7,
-      title: 'MENTAL-HEALTH Digital Study',
-      status: 'Recruiting',
-      distance: '6.9 miles',
-      location: 'Grady Health System, Atlanta, GA',
-      description: 'Evaluating effectiveness of digital therapeutic interventions for anxiety and depression management in primary care settings.',
-      sponsor: 'Grady Health System',
-      insurance: 'Medicaid, Sliding Scale',
-      condition: 'Mental Health'
-    },
-    {
-      id: 8,
-      title: 'ARTHRITIS-RELIEF Protocol',
-      status: 'Completed',
-      distance: '9.7 miles',
-      location: 'Atlanta Medical Center, Atlanta, GA',
-      description: 'Recently completed study on non-pharmaceutical pain management techniques for rheumatoid arthritis patients.',
-      sponsor: 'Atlanta Medical Center',
-      insurance: 'Results Available to All',
-      condition: 'Arthritis'
-    }
-      ]);
     } finally {
       setLoading(false);
     }

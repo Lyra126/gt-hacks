@@ -21,6 +21,9 @@ const AppNavigator = () => {
     // Check if user data is stored in AsyncStorage on app start
     const checkLoginState = async () => {
       try {
+        // TEMPORARY: Clear stored user data to force login screen
+        await AsyncStorage.removeItem('userData');
+        
         const userDataString = await AsyncStorage.getItem('userData');
         if (userDataString) {
           setUser(JSON.parse(userDataString));

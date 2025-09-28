@@ -276,17 +276,23 @@ You are the router for a clinical trial chat system.
 Route to the best sub-agent. Do NOT call tools directly.
 """
 
-llm = ChatOpenAI(model="gpt-5-nano")
+print("creating LLM")
+llm = ChatOpenAI(model="gpt-5-nano", timeout=20, max_retries=1)
+print("Done!")
 
+print("🔧 Creating deep agent with tools and subagents...")
+print("📊 Number of tools: {len(all_tools)}")
+print("📊 Number of subagents: 3")
 agent = create_deep_agent(
     tools=all_tools,
     instructions=main_agent_instructions,
     subagents=[emr_subagent, trial_info_subagent, clinical_org_subagent],  # type: ignore
     model=llm,
 )
+print("✅ Deep agent created successfully")
 
 try:
-    agent.checkpointer = RedisSaver.from_conn_string("redis://localhost:6379") # type: ignore
+    checkpointer = RedisSaver.from_conn_string("redis://localhost:6379") # type: ignore
     print("Redis checkpointer configured successfully")
 except Exception as e:
     print(f"Warning: Could not configure Redis checkpointer: {e}")

@@ -3,12 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { AuthProvider, useAuth } from './src/context/AuthContext';
+import { AuthProvider, useAuth } from './src/AuthContext';
 
-import PromptLoginSignUp from './src/screens/promptLoginSignUp';
-import SignUp from './src/screens/signUp';
-import Login from './src/screens/login';
-import MainTabs from './MainTabs'; // Assuming this is your tab navigator
+import PromptLoginSignUp from './src/promptLoginSignUp';
+import SignUp from './src/signUp';
+import Login from './src/login';
+import PatientTabs from './PatientTabs'; // Assuming this is your tab navigator
 
 const Stack = createStackNavigator();
 
@@ -42,7 +42,7 @@ const AppNavigator = () => {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {user ? (
         // If user is logged in, show the main app
-        <Stack.Screen name="MainTabs" component={MainTabs} />
+        <Stack.Screen name="PatientTabs" component={PatientTabs} />
       ) : (
         // If not logged in, show the auth flow screens
         <>

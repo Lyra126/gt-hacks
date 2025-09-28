@@ -8,7 +8,7 @@ import globalStyles from "./styles/globalStyles";
 import Fontisto from "react-native-vector-icons/Fontisto";
 import axios from 'axios'; 
 
-const API_BASE = "http://100.66.11.34:8000/api";
+const API_BASE_URL = "http://100.66.12.93:8000/api";
 
 const login = () => {
     const { login } = useAuth();

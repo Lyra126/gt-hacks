@@ -4,7 +4,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import axios from "axios";
 import globalStyles from "./styles/globalStyles";
 
-const API_BASE = "http://100.66.11.34:8000/api";
+const API_BASE_URL = "http://100.66.12.93:8000/api";
 
 const VerifyEmail = () => {
     const navigation = useNavigation();

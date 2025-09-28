@@ -9,7 +9,7 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import axios from 'axios';
 
-const API_BASE = "http://100.66.11.34:8000/api"; 
+const API_BASE_URL = "http://100.66.12.93:8000/api"; 
 const SignUp = ({ onLogin, ...props }) => {
     const navigation = useNavigation();
     const [email, setEmail] = useState('');

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
 import * as DocumentPicker from 'expo-document-picker';
 
-const API_BASE_URL = 'http://100.66.12.93:8000'; 
+const API_BASE_URL = 'http://100.66.12.93:8000/api'; 
 
 // Helper component to keep the UI clean
 const InfoRow = ({ label, value }) => {
@@ -29,9 +29,9 @@ const PatientDashboard = ({ route }) => {
     const fetchDashboardData = async () => {
       try {
         const [profileResponse, emrResponse, trialsResponse] = await Promise.all([
-          fetch(`${API_BASE_URL}/api/patient/${patientId}/profile`),
-          fetch(`${API_BASE_URL}/api/patient/${patientId}/emr`),
-          fetch(`${API_BASE_URL}/api/trials/available`)
+          fetch(`${API_BASE_URL}/patient/${patientId}/profile`),
+          fetch(`${API_BASE_URL}/patient/${patientId}/emr`),
+          fetch(`${API_BASE_URL}/trials/available`)
         ]);
 
         if (!profileResponse.ok) throw new Error('Failed to fetch patient profile.');
@@ -64,7 +64,7 @@ const PatientDashboard = ({ route }) => {
       formData.append('file', { uri: file.uri, name: file.name, type: file.mimeType });
 
       Alert.alert("Uploading...", "Your EMR is being processed.");
-      const response = await fetch(`${API_BASE_URL}/api/emr/upload-pdf/${patientId}`, {
+      const response = await fetch(`${API_BASE_URL}/emr/upload-pdf/${patientId}`, {
         method: 'POST',
         body: formData,
         headers: { 'Content-Type': 'multipart/form-data' },

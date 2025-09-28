@@ -4,9 +4,9 @@ import { View, Text, StyleSheet, ScrollView, ActivityIndicator } from 'react-nat
 // The base URL of your local FastAPI server.
 // Use 'http://100.66.12.93:8000' for the Android emulator.
 // Use 'http://localhost:8000' for the iOS simulator.
-const API_BASE_URL = 'http://100.66.12.93:8000';
+const API_BASE_URL = 'http://100.66.12.93:8000/api';
 
-const crcDashboard = ({route, email: propEmail}) => {
+const CrcDashboard = ({route, email: propEmail}) => {
   const email = route?.params?.email || propEmail || "";
   const [patients, setPatients] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -115,4 +115,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default crcDashboard;
+export default CrcDashboard;

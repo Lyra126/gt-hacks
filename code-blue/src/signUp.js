@@ -27,7 +27,7 @@ const SignUp = ({ onLogin, ...props }) => {
     
     try {
         setErrorMessage("");
-        await axios.post(`${API_BASE_URL}/api/signup`, {
+        await axios.post(`${API_BASE_URL}/signup`, {
             email,
             password,
             name,

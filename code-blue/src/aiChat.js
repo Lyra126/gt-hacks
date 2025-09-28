@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet, Keyboard
 
 // Define the base URL directly in the file
 // Use 'http://100.66.12.93:8000' for Android, 'http://localhost:8000' for iOS
-const API_BASE_URL = 'http://100.66.12.93:8000';
+const API_BASE_URL = 'http://100.66.12.93:8000/api';
 
 const AIChat = ({ patientId }) => { 
   const [messages, setMessages] = useState([]);
@@ -19,7 +19,7 @@ const AIChat = ({ patientId }) => {
 
     try {
       const response = await fetch(
-        `${API_BASE_URL}/api/agent/invoke/${patientId}`,
+        `${API_BASE_URL}/agent/invoke/${patientId}`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

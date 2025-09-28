@@ -520,6 +520,56 @@ def seed_trials():
                     ]
                 }
             }
+        },
+        {
+            'title': 'CARDIO-PROTECT Trial',
+            'status': 'Active',
+            'distance': '12.1 miles',
+            'location': 'Northside Hospital, Atlanta, GA',
+            'description': 'Phase II study investigating novel cardiac protection strategies for patients undergoing major cardiovascular procedures.',
+            'sponsor': 'Northside Hospital',
+            'insurance': 'Private Insurance Only',
+            'condition': 'Cardiovascular'
+        },
+        {
+            'title': 'ALZHEIMER-PREVENTION Study',
+            'status': 'Recruiting',
+            'distance': '15.4 miles',
+            'location': 'Georgia Institute of Technology, Atlanta, GA',
+            'description': 'Longitudinal study examining early intervention strategies for cognitive decline prevention in at-risk populations aged 55+.',
+            'sponsor': 'Georgia Tech Research Institute',
+            'insurance': 'Medicare, Private Insurance',
+            'condition': 'Alzheimer\'s'
+        },
+        {
+            'title': 'CANCER-IMMUNOTHERAPY Trial',
+            'status': 'Active',
+            'distance': '3.8 miles',
+            'location': 'Winship Cancer Institute, Atlanta, GA',
+            'description': 'Phase I/II trial testing combination immunotherapy approaches for advanced solid tumors with promising early results.',
+            'sponsor': 'Winship Cancer Institute',
+            'insurance': 'All Major Insurance Plans',
+            'condition': 'Cancer'
+        },
+        {
+            'title': 'MENTAL-HEALTH Digital Study',
+            'status': 'Recruiting',
+            'distance': '6.9 miles',
+            'location': 'Grady Health System, Atlanta, GA',
+            'description': 'Evaluating effectiveness of digital therapeutic interventions for anxiety and depression management in primary care settings.',
+            'sponsor': 'Grady Health System',
+            'insurance': 'Medicaid, Sliding Scale',
+            'condition': 'Mental Health'
+        },
+        {
+            'title': 'ARTHRITIS-RELIEF Protocol',
+            'status': 'Completed',
+            'distance': '9.7 miles',
+            'location': 'Atlanta Medical Center, Atlanta, GA',
+            'description': 'Recently completed study on non-pharmaceutical pain management techniques for rheumatoid arthritis patients.',
+            'sponsor': 'Atlanta Medical Center',
+            'insurance': 'Results Available to All',
+            'condition': 'Arthritis'
         }
     ]
     

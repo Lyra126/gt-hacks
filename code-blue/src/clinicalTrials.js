@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, Modal, SafeAreaView, ActivityIndicator } from 'react-native';
 import ClinicalTrialTimeline from './timeline'; // Make sure this path is correct
 
-const API_BASE_URL = 'http://100.66.12.93:8000/api';
+const API_BASE_URL = 'http://100.66.11.34:8000/api';
 
 const ClinicalTrials = () => {
   const [searchQuery, setSearchQuery] = useState('');

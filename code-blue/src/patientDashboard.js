@@ -16,6 +16,16 @@ const InfoRow = ({ label, value }) => {
   );
 };
 
+const InfoColumn = ({ label, value }) => {
+  if (!value) return null;
+  return (
+    <View style={styles.InfoColumn}>
+      <Text style={styles.infoLabel}>{label}:</Text>
+      <Text style={styles.logValue}>{value}</Text>
+    </View>
+  );
+};
+
 const PatientDashboard = ({ route }) => {
   const { user } = useAuth();
 
@@ -88,6 +98,25 @@ const PatientDashboard = ({ route }) => {
     return <View style={styles.centerContainer}><Text style={styles.errorText}>{error}</Text></View>;
   }
 
+  const emrLogs = [
+  {
+    condition: "General",
+    text: "Patient reported mild headache.",
+    date: "2025-09-27T18:45:00Z"
+  },
+  {
+    condition: "Hypertension",
+    text: "Blood pressure reading 145/90 mmHg.",
+    date: "2025-09-20T14:30:00Z"
+  },
+  {
+    condition: "Diabetes",
+    text: "Fasting blood glucose 130 mg/dL.",
+    date: "2025-09-22T09:15:00Z"
+  }
+];
+
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.wrapper}>
@@ -104,7 +133,13 @@ const PatientDashboard = ({ route }) => {
         <View style={styles.card}>
           <Text style={styles.cardTitle}>Your Information</Text>
           <InfoRow label="Name" value={`${profileData?.firstName || ''} ${profileData?.lastName || ''}`} />
-          <InfoRow label="EMR Log" value={emrData?.log?.join(', ')} />
+          <InfoColumn
+            label="EMR Log"
+            value={emrLogs.map(log => `${log.date} [${log.condition}]: ${log.text}`).join("\n")}
+          />
+
+
+
         </View>
 
         {/* Available Clinical Trials Card - Now fully dynamic */}
@@ -202,14 +237,20 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     color: 'white'
   },
-  
-  // EMR Info Row Styles
   infoRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingVertical: 10,
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(255,255,255,0.2)'
+  },
+  infoColumn: {
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    margin: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(255,255,255,0.2)',
+    paddingTop: 8
   },
   infoLabel: {
     fontSize: 16,
@@ -219,6 +260,14 @@ const styles = StyleSheet.create({
   },
   infoValue: {
     fontSize: 16,
+    color: 'white',
+    fontWeight: 'bold',
+    flex: 0.6,
+    textAlign: 'right'
+  },
+  logValue: {
+    fontSize: 14,
+    marginTop: 10,
     color: 'white',
     fontWeight: 'bold',
     flex: 0.6,

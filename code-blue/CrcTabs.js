@@ -2,7 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
-import CrcDashboard from './src/crcDashboard';
+import EnhancedCrcDashboard from './src/EnhancedCrcDashboard';
 import AIChat from './src/aiChat';
 
 const Tab = createBottomTabNavigator();
@@ -24,10 +24,10 @@ export default function CrcTabs({route}) {
       })}
     >
       <Tab.Screen name="Dashboard">
-        {props => <CrcDashboard {...props} email={email} />}
+        {props => <EnhancedCrcDashboard {...props} email={email} />}
       </Tab.Screen>
       <Tab.Screen name="AI Chat">
-        {props => <AIChat {...props} email={email} />}
+        {props => <AIChat {...props} email={email} userType="crc" />}
       </Tab.Screen>
     </Tab.Navigator>
   );

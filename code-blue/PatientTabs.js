@@ -2,7 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
-import PatientDashboard from './src/patientDashboard';
+import EnhancedPatientDashboard from './src/EnhancedPatientDashboard';
 import AIChat from './src/aiChat';
 import ClinicalTrials from './src/clinicalTrials';
 
@@ -26,10 +26,10 @@ export default function PatientTabs({route}) {
       })}
     >
       <Tab.Screen name="Patient">
-        {props => <PatientDashboard {...props} email={email} />}
+        {props => <EnhancedPatientDashboard {...props} email={email} />}
       </Tab.Screen>
       <Tab.Screen name="AI Chat">
-        {props => <AIChat {...props} email={email} />}
+        {props => <AIChat {...props} email={email} userType="patient" />}
       </Tab.Screen>
       <Tab.Screen name="Trials">
         {props => <ClinicalTrials {...props} email={email} />}

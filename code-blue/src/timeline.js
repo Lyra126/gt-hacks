@@ -96,16 +96,25 @@ const TimelineItem = ({ item, index, isExpanded, onToggle, taskStatus, onTaskTog
 };
 
 // MODIFIED COMPONENT: It now receives 'timelineData' as a prop
-const ClinicalTrialTimeline = ({ trialTitle, timelineData }) => {
+const ClinicalTrialTimeline = ({ trialTitle, timelineData, savedProgress, onProgressChange }) => {
   const [expandedItems, setExpandedItems] = useState(new Set());
   const [taskStatus, setTaskStatus] = useState([]);
 
-  // This effect resets the task statuses whenever new timeline data is passed in
+  // This effect loads saved progress or initializes task statuses
   useEffect(() => {
     if (timelineData) {
-      setTaskStatus(timelineData.map(item => Array(item.tasks?.length || 0).fill(false)));
+      if (savedProgress && savedProgress.taskStatus) {
+        // Load saved progress
+        setTaskStatus(savedProgress.taskStatus);
+        if (savedProgress.expandedItems) {
+          setExpandedItems(new Set(savedProgress.expandedItems));
+        }
+      } else {
+        // Initialize with default values
+        setTaskStatus(timelineData.map(item => Array(item.tasks?.length || 0).fill(false)));
+      }
     }
-  }, [timelineData]);
+  }, [timelineData, savedProgress]);
 
   const toggleExpanded = (index) => {
     const newExpanded = new Set(expandedItems);
@@ -115,12 +124,29 @@ const ClinicalTrialTimeline = ({ trialTitle, timelineData }) => {
       newExpanded.add(index);
     }
     setExpandedItems(newExpanded);
+    
+    // Save progress
+    if (onProgressChange) {
+      onProgressChange({
+        taskStatus,
+        expandedItems: Array.from(newExpanded)
+      });
+    }
   };
 
   const toggleTask = (stepIdx, taskIdx) => {
     setTaskStatus(prev => {
       const updated = prev.map(arr => [...arr]);
       updated[stepIdx][taskIdx] = !updated[stepIdx][taskIdx];
+      
+      // Save progress
+      if (onProgressChange) {
+        onProgressChange({
+          taskStatus: updated,
+          expandedItems: Array.from(expandedItems)
+        });
+      }
+      
       return updated;
     });
   };

@@ -349,53 +349,41 @@ def seed_trials():
             'currentParticipants': 45,
             'stages': {
                 '1': {
-                    'name': 'Screening and Enrollment',
-                    'duration': '2 weeks',
-                    'summary': 'Initial screening, consent process, and baseline measurements',
+                    'name': 'Pre-Trial Preparation',
+                    'duration': '1 week',
+                    'summary': 'Critical eligibility maintenance and preparation tasks',
                     'checklist': [
                         'Complete informed consent',
-                        'Medical history review',
-                        'Physical examination',
-                        'Laboratory tests (HbA1c, glucose, lipid panel)',
-                        'Vital signs measurement',
-                        'Eligibility confirmation'
+                        'Confirm no hallucinogen use in past 6 months',
+                        'Avoid all recreational drugs (marijuana, cocaine, etc.)',
+                        'Confirm no history of kidney disease or dialysis',
+                        'Maintain stable blood sugar (avoid extreme highs/lows)',
+                        'Complete 2-hour CGM training session'
                     ]
                 },
                 '2': {
-                    'name': 'Baseline Period',
-                    'duration': '4 weeks',
-                    'summary': 'Establish baseline glucose patterns using current monitoring method',
+                    'name': 'Active Monitoring Phase',
+                    'duration': '12 weeks',
+                    'summary': 'Daily compliance tracking to maintain trial eligibility',
                     'checklist': [
-                        'Use current glucose meter for 4 weeks',
-                        'Log all readings in study diary',
-                        'Maintain usual diet and exercise',
-                        'Weekly check-in calls',
-                        'Complete baseline quality of life questionnaire'
+                        'Wear CGM device 24/7 (minimum 14 days/month)',
+                        'Log glucose readings 4x daily (before meals, bedtime)',
+                        'Avoid alcohol completely (maintains liver function)',
+                        'Get 7-9 hours sleep nightly (affects glucose metabolism)',
+                        'No smoking or vaping (impacts cardiovascular health)',
+                        'Attend monthly visits (±3 days)'
                     ]
                 },
                 '3': {
-                    'name': 'Intervention Period',
-                    'duration': '24 weeks',
-                    'summary': 'Use new continuous glucose monitoring system',
+                    'name': 'Final Assessment',
+                    'duration': '2 weeks',
+                    'summary': 'Eligibility verification and study completion',
                     'checklist': [
-                        'Receive training on new CGM device',
-                        'Wear CGM device continuously',
-                        'Calibrate device as instructed',
-                        'Attend bi-weekly study visits',
-                        'Report any device issues immediately',
-                        'Complete monthly questionnaires'
-                    ]
-                },
-                '4': {
-                    'name': 'Follow-up Period',
-                    'duration': '12 weeks',
-                    'summary': 'Monitor outcomes after intervention completion',
-                    'checklist': [
-                        'Return to standard glucose monitoring',
-                        'Attend follow-up visits at weeks 4, 8, and 12',
-                        'Complete final laboratory tests',
-                        'Final quality of life assessment',
-                        'Exit interview'
+                        'Fasting 12 hours before final blood tests',
+                        'Confirm continued drug-free status',
+                        'Complete quality of life questionnaires',
+                        'Return CGM device and charger',
+                        'Exit interview (30 minutes)'
                     ]
                 }
             }
@@ -415,53 +403,41 @@ def seed_trials():
             'currentParticipants': 89,
             'stages': {
                 '1': {
-                    'name': 'Screening',
-                    'duration': '2 weeks',
-                    'summary': 'Comprehensive cardiovascular assessment and eligibility determination',
+                    'name': 'Pre-Trial Preparation',
+                    'duration': '1 week',
+                    'summary': 'Critical eligibility maintenance and preparation tasks',
                     'checklist': [
                         'Informed consent signing',
-                        'Complete medical history',
-                        'Blood pressure measurements (multiple readings)',
-                        'ECG and echocardiogram',
-                        'Blood work (comprehensive metabolic panel)',
-                        'Medication washout period if needed'
+                        'Confirm no recent heart attack (within 6 months)',
+                        'Avoid all recreational drugs and hallucinogens',
+                        'Confirm no history of kidney disease or dialysis',
+                        'Stop current blood pressure medications (7 days washout)',
+                        'Complete cardiovascular screening tests'
                     ]
                 },
                 '2': {
-                    'name': 'Randomization',
-                    'duration': '1 week',
-                    'summary': 'Random assignment to treatment group',
+                    'name': 'Active Treatment Phase',
+                    'duration': '16 weeks',
+                    'summary': 'Daily compliance tracking to maintain trial eligibility',
                     'checklist': [
-                        'Confirm eligibility criteria met',
-                        'Random assignment to treatment arm',
-                        'Receive study medication',
-                        'Medication counseling session',
-                        'Schedule first follow-up visit'
+                        'Take study medication daily (8 AM ±2 hours)',
+                        'Home BP monitoring: 2x daily (7 AM, 7 PM)',
+                        'Avoid alcohol completely (affects blood pressure)',
+                        'Get 7-9 hours sleep nightly (affects cardiovascular health)',
+                        'No smoking or vaping (impacts heart function)',
+                        'Monthly clinic visits (±5 days)'
                     ]
                 },
                 '3': {
-                    'name': 'Treatment Phase',
-                    'duration': '52 weeks',
-                    'summary': 'Active treatment with assigned medication regimen',
+                    'name': 'Final Assessment',
+                    'duration': '4 weeks',
+                    'summary': 'Eligibility verification and study completion',
                     'checklist': [
-                        'Take study medication as prescribed',
-                        'Monthly blood pressure monitoring',
-                        'Quarterly laboratory assessments',
-                        'Report any side effects',
-                        'Attend all scheduled visits',
-                        'Complete medication compliance logs'
-                    ]
-                },
-                '4': {
-                    'name': 'Safety Follow-up',
-                    'duration': '12 weeks',
-                    'summary': 'Monitor for delayed effects after treatment completion',
-                    'checklist': [
-                        'Final safety assessments',
-                        'Transition to standard care',
-                        'Complete final questionnaires',
+                        'Fasting 8 hours before final blood tests',
+                        'Confirm continued drug-free status',
+                        'Complete quality of life questionnaires',
                         'Return unused study medication',
-                        'Schedule post-study care'
+                        'Exit interview (45 minutes)'
                     ]
                 }
             }
@@ -481,42 +457,41 @@ def seed_trials():
             'currentParticipants': 23,
             'stages': {
                 '1': {
-                    'name': 'Enrollment and Training',
-                    'duration': '2 weeks',
-                    'summary': 'Patient enrollment and smart inhaler training',
+                    'name': 'Pre-Trial Preparation',
+                    'duration': '1 week',
+                    'summary': 'Critical eligibility maintenance and preparation tasks',
                     'checklist': [
                         'Complete consent process',
-                        'Asthma control assessment',
-                        'Spirometry testing',
-                        'Smart inhaler device training',
-                        'Mobile app setup and training',
-                        'Environmental sensor installation'
+                        'Confirm no hallucinogen use in past 6 months',
+                        'Avoid all recreational drugs (affects lung function)',
+                        'Confirm no history of kidney disease or dialysis',
+                        'Complete 90-minute smart inhaler training',
+                        'Mobile app setup (iOS 14+/Android 8+)'
                     ]
                 },
                 '2': {
-                    'name': 'Monitoring Phase',
-                    'duration': '24 weeks',
-                    'summary': 'Continuous monitoring with AI-powered feedback',
+                    'name': 'Active Monitoring Phase',
+                    'duration': '12 weeks',
+                    'summary': 'Daily compliance tracking to maintain trial eligibility',
                     'checklist': [
-                        'Use smart inhaler daily',
-                        'Respond to app notifications',
-                        'Weekly symptom reporting',
-                        'Monthly clinic visits',
-                        'Environmental data review',
-                        'Medication adherence tracking'
+                        'Use smart inhaler 2x daily (morning, evening)',
+                        'Respond to app notifications within 2 hours',
+                        'Avoid smoking, vaping, secondhand smoke completely',
+                        'Get 7-9 hours sleep nightly (affects respiratory function)',
+                        'No alcohol consumption (affects lung function)',
+                        'Monthly clinic visits (±3 days)'
                     ]
                 },
                 '3': {
-                    'name': 'Assessment Period',
-                    'duration': '4 weeks',
-                    'summary': 'Final assessments and outcome evaluation',
+                    'name': 'Final Assessment',
+                    'duration': '2 weeks',
+                    'summary': 'Eligibility verification and study completion',
                     'checklist': [
-                        'Final spirometry testing',
-                        'Asthma control questionnaire',
-                        'Quality of life assessment',
-                        'Device data download',
-                        'Exit interview',
-                        'Return study devices'
+                        'Fasting 4 hours before final spirometry tests',
+                        'Confirm continued drug-free status',
+                        'Complete quality of life assessment (AQLQ)',
+                        'Return smart inhaler and sensors',
+                        'Exit interview (30 minutes)'
                     ]
                 }
             }
@@ -532,38 +507,41 @@ def seed_trials():
             'condition': 'Cardiovascular',
             'stages': {
                 '1': {
-                    'name': 'Pre-Procedure Evaluation',
-                    'duration': '3 weeks',
-                    'summary': 'Screening and baseline cardiovascular assessment',
+                    'name': 'Pre-Trial Preparation',
+                    'duration': '2 weeks',
+                    'summary': 'Critical eligibility maintenance and preparation tasks',
                     'checklist': [
-                        'Medical history review',
-                        'Baseline ECG and echocardiogram',
-                        'Blood tests and biomarkers',
-                        'Medication review',
-                        'Patient education on trial procedures'
+                        'Confirm no recent stroke (within 3 months)',
+                        'Avoid all recreational drugs and hallucinogens',
+                        'Confirm no history of kidney disease or dialysis',
+                        'Stop anticoagulants 5 days before procedure',
+                        'Fasting 12 hours before procedure',
+                        'Complete 60-minute patient education session'
                     ]
                 },
                 '2': {
-                    'name': 'Intervention Phase',
-                    'duration': '12 weeks',
-                    'summary': 'Cardiac protection strategy implementation',
+                    'name': 'Active Treatment Phase',
+                    'duration': '8 weeks',
+                    'summary': 'Daily compliance tracking to maintain trial eligibility',
                     'checklist': [
-                        'Surgical or procedural intervention',
-                        'Administer investigational treatment',
-                        'Daily monitoring and vitals recording',
-                        'Weekly follow-up visits',
-                        'Medication adherence tracking'
+                        'Surgical/procedural intervention (2-4 hours)',
+                        'Administer investigational treatment (IV infusion)',
+                        'Daily vitals: BP, HR, temp, O2 sat (4x daily)',
+                        'Avoid alcohol completely (affects heart function)',
+                        'Get 8-10 hours sleep nightly (critical for recovery)',
+                        'Weekly follow-up visits (±2 days)'
                     ]
                 },
                 '3': {
-                    'name': 'Follow-Up and Assessment',
-                    'duration': '4 weeks',
-                    'summary': 'Evaluate outcomes and patient recovery',
+                    'name': 'Final Assessment',
+                    'duration': '2 weeks',
+                    'summary': 'Eligibility verification and study completion',
                     'checklist': [
-                        'Post-procedure ECG and echocardiogram',
-                        'Quality of life questionnaire',
-                        'Adverse events review',
-                        'Final consultation with cardiologist'
+                        'Fasting 8 hours before final tests',
+                        'Confirm continued drug-free status',
+                        'Complete quality of life questionnaire (SF-36)',
+                        'Final cardiology consultation (30 minutes)',
+                        'Exit interview (30 minutes)'
                     ]
                 }
             }
@@ -579,39 +557,41 @@ def seed_trials():
             'condition': 'Alzheimer\'s',
             'stages': {
                 '1': {
-                    'name': 'Screening and Baseline',
-                    'duration': '4 weeks',
-                    'summary': 'Identify eligible participants and collect baseline cognitive data',
+                    'name': 'Pre-Trial Preparation',
+                    'duration': '2 weeks',
+                    'summary': 'Critical eligibility maintenance and preparation tasks',
                     'checklist': [
-                        'Cognitive assessment tests',
-                        'Medical and family history review',
-                        'MRI or brain scan',
-                        'Lifestyle and diet questionnaires',
-                        'Consent and enrollment process'
+                        'Complete consent process and enrollment (90 minutes)',
+                        'Confirm no hallucinogen use in past 6 months',
+                        'Avoid all recreational drugs (affects cognitive function)',
+                        'Confirm no history of kidney disease or dialysis',
+                        'Avoid caffeine 4 hours before cognitive tests',
+                        'Complete baseline cognitive assessments'
                     ]
                 },
                 '2': {
-                    'name': 'Intervention Phase',
-                    'duration': '52 weeks',
-                    'summary': 'Implement preventive strategies and monitor progress',
+                    'name': 'Active Intervention Phase',
+                    'duration': '24 weeks',
+                    'summary': 'Daily compliance tracking to maintain trial eligibility',
                     'checklist': [
-                        'Cognitive training sessions',
-                        'Dietary and lifestyle modifications',
-                        'Monthly follow-up assessments',
-                        'Medication or supplement administration if applicable',
-                        'Regular reporting of symptoms'
+                        'Cognitive training: 30 min/day, 5 days/week',
+                        'Mediterranean diet: 5+ servings fruits/vegetables daily',
+                        'Physical exercise: 150 min/week moderate intensity',
+                        'Avoid alcohol completely (affects brain function)',
+                        'Get 7-9 hours sleep nightly (critical for memory)',
+                        'Monthly assessments (±5 days)'
                     ]
                 },
                 '3': {
                     'name': 'Final Assessment',
-                    'duration': '4 weeks',
-                    'summary': 'Evaluate effectiveness of intervention',
+                    'duration': '2 weeks',
+                    'summary': 'Eligibility verification and study completion',
                     'checklist': [
-                        'Repeat cognitive assessments',
-                        'MRI or brain scan follow-up',
-                        'Patient interview and questionnaires',
-                        'Data analysis and reporting',
-                        'Exit consultation'
+                        'Fasting 4 hours before final cognitive tests',
+                        'Confirm continued drug-free status',
+                        'Complete quality of life questionnaires (ADL, IADL)',
+                        'Exit consultation (45 minutes)',
+                        'Exit interview (30 minutes)'
                     ]
                 }
             }
@@ -627,38 +607,41 @@ def seed_trials():
             'condition': 'Cancer',
             'stages': {
                 '1': {
-                    'name': 'Screening and Enrollment',
-                    'duration': '3 weeks',
-                    'summary': 'Eligibility assessment and baseline tumor profiling',
+                    'name': 'Pre-Trial Preparation',
+                    'duration': '2 weeks',
+                    'summary': 'Critical eligibility maintenance and preparation tasks',
                     'checklist': [
-                        'Medical history and prior treatment review',
-                        'Baseline imaging scans',
-                        'Blood work and tumor biomarkers',
-                        'Consent and enrollment process'
+                        'Complete consent process (120 minutes)',
+                        'Confirm no hallucinogen use in past 6 months',
+                        'Avoid all recreational drugs (affects immune system)',
+                        'Confirm no history of kidney disease or dialysis',
+                        'Avoid live vaccines 4 weeks prior',
+                        'Complete baseline tumor profiling'
                     ]
                 },
                 '2': {
-                    'name': 'Treatment Phase',
-                    'duration': '16 weeks',
-                    'summary': 'Administer combination immunotherapy and monitor response',
+                    'name': 'Active Treatment Phase',
+                    'duration': '12 weeks',
+                    'summary': 'Daily compliance tracking to maintain trial eligibility',
                     'checklist': [
-                        'Immunotherapy infusion sessions',
-                        'Weekly vitals and blood tests',
-                        'Tumor response imaging every 4 weeks',
-                        'Monitor for adverse effects',
-                        'Patient counseling and support'
+                        'Immunotherapy infusions: weekly x4, then q2weeks',
+                        'Weekly labs: CBC, CMP, LFTs, thyroid function',
+                        'Avoid alcohol completely (affects immune function)',
+                        'Get 8-10 hours sleep nightly (critical for immune system)',
+                        'No smoking or vaping (impacts treatment effectiveness)',
+                        'Report any symptoms within 24 hours'
                     ]
                 },
                 '3': {
-                    'name': 'Follow-Up and Evaluation',
-                    'duration': '8 weeks',
-                    'summary': 'Assess treatment outcomes and patient safety',
+                    'name': 'Final Assessment',
+                    'duration': '4 weeks',
+                    'summary': 'Eligibility verification and study completion',
                     'checklist': [
-                        'Final imaging scans',
-                        'Lab tests and biomarker analysis',
-                        'Patient interviews and quality of life assessment',
-                        'Report adverse events and outcomes',
-                        'Exit consultation'
+                        'Fasting 8 hours before final imaging scans',
+                        'Confirm continued drug-free status',
+                        'Complete quality of life assessment (FACT-G)',
+                        'Exit consultation (60 minutes)',
+                        'Exit interview (30 minutes)'
                     ]
                 }
             }
@@ -674,39 +657,41 @@ def seed_trials():
             'condition': 'Mental Health',
              'stages': {
                 '1': {
-                    'name': 'Enrollment and Baseline Assessment',
-                    'duration': '2 weeks',
-                    'summary': 'Assess mental health status and train participants on digital tools',
+                    'name': 'Pre-Trial Preparation',
+                    'duration': '1 week',
+                    'summary': 'Critical eligibility maintenance and preparation tasks',
                     'checklist': [
                         'Complete consent process',
-                        'Baseline anxiety and depression assessment',
-                        'Digital app onboarding and training',
-                        'Set up notifications and reminders',
-                        'Initial therapist consultation'
+                        'Confirm no hallucinogen use in past 6 months',
+                        'Avoid all recreational drugs (affects mental health)',
+                        'Confirm no history of kidney disease or dialysis',
+                        'Complete digital app onboarding (45 minutes)',
+                        'Initial therapist consultation (60 minutes)'
                     ]
                 },
                 '2': {
-                    'name': 'Intervention Phase',
-                    'duration': '12 weeks',
-                    'summary': 'Engage participants with digital therapeutic activities',
+                    'name': 'Active Treatment Phase',
+                    'duration': '8 weeks',
+                    'summary': 'Daily compliance tracking to maintain trial eligibility',
                     'checklist': [
-                        'Daily app exercises and journaling',
-                        'Weekly symptom tracking',
-                        'Monthly therapist check-ins',
-                        'Cognitive behavioral modules completion',
-                        'Monitor app engagement and feedback'
+                        'Daily app exercises: 15 min/day, 5 days/week',
+                        'Weekly symptom tracking (PHQ-9, GAD-7)',
+                        'Avoid alcohol completely (affects mental health)',
+                        'Get 7-9 hours sleep nightly (critical for mood)',
+                        'No smoking or vaping (impacts mental health)',
+                        'Bi-weekly therapist check-ins (30 minutes)'
                     ]
                 },
                 '3': {
-                    'name': 'Outcome Assessment',
-                    'duration': '2 weeks',
-                    'summary': 'Evaluate improvements in mental health outcomes',
+                    'name': 'Final Assessment',
+                    'duration': '1 week',
+                    'summary': 'Eligibility verification and study completion',
                     'checklist': [
-                        'Repeat anxiety and depression assessments',
-                        'Patient self-report questionnaires',
-                        'Therapist feedback review',
-                        'Data analysis and reporting',
-                        'Exit interview'
+                        'Fasting 4 hours before final assessments',
+                        'Confirm continued drug-free status',
+                        'Complete patient satisfaction questionnaire',
+                        'Exit interview (45 minutes)',
+                        'Exit consultation (30 minutes)'
                     ]
                 }
             }
@@ -722,36 +707,41 @@ def seed_trials():
             'condition': 'Arthritis',
             'stages': {
                 '1': {
-                    'name': 'Participant Enrollment',
+                    'name': 'Pre-Trial Preparation',
                     'duration': '1 week',
-                    'summary': 'Recruit and enroll patients with rheumatoid arthritis',
+                    'summary': 'Critical eligibility maintenance and preparation tasks',
                     'checklist': [
                         'Complete consent process',
-                        'Baseline pain and mobility assessment',
-                        'Medical history review',
-                        'Initial physical therapy instructions'
+                        'Confirm no hallucinogen use in past 6 months',
+                        'Avoid all recreational drugs (affects pain perception)',
+                        'Confirm no history of kidney disease or dialysis',
+                        'Complete physical therapy assessment (30 minutes)',
+                        'Baseline pain scale (0-10 VAS)'
                     ]
                 },
                 '2': {
-                    'name': 'Treatment Phase',
-                    'duration': '8 weeks',
-                    'summary': 'Implement non-pharmaceutical pain management techniques',
+                    'name': 'Active Treatment Phase',
+                    'duration': '6 weeks',
+                    'summary': 'Daily compliance tracking to maintain trial eligibility',
                     'checklist': [
-                        'Daily physical therapy exercises',
-                        'Pain diary logging',
-                        'Weekly check-ins with study coordinator',
-                        'Lifestyle modification guidance'
+                        'Daily PT exercises: 20 min/day, 6 days/week',
+                        'Pain diary: 3x daily (morning, afternoon, evening)',
+                        'Avoid alcohol completely (affects pain management)',
+                        'Get 8-10 hours sleep nightly (critical for healing)',
+                        'No smoking or vaping (impacts circulation)',
+                        'Weekly coordinator check-ins (15 minutes)'
                     ]
                 },
                 '3': {
-                    'name': 'Post-Treatment Assessment',
-                    'duration': '2 weeks',
-                    'summary': 'Evaluate outcomes and gather feedback',
+                    'name': 'Final Assessment',
+                    'duration': '1 week',
+                    'summary': 'Eligibility verification and study completion',
                     'checklist': [
-                        'Final pain and mobility assessment',
-                        'Patient feedback survey',
-                        'Data compilation and analysis',
-                        'Exit interview'
+                        'Fasting 4 hours before final assessments',
+                        'Confirm continued drug-free status',
+                        'Complete patient satisfaction survey (0-10 scale)',
+                        'Exit interview (30 minutes)',
+                        'Exit consultation (30 minutes)'
                     ]
                 }
             }

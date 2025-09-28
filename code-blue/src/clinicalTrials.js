@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, Modal, SafeAreaView, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, Modal, SafeAreaView, ActivityIndicator, Alert } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useAuth } from './AuthContext';
 import ClinicalTrialTimeline from './timeline'; // Make sure this path is correct
 
 const API_BASE_URL = 'http://100.66.12.93:8000/api';
 
 const ClinicalTrials = () => {
+  const { user } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedFilter, setSelectedFilter] = useState('All');
   const [selectedTrial, setSelectedTrial] = useState(null); // State to manage the modal
@@ -13,11 +16,69 @@ const ClinicalTrials = () => {
   const [error, setError] = useState(null);
   const [timelineData, setTimelineData] = useState(null);
   const [timelineLoading, setTimelineLoading] = useState(false);
+  const [timelineProgress, setTimelineProgress] = useState({}); // Store progress for each trial
+  const [enrollingTrial, setEnrollingTrial] = useState(null); // Track which trial is being enrolled in
+  const [syncingProgress, setSyncingProgress] = useState({}); // Track which trials are syncing progress
+
+  // Load timeline progress from storage
+  useEffect(() => {
+    loadTimelineProgress();
+  }, []);
 
   // Fetch trials from API
   useEffect(() => {
     fetchTrials();
   }, []);
+
+  const loadTimelineProgress = async () => {
+    try {
+      const savedProgress = await AsyncStorage.getItem('timelineProgress');
+      if (savedProgress) {
+        setTimelineProgress(JSON.parse(savedProgress));
+      }
+    } catch (error) {
+      console.error('Error loading timeline progress:', error);
+    }
+  };
+
+  const saveTimelineProgress = async (trialId, progress) => {
+    try {
+      const updatedProgress = { ...timelineProgress, [trialId]: progress };
+      setTimelineProgress(updatedProgress);
+      await AsyncStorage.setItem('timelineProgress', JSON.stringify(updatedProgress));
+      
+      // Sync progress with backend if user is enrolled in this trial
+      if (user?.mainId) {
+        setSyncingProgress(prev => ({ ...prev, [trialId]: true }));
+        try {
+          // Find enrollment for this trial
+          const enrollmentsResponse = await fetch(`${API_BASE_URL}/enrollments/${user.mainId}`);
+          if (enrollmentsResponse.ok) {
+            const enrollmentsData = await enrollmentsResponse.json();
+            const enrollment = enrollmentsData.enrollments.find(e => e.trialId === trialId);
+            
+            if (enrollment) {
+              // Update enrollment progress in backend
+              await fetch(`${API_BASE_URL}/enrollments/${enrollment.enrollmentId}/progress`, {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(progress)
+              });
+              console.log('Progress synced with backend for trial:', trialId);
+            }
+          }
+        } catch (error) {
+          console.error('Error syncing progress with backend:', error);
+        } finally {
+          setSyncingProgress(prev => ({ ...prev, [trialId]: false }));
+        }
+      }
+    } catch (error) {
+      console.error('Error saving timeline progress:', error);
+    }
+  };
 
   const fetchTrials = async () => {
     try {
@@ -61,9 +122,61 @@ const ClinicalTrials = () => {
     }
   };
 
+  const getTrialProgress = (trialId) => {
+    const progress = timelineProgress[trialId];
+    if (!progress || !progress.taskStatus) return 0;
+    
+    const totalTasks = progress.taskStatus.flat().length;
+    const completedTasks = progress.taskStatus.flat().filter(Boolean).length;
+    
+    return totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
+  };
+
   const handleRequestReview = (trialTitle) => {
     // Handle doctor review request
     console.log(`Requesting doctor review for: ${trialTitle}`);
+  };
+
+  const handleEnrollInTrial = async (trial) => {
+    if (!user?.mainId) {
+      Alert.alert('Error', 'Please log in to enroll in trials.');
+      return;
+    }
+
+    console.log('Attempting to enroll in trial:', trial.id, trial.title);
+    console.log('Patient ID:', user.mainId);
+    
+    setEnrollingTrial(trial.id);
+    
+    try {
+      const response = await fetch(`${API_BASE_URL}/enrollments`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          patientId: user.mainId,
+          trialId: trial.id
+        })
+      });
+
+      if (response.ok) {
+        Alert.alert(
+          'Success!', 
+          `You have been enrolled in ${trial.title}. You can now track your progress in the Patient dashboard.`,
+          [{ text: 'OK' }]
+        );
+      } else {
+        const errorData = await response.json();
+        console.log('Enrollment error:', errorData);
+        Alert.alert('Enrollment Failed', errorData.detail || 'Failed to enroll in trial. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error enrolling in trial:', error);
+      Alert.alert('Error', 'Failed to enroll in trial. Please check your connection and try again.');
+    } finally {
+      setEnrollingTrial(null);
+    }
   };
 
   // Function to transform stages data to timeline format
@@ -86,7 +199,9 @@ const ClinicalTrials = () => {
 
   // Function to fetch trial stages
   const fetchTrialStages = async (trialId) => {
+    console.log('=== FETCH TRIAL STAGES CALLED ===', trialId);
     try {
+      console.log('Fetching stages for trial:', trialId);
       setTimelineLoading(true);
       const response = await fetch(`${API_BASE_URL}/trials/${trialId}/stages`);
       
@@ -95,7 +210,12 @@ const ClinicalTrials = () => {
       }
       
       const data = await response.json();
+      console.log('Received stages data:', data);
+      console.log('Data.stages type:', typeof data.stages);
+      console.log('Data.stages keys:', Object.keys(data.stages || {}));
       const transformedData = transformStagesToTimeline(data.stages);
+      console.log('Transformed timeline data:', transformedData);
+      console.log('Transformed data length:', transformedData.length);
       setTimelineData(transformedData);
     } catch (err) {
       console.error('Error fetching trial stages:', err);
@@ -107,6 +227,7 @@ const ClinicalTrials = () => {
 
   // --- Handlers for opening and closing the timeline modal ---
   const handleOpenTimeline = async (trial) => {
+    console.log('Opening timeline for trial:', trial.title, trial.id);
     setSelectedTrial(trial);
     setTimelineData(null); // Reset timeline data
     await fetchTrialStages(trial.id);
@@ -184,6 +305,23 @@ const ClinicalTrials = () => {
                       <Text style={styles.condition}>{trial.condition}</Text>
                   </View>
 
+                  {/* Progress Indicator */}
+                  {getTrialProgress(trial.id) > 0 && (
+                    <View style={styles.progressContainer}>
+                      <View style={styles.progressBar}>
+                        <View 
+                          style={[
+                            styles.progressFill, 
+                            { width: `${getTrialProgress(trial.id)}%` }
+                          ]} 
+                        />
+                      </View>
+                      <Text style={styles.progressText}>
+                        {getTrialProgress(trial.id)}% Complete
+                      </Text>
+                    </View>
+                  )}
+
                   <Text style={styles.location}>🏥 {trial.location}</Text>
                   <Text style={styles.description}>{trial.description}</Text>
 
@@ -197,12 +335,32 @@ const ClinicalTrials = () => {
                       <Text style={styles.infoValue}>{trial.insurance}</Text>
                   </View>
                   
-                  <TouchableOpacity 
-                    style={styles.reviewButton}
-                    onPress={() => handleRequestReview(trial.title)}
-                  >
-                    <Text style={styles.reviewButtonText}>Request Doctor Review</Text>
-                  </TouchableOpacity>
+                  <View style={styles.buttonRow}>
+                    <TouchableOpacity 
+                      style={styles.enrollButton}
+                      onPress={(e) => {
+                        e.stopPropagation(); // Prevent opening timeline
+                        handleEnrollInTrial(trial);
+                      }}
+                      disabled={enrollingTrial === trial.id}
+                    >
+                      {enrollingTrial === trial.id ? (
+                        <ActivityIndicator size="small" color="#FFFFFF" />
+                      ) : (
+                        <Text style={styles.enrollButtonText}>Enroll</Text>
+                      )}
+                    </TouchableOpacity>
+                    
+                    <TouchableOpacity 
+                      style={styles.reviewButton}
+                      onPress={(e) => {
+                        e.stopPropagation(); // Prevent opening timeline
+                        handleRequestReview(trial.title);
+                      }}
+                    >
+                      <Text style={styles.reviewButtonText}>Request Doctor Review</Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
               </TouchableOpacity>
           ))}
@@ -223,25 +381,34 @@ const ClinicalTrials = () => {
         visible={!!selectedTrial}
         animationType="slide"
         onRequestClose={handleCloseTimeline}
+        transparent={false}
       >
         <SafeAreaView style={styles.modalContainer}>
-            <View style={styles.modalHeader}>
-                <Text style={styles.modalTitle}>{selectedTrial?.title}</Text>
-                <TouchableOpacity onPress={handleCloseTimeline} style={styles.closeButton}>
-                    <Text style={styles.closeButtonText}>Exit</Text>
-                </TouchableOpacity>
-            </View>
+          <View style={styles.modalHeader}>
+            <Text style={styles.modalTitle}>Timeline</Text>
+            <TouchableOpacity onPress={handleCloseTimeline} style={styles.closeButton}>
+              <Text style={styles.closeButtonText}>✕</Text>
+            </TouchableOpacity>
+          </View>
+          
+          <View style={styles.modalContent}>
             {timelineLoading ? (
-              <View style={styles.timelineLoadingContainer}>
-                <ActivityIndicator size="large" color="#007bff" />
-                <Text style={styles.timelineLoadingText}>Loading timeline...</Text>
+              <View style={styles.loadingContainer}>
+                <ActivityIndicator size="large" color="#3B82F6" />
+                <Text style={styles.loadingText}>Loading timeline...</Text>
               </View>
-            ) : (
-              <ClinicalTrialTimeline 
-                trialTitle={selectedTrial?.title}
+            ) : timelineData && timelineData.length > 0 ? (
+              <ClinicalTrialTimeline
                 timelineData={timelineData}
+                savedProgress={timelineProgress[selectedTrial?.id]}
+                onProgressChange={(progress) => saveTimelineProgress(selectedTrial?.id, progress)}
               />
+            ) : (
+              <View style={styles.errorContainer}>
+                <Text style={styles.errorText}>No timeline data available for this trial.</Text>
+              </View>
             )}
+          </View>
         </SafeAreaView>
       </Modal>
     </>
@@ -406,12 +573,14 @@ const styles = StyleSheet.create({
     textAlign: 'right'
   },
   reviewButton: {
+    flex: 1,
     backgroundColor: '#28a745',
-    paddingVertical: 12,
+    paddingVertical: 10,
     paddingHorizontal: 16,
-    borderRadius: 25,
+    borderRadius: 8,
     alignItems: 'center',
-    marginTop: 10
+    justifyContent: 'center',
+    minHeight: 40,
   },
   reviewButtonText: {
     color: 'white',
@@ -519,7 +688,113 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 16,
     color: '#6c757d'
-  }
+  },
+  syncIndicator: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 10,
+    backgroundColor: '#E3F2FD',
+    borderRadius: 8,
+    marginBottom: 10,
+  },
+  syncText: {
+    marginLeft: 8,
+    fontSize: 14,
+    color: '#1976D2',
+    fontWeight: '500',
+  },
+  progressContainer: {
+    marginVertical: 8,
+  },
+  progressBar: {
+    height: 6,
+    backgroundColor: '#E5E7EB',
+    borderRadius: 3,
+    overflow: 'hidden',
+    marginBottom: 4,
+  },
+  progressFill: {
+    height: '100%',
+    backgroundColor: '#10B981',
+    borderRadius: 3,
+  },
+  progressText: {
+    fontSize: 12,
+    color: '#10B981',
+    fontWeight: '600',
+  },
+  buttonRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 12,
+    gap: 8,
+  },
+  enrollButton: {
+    flex: 1,
+    backgroundColor: '#10B981',
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: 40,
+  },
+  enrollButtonText: {
+    color: '#FFFFFF',
+    fontSize: 14,
+    fontWeight: '600',
+  },
+  modalContainer: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingTop: 15,
+    paddingBottom: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: '#E5E7EB',
+  },
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#1F2937',
+  },
+  closeButton: {
+    padding: 8,
+  },
+  closeButtonText: {
+    fontSize: 24,
+    color: '#6B7280',
+  },
+  modalContent: {
+    flex: 1,
+    padding: 20,
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loadingText: {
+    marginTop: 16,
+    fontSize: 16,
+    color: '#6B7280',
+  },
+  errorContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  errorText: {
+    fontSize: 16,
+    color: '#EF4444',
+    textAlign: 'center',
+  },
 });
 
 export default ClinicalTrials;

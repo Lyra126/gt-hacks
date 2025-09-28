@@ -42,21 +42,23 @@ const AppNavigator = () => {
   }
 
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      {user ? (
-        user.userType === "patient" ? (
-          <Stack.Screen name="PatientTabs" component={PatientTabs} />
+    <>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        {user ? (
+          user.userType === "patient" ? (
+            <Stack.Screen name="PatientTabs" component={PatientTabs} />
+          ) : (
+            <Stack.Screen name="CrcTabs" component={CrcTabs} />
+          )
         ) : (
-          <Stack.Screen name="CrcTabs" component={CrcTabs} />
-        )
-      ) : (
-        <>
-          <Stack.Screen name="PromptLoginSignUp" component={PromptLoginSignUp} />
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="SignUp" component={SignUp} />
-        </>
-      )}
-    </Stack.Navigator>
+          <>
+            <Stack.Screen name="PromptLoginSignUp" component={PromptLoginSignUp} />
+            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="SignUp" component={SignUp} />
+          </>
+        )}
+      </Stack.Navigator>
+    </>
   );
 };
 

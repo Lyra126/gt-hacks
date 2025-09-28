@@ -18,7 +18,7 @@ import {
 const { width } = Dimensions.get('window');
 
 // Define the base URL directly in the file
-const API_BASE_URL = 'http://100.66.12.93:8000/api';
+const API_BASE_URL = 'http://100.66.11.34:8000/api';
 
 const AIChat = ({ patientId = "test-patient" }) => { 
   const [messages, setMessages] = useState([

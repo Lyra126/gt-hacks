@@ -222,7 +222,7 @@ async def get_available_trials() -> list:
     """
     try:
         print("RTDB: Fetching all clinical trials")
-        all_trials = realtime_db.reference('clinicalTrials').get() or {}
+        all_trials = realtime_db.reference('trials').get() or {}
         
         available_trials = []
         for trial_id, trial_data in all_trials.items(): # type: ignore

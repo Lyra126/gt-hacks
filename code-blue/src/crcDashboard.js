@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, Modal, SafeAreaView, Alert } from 'react-native';
+import { useAuth } from './AuthContext'; // Merged import
 
 const CrcDashboard = ({ route, email: propEmail }) => {
+  const { logout } = useAuth(); // Merged Auth hook
+
   // Get email from either route params or props
   const email = route?.params?.email || propEmail || "dr.anderson@emory.edu";
   const crcId = "ARC-12345";
@@ -172,6 +175,28 @@ const CrcDashboard = ({ route, email: propEmail }) => {
     setShowPatientModal(true);
   };
 
+  // Merged handleLogout function
+  const handleLogout = () => {
+    Alert.alert(
+      "Logout",
+      "Are you sure you want to logout?",
+      [
+        { text: "Cancel", style: "cancel" },
+        {
+          text: "Logout",
+          style: "destructive",
+          onPress: async () => {
+            try {
+              await logout();
+            } catch (_error) {
+              Alert.alert("Error", "Failed to logout. Please try again.");
+            }
+          }
+        }
+      ]
+    );
+  };
+
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
@@ -184,9 +209,17 @@ const CrcDashboard = ({ route, email: propEmail }) => {
     <>
       <ScrollView style={styles.container}>
         <View style={styles.wrapper}>
-          <Text style={styles.title}>Clinical Trial Management</Text>
-          <Text style={styles.subtitle}>Managing {managedTrials.length} clinical trials</Text>
-          <Text style={styles.crcInfo}>CRC ID: {crcId} • {email}</Text>
+          {/* Merged Header with Logout Button */}
+          <View style={styles.header}>
+            <View style={styles.headerContent}>
+              <Text style={styles.title}>Clinical Trial Management</Text>
+              <Text style={styles.subtitle}>Managing {managedTrials.length} clinical trials</Text>
+              <Text style={styles.crcInfo}>CRC ID: {crcId} • {email}</Text>
+            </View>
+            <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+              <Text style={styles.logoutButtonText}>Logout</Text>
+            </TouchableOpacity>
+          </View>
           
           <View style={styles.searchContainer}>
             <TextInput
@@ -393,11 +426,34 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     paddingBottom: 40
   },
+  // Merged Header Styles
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginBottom: 20,
+  },
+  headerContent: {
+    flex: 1,
+    marginRight: 15,
+  },
   title: { 
-    fontSize: 32, 
+    fontSize: 28, // Adjusted font size
     fontWeight: 'bold', 
     marginBottom: 8,
     color: '#2c3e50'
+  },
+  logoutButton: {
+    backgroundColor: '#dc3545',
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 20,
+    flexShrink: 0,
+  },
+  logoutButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 14,
   },
   subtitle: {
     fontSize: 16,

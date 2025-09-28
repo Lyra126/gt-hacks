@@ -11,6 +11,8 @@ const ClinicalTrials = () => {
   const [allTrials, setAllTrials] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [timelineData, setTimelineData] = useState(null);
+  const [timelineLoading, setTimelineLoading] = useState(false);
 
   // Fetch trials from API
   useEffect(() => {
@@ -64,13 +66,55 @@ const ClinicalTrials = () => {
     console.log(`Requesting doctor review for: ${trialTitle}`);
   };
 
+  // Function to transform stages data to timeline format
+  const transformStagesToTimeline = (stages) => {
+    if (!stages) return [];
+    
+    return Object.keys(stages).map((stageKey, index) => {
+      const stage = stages[stageKey];
+      return {
+        date: `Week ${index + 1}`,
+        title: stage.name,
+        subtitle: stage.summary,
+        tasks: stage.checklist?.map(task => ({
+          title: task,
+          description: `Complete: ${task}`
+        })) || []
+      };
+    });
+  };
+
+  // Function to fetch trial stages
+  const fetchTrialStages = async (trialId) => {
+    try {
+      setTimelineLoading(true);
+      const response = await fetch(`${API_BASE_URL}/trials/${trialId}/stages`);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      const transformedData = transformStagesToTimeline(data.stages);
+      setTimelineData(transformedData);
+    } catch (err) {
+      console.error('Error fetching trial stages:', err);
+      setTimelineData([]);
+    } finally {
+      setTimelineLoading(false);
+    }
+  };
+
   // --- Handlers for opening and closing the timeline modal ---
-  const handleOpenTimeline = (trial) => {
+  const handleOpenTimeline = async (trial) => {
     setSelectedTrial(trial);
+    setTimelineData(null); // Reset timeline data
+    await fetchTrialStages(trial.id);
   };
 
   const handleCloseTimeline = () => {
     setSelectedTrial(null);
+    setTimelineData(null);
   };
 
   return (
@@ -187,7 +231,17 @@ const ClinicalTrials = () => {
                     <Text style={styles.closeButtonText}>Exit</Text>
                 </TouchableOpacity>
             </View>
-            <ClinicalTrialTimeline trialTitle={selectedTrial?.title}/>
+            {timelineLoading ? (
+              <View style={styles.timelineLoadingContainer}>
+                <ActivityIndicator size="large" color="#007bff" />
+                <Text style={styles.timelineLoadingText}>Loading timeline...</Text>
+              </View>
+            ) : (
+              <ClinicalTrialTimeline 
+                trialTitle={selectedTrial?.title}
+                timelineData={timelineData}
+              />
+            )}
         </SafeAreaView>
       </Modal>
     </>
@@ -452,6 +506,19 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 14
+  },
+  
+  // Timeline Loading Styles
+  timelineLoadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 40
+  },
+  timelineLoadingText: {
+    marginTop: 10,
+    fontSize: 16,
+    color: '#6c757d'
   }
 });
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
 import * as DocumentPicker from 'expo-document-picker';
+import { useAuth } from './AuthContext';
 
 const API_BASE_URL = 'http://100.66.12.93:8000/api'; 
 
@@ -16,8 +17,9 @@ const InfoRow = ({ label, value }) => {
 };
 
 const PatientDashboard = ({ route }) => {
-  // In a real app, this would come from your auth context
-  const patientId = "patient-xyz-123";
+  const { user } = useAuth();
+
+  const patientId = user?.mainId;
 
   const [profileData, setProfileData] = useState(null);
   const [emrData, setEmrData] = useState(null);

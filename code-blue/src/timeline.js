@@ -17,7 +17,7 @@ const TimelineItem = ({ item, index, isExpanded, onToggle, taskStatus, onTaskTog
       duration: 300,
       useNativeDriver: false,
     }).start();
-  }, [isExpanded]);
+  }, [isExpanded, animation]);
 
   const completedTasks = taskStatus[index]?.filter(Boolean).length || 0;
   const totalTasks = item.tasks?.length || 0;
@@ -109,7 +109,11 @@ const ClinicalTrialTimeline = ({ trialTitle, timelineData }) => {
 
   const toggleExpanded = (index) => {
     const newExpanded = new Set(expandedItems);
-    newExpanded.has(index) ? newExpanded.delete(index) : newExpanded.add(index);
+    if (newExpanded.has(index)) {
+      newExpanded.delete(index);
+    } else {
+      newExpanded.add(index);
+    }
     setExpandedItems(newExpanded);
   };
 
@@ -123,12 +127,16 @@ const ClinicalTrialTimeline = ({ trialTitle, timelineData }) => {
   
   // Render a message if no data is available
   if (!timelineData || timelineData.length === 0) {
-    return <View style={styles.container}><Text>No timeline data available for this trial.</Text></View>;
+    return (
+      <View style={styles.noDataContainer}>
+        <Text style={styles.noDataText}>No timeline data available for this trial.</Text>
+      </View>
+    );
   }
 
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      <Text style={styles.timelineTitle}>{trialTitle ? `${trialTitle} Timeline` : 'Clinical Trial Timeline'}</Text>
+      <Text style={styles.timelineTitle}>{'Timeline'}</Text>
       <View style={styles.timeline}>
         {timelineData.map((item, index) => (
           <TimelineItem
@@ -298,6 +306,18 @@ const styles = StyleSheet.create({
   taskDescription: {
     fontSize: 13,
     color: '#7f8c8d',
+  },
+  noDataContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 40,
+    backgroundColor: '#f4f8fb',
+  },
+  noDataText: {
+    fontSize: 16,
+    color: '#6c757d',
+    textAlign: 'center',
   },
 });
 

@@ -529,7 +529,44 @@ def seed_trials():
             'description': 'Phase II study investigating novel cardiac protection strategies for patients undergoing major cardiovascular procedures.',
             'sponsor': 'Northside Hospital',
             'insurance': 'Private Insurance Only',
-            'condition': 'Cardiovascular'
+            'condition': 'Cardiovascular',
+            'stages': {
+                '1': {
+                    'name': 'Pre-Procedure Evaluation',
+                    'duration': '3 weeks',
+                    'summary': 'Screening and baseline cardiovascular assessment',
+                    'checklist': [
+                        'Medical history review',
+                        'Baseline ECG and echocardiogram',
+                        'Blood tests and biomarkers',
+                        'Medication review',
+                        'Patient education on trial procedures'
+                    ]
+                },
+                '2': {
+                    'name': 'Intervention Phase',
+                    'duration': '12 weeks',
+                    'summary': 'Cardiac protection strategy implementation',
+                    'checklist': [
+                        'Surgical or procedural intervention',
+                        'Administer investigational treatment',
+                        'Daily monitoring and vitals recording',
+                        'Weekly follow-up visits',
+                        'Medication adherence tracking'
+                    ]
+                },
+                '3': {
+                    'name': 'Follow-Up and Assessment',
+                    'duration': '4 weeks',
+                    'summary': 'Evaluate outcomes and patient recovery',
+                    'checklist': [
+                        'Post-procedure ECG and echocardiogram',
+                        'Quality of life questionnaire',
+                        'Adverse events review',
+                        'Final consultation with cardiologist'
+                    ]
+                }
+            }
         },
         {
             'title': 'ALZHEIMER-PREVENTION Study',
@@ -539,7 +576,45 @@ def seed_trials():
             'description': 'Longitudinal study examining early intervention strategies for cognitive decline prevention in at-risk populations aged 55+.',
             'sponsor': 'Georgia Tech Research Institute',
             'insurance': 'Medicare, Private Insurance',
-            'condition': 'Alzheimer\'s'
+            'condition': 'Alzheimer\'s',
+            'stages': {
+                '1': {
+                    'name': 'Screening and Baseline',
+                    'duration': '4 weeks',
+                    'summary': 'Identify eligible participants and collect baseline cognitive data',
+                    'checklist': [
+                        'Cognitive assessment tests',
+                        'Medical and family history review',
+                        'MRI or brain scan',
+                        'Lifestyle and diet questionnaires',
+                        'Consent and enrollment process'
+                    ]
+                },
+                '2': {
+                    'name': 'Intervention Phase',
+                    'duration': '52 weeks',
+                    'summary': 'Implement preventive strategies and monitor progress',
+                    'checklist': [
+                        'Cognitive training sessions',
+                        'Dietary and lifestyle modifications',
+                        'Monthly follow-up assessments',
+                        'Medication or supplement administration if applicable',
+                        'Regular reporting of symptoms'
+                    ]
+                },
+                '3': {
+                    'name': 'Final Assessment',
+                    'duration': '4 weeks',
+                    'summary': 'Evaluate effectiveness of intervention',
+                    'checklist': [
+                        'Repeat cognitive assessments',
+                        'MRI or brain scan follow-up',
+                        'Patient interview and questionnaires',
+                        'Data analysis and reporting',
+                        'Exit consultation'
+                    ]
+                }
+            }
         },
         {
             'title': 'CANCER-IMMUNOTHERAPY Trial',
@@ -549,7 +624,44 @@ def seed_trials():
             'description': 'Phase I/II trial testing combination immunotherapy approaches for advanced solid tumors with promising early results.',
             'sponsor': 'Winship Cancer Institute',
             'insurance': 'All Major Insurance Plans',
-            'condition': 'Cancer'
+            'condition': 'Cancer',
+            'stages': {
+                '1': {
+                    'name': 'Screening and Enrollment',
+                    'duration': '3 weeks',
+                    'summary': 'Eligibility assessment and baseline tumor profiling',
+                    'checklist': [
+                        'Medical history and prior treatment review',
+                        'Baseline imaging scans',
+                        'Blood work and tumor biomarkers',
+                        'Consent and enrollment process'
+                    ]
+                },
+                '2': {
+                    'name': 'Treatment Phase',
+                    'duration': '16 weeks',
+                    'summary': 'Administer combination immunotherapy and monitor response',
+                    'checklist': [
+                        'Immunotherapy infusion sessions',
+                        'Weekly vitals and blood tests',
+                        'Tumor response imaging every 4 weeks',
+                        'Monitor for adverse effects',
+                        'Patient counseling and support'
+                    ]
+                },
+                '3': {
+                    'name': 'Follow-Up and Evaluation',
+                    'duration': '8 weeks',
+                    'summary': 'Assess treatment outcomes and patient safety',
+                    'checklist': [
+                        'Final imaging scans',
+                        'Lab tests and biomarker analysis',
+                        'Patient interviews and quality of life assessment',
+                        'Report adverse events and outcomes',
+                        'Exit consultation'
+                    ]
+                }
+            }
         },
         {
             'title': 'MENTAL-HEALTH Digital Study',
@@ -559,7 +671,45 @@ def seed_trials():
             'description': 'Evaluating effectiveness of digital therapeutic interventions for anxiety and depression management in primary care settings.',
             'sponsor': 'Grady Health System',
             'insurance': 'Medicaid, Sliding Scale',
-            'condition': 'Mental Health'
+            'condition': 'Mental Health',
+             'stages': {
+                '1': {
+                    'name': 'Enrollment and Baseline Assessment',
+                    'duration': '2 weeks',
+                    'summary': 'Assess mental health status and train participants on digital tools',
+                    'checklist': [
+                        'Complete consent process',
+                        'Baseline anxiety and depression assessment',
+                        'Digital app onboarding and training',
+                        'Set up notifications and reminders',
+                        'Initial therapist consultation'
+                    ]
+                },
+                '2': {
+                    'name': 'Intervention Phase',
+                    'duration': '12 weeks',
+                    'summary': 'Engage participants with digital therapeutic activities',
+                    'checklist': [
+                        'Daily app exercises and journaling',
+                        'Weekly symptom tracking',
+                        'Monthly therapist check-ins',
+                        'Cognitive behavioral modules completion',
+                        'Monitor app engagement and feedback'
+                    ]
+                },
+                '3': {
+                    'name': 'Outcome Assessment',
+                    'duration': '2 weeks',
+                    'summary': 'Evaluate improvements in mental health outcomes',
+                    'checklist': [
+                        'Repeat anxiety and depression assessments',
+                        'Patient self-report questionnaires',
+                        'Therapist feedback review',
+                        'Data analysis and reporting',
+                        'Exit interview'
+                    ]
+                }
+            }
         },
         {
             'title': 'ARTHRITIS-RELIEF Protocol',
@@ -569,7 +719,42 @@ def seed_trials():
             'description': 'Recently completed study on non-pharmaceutical pain management techniques for rheumatoid arthritis patients.',
             'sponsor': 'Atlanta Medical Center',
             'insurance': 'Results Available to All',
-            'condition': 'Arthritis'
+            'condition': 'Arthritis',
+            'stages': {
+                '1': {
+                    'name': 'Participant Enrollment',
+                    'duration': '1 week',
+                    'summary': 'Recruit and enroll patients with rheumatoid arthritis',
+                    'checklist': [
+                        'Complete consent process',
+                        'Baseline pain and mobility assessment',
+                        'Medical history review',
+                        'Initial physical therapy instructions'
+                    ]
+                },
+                '2': {
+                    'name': 'Treatment Phase',
+                    'duration': '8 weeks',
+                    'summary': 'Implement non-pharmaceutical pain management techniques',
+                    'checklist': [
+                        'Daily physical therapy exercises',
+                        'Pain diary logging',
+                        'Weekly check-ins with study coordinator',
+                        'Lifestyle modification guidance'
+                    ]
+                },
+                '3': {
+                    'name': 'Post-Treatment Assessment',
+                    'duration': '2 weeks',
+                    'summary': 'Evaluate outcomes and gather feedback',
+                    'checklist': [
+                        'Final pain and mobility assessment',
+                        'Patient feedback survey',
+                        'Data compilation and analysis',
+                        'Exit interview'
+                    ]
+                }
+            }
         }
     ]
     

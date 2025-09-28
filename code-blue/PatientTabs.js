@@ -5,7 +5,6 @@ import { Ionicons } from '@expo/vector-icons';
 import PatientDashboard from './src/patientDashboard';
 import AIChat from './src/aiChat';
 import ClinicalTrials from './src/clinicalTrials';
-import Timeline from './src/timeline';
 
 const Tab = createBottomTabNavigator();
 
@@ -20,7 +19,6 @@ export default function PatientTabs({route}) {
           if (route.name === 'Patient') iconName = focused ? 'home' : 'home-outline';
           if (route.name === 'AI Chat') iconName = focused ? 'chatbubbles' : 'chatbubbles-outline';
           if (route.name === 'Trials') iconName = focused ? 'clipboard' : 'clipboard-outline';
-          if (route.name === 'Timeline') iconName = focused ? 'clipboard' : 'time-outline';
           return <Ionicons name={iconName} size={size} color={color} />;
         },
         tabBarActiveTintColor: '#32ae48',
@@ -35,9 +33,6 @@ export default function PatientTabs({route}) {
       </Tab.Screen>
       <Tab.Screen name="Trials">
         {props => <ClinicalTrials {...props} email={email} />}
-      </Tab.Screen>
-      <Tab.Screen name="Timeline (temp)">
-        {props => <Timeline {...props} email={email} />}
       </Tab.Screen>
     </Tab.Navigator>
   );

@@ -44,7 +44,7 @@ const AppNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {user ? (
-        user.role === "patient" ? (
+        user.userType === "patient" ? (
           <Stack.Screen name="PatientTabs" component={PatientTabs} />
         ) : (
           <Stack.Screen name="CrcDashboard" component={CrcDashboard} />

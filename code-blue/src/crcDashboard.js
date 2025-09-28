@@ -192,6 +192,7 @@ const CrcDashboard = ({ route, email: propEmail }) => {
             <TextInput
               style={styles.searchInput}
               placeholder="Search trials by title, condition, or location..."
+              placeholderTextColor={"#9ba1a9ff"}
               value={searchQuery}
               onChangeText={setSearchQuery}
             />

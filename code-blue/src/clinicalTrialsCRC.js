@@ -1,14 +1,39 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, Modal, SafeAreaView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, Modal, SafeAreaView, ActivityIndicator } from 'react-native';
 import ClinicalTrialTimeline from './timeline'; // Make sure this path is correct
+
+const API_BASE_URL = 'http://100.66.12.93:8000/api';
 
 const ClinicalTrialsCRC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedFilter, setSelectedFilter] = useState('All');
   const [selectedTrial, setSelectedTrial] = useState(null); // State to manage the modal
+  const [allTrials, setAllTrials] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // --- (Your allTrials data remains the same) ---
-  const allTrials = [
+  // Fetch trials from API
+  useEffect(() => {
+    fetchTrials();
+  }, []);
+
+  const fetchTrials = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const response = await fetch(`${API_BASE_URL}/trials/available`);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      setAllTrials(data.available_trials || []);
+    } catch (err) {
+      console.error('Error fetching clinical trials:', err);
+      setError('Failed to load clinical trials. Please try again later.');
+      // Fallback to hardcoded data if API fails
+      setAllTrials([
     {
       id: 1,
       title: 'DIABETES-CARE-2025',
@@ -97,7 +122,11 @@ const ClinicalTrialsCRC = () => {
       insurance: 'Results Available to All',
       condition: 'Arthritis'
     }
-  ];
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const filterOptions = ['All', 'Recruiting', 'Active', 'Completed'];
 
@@ -141,6 +170,24 @@ const ClinicalTrialsCRC = () => {
           <View style={styles.wrapper}>
           <Text style={styles.title}>Clinical Trials</Text>
           
+          {loading && (
+            <View style={styles.loadingContainer}>
+              <ActivityIndicator size="large" color="#007bff" />
+              <Text style={styles.loadingText}>Loading clinical trials...</Text>
+            </View>
+          )}
+          
+          {error && (
+            <View style={styles.errorContainer}>
+              <Text style={styles.errorText}>{error}</Text>
+              <TouchableOpacity style={styles.retryButton} onPress={fetchTrials}>
+                <Text style={styles.retryButtonText}>Retry</Text>
+              </TouchableOpacity>
+            </View>
+          )}
+          
+          {!loading && (
+          <>
           <View style={styles.searchContainer}>
               <TextInput
               style={styles.searchInput}
@@ -212,6 +259,8 @@ const ClinicalTrialsCRC = () => {
               <Text style={styles.noResultsText}>No clinical trials found.</Text>
               <Text style={styles.noResultsSubtext}>Try adjusting your search or filter.</Text>
               </View>
+          )}
+          </>
           )}
           </View>
       </ScrollView>
@@ -454,6 +503,46 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 14,
+  },
+  
+  // Loading and Error States
+  loadingContainer: {
+    alignItems: 'center',
+    padding: 40,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    marginTop: 20
+  },
+  loadingText: {
+    marginTop: 10,
+    fontSize: 16,
+    color: '#6c757d'
+  },
+  errorContainer: {
+    alignItems: 'center',
+    padding: 20,
+    backgroundColor: '#f8d7da',
+    borderRadius: 20,
+    marginTop: 20,
+    borderWidth: 1,
+    borderColor: '#f5c6cb'
+  },
+  errorText: {
+    fontSize: 16,
+    color: '#721c24',
+    textAlign: 'center',
+    marginBottom: 15
+  },
+  retryButton: {
+    backgroundColor: '#dc3545',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 20
+  },
+  retryButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 14
   }
 });
 

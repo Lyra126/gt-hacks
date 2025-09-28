@@ -9,7 +9,7 @@ import PromptLoginSignUp from './src/promptLoginSignUp';
 import SignUp from './src/signUp';
 import Login from './src/login';
 import PatientTabs from './PatientTabs'; // Assuming this is your tab navigator
-
+import CrcTabs from './CrcTabs'; // Assuming this is your tab navigator for CRCs
 const Stack = createStackNavigator();
 
 // This component decides which screens to show based on auth state
@@ -41,8 +41,10 @@ const AppNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {user ? (
-        // If user is logged in, show the main app
-        <Stack.Screen name="PatientTabs" component={PatientTabs} />
+         <>
+          <Stack.Screen name="PatientTabs" component={PatientTabs} />
+          <Stack.Screen name="CrcTabs" component={CrcTabs} />
+        </>
       ) : (
         // If not logged in, show the auth flow screens
         <>

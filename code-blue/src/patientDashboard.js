@@ -19,116 +19,133 @@ const InfoRow = ({ label, value }) => {
 const PatientDashboard = ({ route }) => {
   const { user } = useAuth();
 
-  const patientId = user?.mainId;
+  // const patientId = user?.mainId;
 
-  const [profileData, setProfileData] = useState(null);
-  const [emrData, setEmrData] = useState(null);
-  const [trials, setTrials] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  // const [profileData, setProfileData] = useState(null);
+  // const [emrData, setEmrData] = useState(null);
+  // const [trials, setTrials] = useState([]);
+  // const [isLoading, setIsLoading] = useState(true);
+  // const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchDashboardData = async () => {
-      try {
-        const [profileResponse, emrResponse, trialsResponse] = await Promise.all([
-          fetch(`${API_BASE_URL}/patient/${patientId}/profile`),
-          fetch(`${API_BASE_URL}/patient/${patientId}/emr`),
-          fetch(`${API_BASE_URL}/trials/available`)
-        ]);
+  // useEffect(() => {
+  //   const fetchDashboardData = async () => {
+  //     try {
+  //       const [profileResponse, emrResponse, trialsResponse] = await Promise.all([
+  //         fetch(`${API_BASE_URL}/patient/${patientId}/profile`),
+  //         fetch(`${API_BASE_URL}/patient/${patientId}/emr`),
+  //         fetch(`${API_BASE_URL}/trials/available`)
+  //       ]);
 
-        if (!profileResponse.ok) throw new Error('Failed to fetch patient profile.');
-        if (!emrResponse.ok) throw new Error('Failed to fetch patient EMR.');
-        if (!trialsResponse.ok) throw new Error('Failed to fetch clinical trials.');
+  //       if (!profileResponse.ok) throw new Error('Failed to fetch patient profile.');
+  //       if (!emrResponse.ok) throw new Error('Failed to fetch patient EMR.');
+  //       if (!trialsResponse.ok) throw new Error('Failed to fetch clinical trials.');
 
-        const profile = await profileResponse.json();
-        const emr = await emrResponse.json();
-        const trialsData = await trialsResponse.json();
+  //       const profile = await profileResponse.json();
+  //       const emr = await emrResponse.json();
+  //       const trialsData = await trialsResponse.json();
 
-        setProfileData(profile);
-        setEmrData(emr);
-        setTrials(trialsData.available_trials || []);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchDashboardData();
-  }, [patientId]);
+  //       setProfileData(profile);
+  //       setEmrData(emr);
+  //       setTrials(trialsData.available_trials || []);
+  //     } catch (err) {
+  //       setError(err.message);
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   };
+  //   fetchDashboardData();
+  // }, [patientId]);
 
-  const handleUploadEMR = async () => {
-    try {
-      const result = await DocumentPicker.getDocumentAsync({ type: 'application/pdf' });
-      if (result.canceled) return;
+  // const handleUploadEMR = async () => {
+  //   try {
+  //     const result = await DocumentPicker.getDocumentAsync({ type: 'application/pdf' });
+  //     if (result.canceled) return;
 
-      const file = result.assets[0];
-      const formData = new FormData();
-      formData.append('file', { uri: file.uri, name: file.name, type: file.mimeType });
+  //     const file = result.assets[0];
+  //     const formData = new FormData();
+  //     formData.append('file', { uri: file.uri, name: file.name, type: file.mimeType });
 
-      Alert.alert("Uploading...", "Your EMR is being processed.");
-      const response = await fetch(`${API_BASE_URL}/emr/upload-pdf/${patientId}`, {
-        method: 'POST',
-        body: formData,
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
+  //     Alert.alert("Uploading...", "Your EMR is being processed.");
+  //     const response = await fetch(`${API_BASE_URL}/emr/upload-pdf/${patientId}`, {
+  //       method: 'POST',
+  //       body: formData,
+  //       headers: { 'Content-Type': 'multipart/form-data' },
+  //     });
 
-      const responseData = await response.json();
-      if (!response.ok) throw new Error(responseData.detail || 'Upload failed');
-      Alert.alert("Success!", `EMR processed. Summary: ${responseData.summary}`);
-    } catch (err) {
-      Alert.alert("Upload Error", err.message);
-    }
-  };
+  //     const responseData = await response.json();
+  //     if (!response.ok) throw new Error(responseData.detail || 'Upload failed');
+  //     Alert.alert("Success!", `EMR processed. Summary: ${responseData.summary}`);
+  //   } catch (err) {
+  //     Alert.alert("Upload Error", err.message);
+  //   }
+  // };
 
-  if (isLoading) {
-    return <View style={styles.centerContainer}><ActivityIndicator size="large" color="#667eea" /></View>;
-  }
+  // if (isLoading) {
+  //   return <View style={styles.centerContainer}><ActivityIndicator size="large" color="#667eea" /></View>;
+  // }
 
-  if (error) {
-    return <View style={styles.centerContainer}><Text style={styles.errorText}>{error}</Text></View>;
-  }
+  // if (error) {
+  //   return <View style={styles.centerContainer}><Text style={styles.errorText}>{error}</Text></View>;
+  // }
+
+  // return (
+  //   <ScrollView style={styles.container}>
+  //     <View style={styles.wrapper}>
+  //       <Text style={styles.title}>Patient Dashboard</Text>
+  //       <Text style={styles.welcomeText}>Welcome back, {profileData?.firstName || 'Patient'}</Text>
+        
+  //       <View style={styles.buttonContainer}>
+  //         <TouchableOpacity style={styles.uploadButton} onPress={handleUploadEMR}>
+  //           <Text style={styles.buttonText}>Upload EMR File</Text>
+  //         </TouchableOpacity>
+  //       </View>
+      
+  //       {/* EMR Information Card - Now fully dynamic */}
+  //       <View style={styles.card}>
+  //         <Text style={styles.cardTitle}>Your Information</Text>
+  //         <InfoRow label="Name" value={`${profileData?.firstName || ''} ${profileData?.lastName || ''}`} />
+  //         <InfoRow label="EMR Log" value={emrData?.log?.join(', ')} />
+  //       </View>
+
+  //       {/* Available Clinical Trials Card - Now fully dynamic */}
+  //       <View style={styles.card}>
+  //         <Text style={styles.cardTitle}>Available Clinical Trials</Text>
+  //         {trials.length > 0 ? (
+  //           trials.map((trial) => (
+  //             <View key={trial.id} style={styles.trialItem}>
+  //               <View style={styles.trialHeader}>
+  //                 <Text style={styles.trialName}>{trial.title}</Text>
+  //                 <View style={[styles.statusBadge, { backgroundColor: getStatusColor(trial.status) }]}>
+  //                   <Text style={styles.statusText}>{trial.status}</Text>
+  //                 </View>
+  //               </View>
+  //               <Text style={styles.trialDescription}>{trial.description}</Text>
+  //             </View>
+  //           ))
+  //         ) : (
+  //           <Text style={{color: 'white'}}>No available trials found at this time.</Text>
+  //         )}
+  //       </View>
+  //     </View>
+  //   </ScrollView>
+  // );
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.wrapper}>
-        <Text style={styles.title}>Patient Dashboard</Text>
-        <Text style={styles.welcomeText}>Welcome back, {profileData?.firstName || 'Patient'}</Text>
-        
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.uploadButton} onPress={handleUploadEMR}>
-            <Text style={styles.buttonText}>Upload EMR File</Text>
-          </TouchableOpacity>
+    <View style={styles.container}>
+      <Text style={styles.title}>Current User</Text>
+      {user ? (
+        <View>
+          <Text style={styles.text}>Name: {user.name}</Text>
+          <Text style={styles.text}>Email: {user.email}</Text>
+          <Text style={styles.text}>User Type: {user.userType}</Text>
+          <Text style={styles.text}>User ID: {user.mainId}</Text>
         </View>
-      
-        {/* EMR Information Card - Now fully dynamic */}
-        <View style={styles.card}>
-          <Text style={styles.cardTitle}>Your Information</Text>
-          <InfoRow label="Name" value={`${profileData?.firstName || ''} ${profileData?.lastName || ''}`} />
-          <InfoRow label="EMR Log" value={emrData?.log?.join(', ')} />
-        </View>
-
-        {/* Available Clinical Trials Card - Now fully dynamic */}
-        <View style={styles.card}>
-          <Text style={styles.cardTitle}>Available Clinical Trials</Text>
-          {trials.length > 0 ? (
-            trials.map((trial) => (
-              <View key={trial.id} style={styles.trialItem}>
-                <View style={styles.trialHeader}>
-                  <Text style={styles.trialName}>{trial.title}</Text>
-                  <View style={[styles.statusBadge, { backgroundColor: getStatusColor(trial.status) }]}>
-                    <Text style={styles.statusText}>{trial.status}</Text>
-                  </View>
-                </View>
-                <Text style={styles.trialDescription}>{trial.description}</Text>
-              </View>
-            ))
-          ) : (
-            <Text style={{color: 'white'}}>No available trials found at this time.</Text>
-          )}
-        </View>
-      </View>
-    </ScrollView>
+      ) : (
+        <Text style={styles.text}>No user is currently logged in.</Text>
+      )}
+    </View>
   );
+
 };
 
 // Helper function for status colors (can be placed inside or outside the component)

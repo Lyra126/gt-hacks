@@ -9,7 +9,7 @@ import PromptLoginSignUp from './src/promptLoginSignUp';
 import SignUp from './src/signUp';
 import Login from './src/login';
 import PatientTabs from './PatientTabs'; // Assuming this is your tab navigator
-import CrcDashboard from './src/CrcDashboard';
+import CrcTabs from './CrcTabs';
 const Stack = createStackNavigator();
 
 // This component decides which screens to show based on auth state
@@ -47,7 +47,7 @@ const AppNavigator = () => {
         user.userType === "patient" ? (
           <Stack.Screen name="PatientTabs" component={PatientTabs} />
         ) : (
-          <Stack.Screen name="CrcDashboard" component={CrcDashboard} />
+          <Stack.Screen name="CrcTabs" component={CrcTabs} />
         )
       ) : (
         <>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Animated, StyleSheet, Dimensions } from 'react-native';
 
 const { width } = Dimensions.get('window');
@@ -7,54 +7,11 @@ const accentColor = "#3498db";
 const completeColor = "#27ae60";
 const pendingColor = "#bdc3c7";
 
-const timelineData = [
-  {
-    date: "Step 1",
-    title: "Sign Up",
-    subtitle: "Create your volunteer profile",
-    tasks: [
-      { title: "Enter personal info", description: "Fill out your name, age, and contact information." },
-      { title: "Verify email", description: "Check your inbox and click the verification link." },
-      { title: "Upload ID", description: "Provide a photo of your government-issued ID." },
-      { title: "Agree to terms", description: "Read and accept the volunteer agreement." }
-    ]
-  },
-  {
-    date: "Step 2",
-    title: "Eligibility Screening",
-    subtitle: "Answer screening questions",
-    tasks: [
-      { title: "Complete health survey", description: "Answer questions about your medical history." },
-      { title: "Upload medical records", description: "Attach relevant medical documents." },
-      { title: "Schedule screening call", description: "Book a call with our clinical team." }
-    ]
-  },
-  {
-    date: "Step 3",
-    title: "Trial Matching",
-    subtitle: "Get matched with trials",
-    tasks: [
-      { title: "Review trial options", description: "Browse available clinical trials." },
-      { title: "Select preferred trials", description: "Choose trials that interest you." },
-      { title: "Submit interest", description: "Let us know which trials you want to join." }
-    ]
-  },
-  {
-    date: "Step 4",
-    title: "Enrollment",
-    subtitle: "Finalize enrollment",
-    tasks: [
-      { title: "Sign consent forms", description: "Read and sign the required documents." },
-      { title: "Schedule first visit", description: "Book your initial appointment." },
-      { title: "Confirm participation", description: "Let us know you’re ready to begin." }
-    ]
-  }
-];
-
-const TimelineItem = ({ item, index, isExpanded, onToggle, taskStatus, onTaskToggle }) => {
+// This component is now a "dumb" component that just renders what it's given
+const TimelineItem = ({ item, index, isExpanded, onToggle, taskStatus, onTaskToggle, totalItems }) => {
   const [animation] = useState(new Animated.Value(0));
 
-  React.useEffect(() => {
+  useEffect(() => {
     Animated.timing(animation, {
       toValue: isExpanded ? 1 : 0,
       duration: 300,
@@ -62,11 +19,10 @@ const TimelineItem = ({ item, index, isExpanded, onToggle, taskStatus, onTaskTog
     }).start();
   }, [isExpanded]);
 
-  const completedTasks = taskStatus[index].filter(Boolean).length;
-  const totalTasks = item.tasks.length;
+  const completedTasks = taskStatus[index]?.filter(Boolean).length || 0;
+  const totalTasks = item.tasks?.length || 0;
   const completionRate = totalTasks ? Math.round((completedTasks / totalTasks) * 100) : 0;
 
-  // Step color logic
   let stepColor = pendingColor;
   if (completedTasks === totalTasks && totalTasks > 0) {
     stepColor = completeColor;
@@ -76,7 +32,7 @@ const TimelineItem = ({ item, index, isExpanded, onToggle, taskStatus, onTaskTog
 
   const maxHeight = animation.interpolate({
     inputRange: [0, 1],
-    outputRange: [0, 120 + item.tasks.length * 48], // more space for title/desc
+    outputRange: [0, 120 + (item.tasks?.length || 0) * 48],
   });
 
   const opacity = animation.interpolate({
@@ -88,7 +44,7 @@ const TimelineItem = ({ item, index, isExpanded, onToggle, taskStatus, onTaskTog
     <View style={styles.timelineItem}>
       <View style={styles.timelineColumn}>
         <View style={[styles.timelineDot, { backgroundColor: stepColor }]} />
-        {index < timelineData.length - 1 && <View style={styles.timelineLine} />}
+        {index < totalItems - 1 && <View style={styles.timelineLine} />}
       </View>
       <View style={styles.contentColumn}>
         <TouchableOpacity
@@ -105,25 +61,15 @@ const TimelineItem = ({ item, index, isExpanded, onToggle, taskStatus, onTaskTog
             <Text style={styles.expandIconText}>▼</Text>
           </View>
         </TouchableOpacity>
-        {/* Progress Bar */}
         <View style={styles.progressContainer}>
           <View style={styles.progressBarBackground}>
             <View style={[styles.progressBarFill, { width: ((width - 80) * completionRate / 100), backgroundColor: stepColor }]} />
           </View>
           <Text style={[styles.progressText, stepColor === completeColor && { color: completeColor }]}>{completionRate}% Complete</Text>
         </View>
-        {/* Expandable Content */}
-        <Animated.View
-          style={[
-            styles.expandableContent,
-            {
-              maxHeight,
-              opacity,
-            }
-          ]}
-        >
+        <Animated.View style={[styles.expandableContent, { maxHeight, opacity }]}>
           <View style={styles.tasksContainer}>
-            {item.tasks.map((task, idx) => (
+            {item.tasks?.map((task, idx) => (
               <TouchableOpacity
                 key={idx}
                 style={styles.taskRow}
@@ -132,9 +78,9 @@ const TimelineItem = ({ item, index, isExpanded, onToggle, taskStatus, onTaskTog
               >
                 <View style={[
                   styles.checkbox,
-                  taskStatus[index][idx] && { backgroundColor: stepColor, borderColor: stepColor }
+                  taskStatus[index]?.[idx] && { backgroundColor: stepColor, borderColor: stepColor }
                 ]}>
-                  {taskStatus[index][idx] && <Text style={styles.checkboxTick}>✓</Text>}
+                  {taskStatus[index]?.[idx] && <Text style={styles.checkboxTick}>✓</Text>}
                 </View>
                 <View style={styles.taskInfo}>
                   <Text style={styles.taskTitle}>{task.title}</Text>
@@ -149,20 +95,21 @@ const TimelineItem = ({ item, index, isExpanded, onToggle, taskStatus, onTaskTog
   );
 };
 
-const ClinicalTrialTimeline = ({ trialTitle }) => {
+// MODIFIED COMPONENT: It now receives 'timelineData' as a prop
+const ClinicalTrialTimeline = ({ trialTitle, timelineData }) => {
   const [expandedItems, setExpandedItems] = useState(new Set());
-  // Track completion status for each task in each step
-  const [taskStatus, setTaskStatus] = useState(
-    timelineData.map(item => Array(item.tasks.length).fill(false))
-  );
+  const [taskStatus, setTaskStatus] = useState([]);
+
+  // This effect resets the task statuses whenever new timeline data is passed in
+  useEffect(() => {
+    if (timelineData) {
+      setTaskStatus(timelineData.map(item => Array(item.tasks?.length || 0).fill(false)));
+    }
+  }, [timelineData]);
 
   const toggleExpanded = (index) => {
     const newExpanded = new Set(expandedItems);
-    if (newExpanded.has(index)) {
-      newExpanded.delete(index);
-    } else {
-      newExpanded.add(index);
-    }
+    newExpanded.has(index) ? newExpanded.delete(index) : newExpanded.add(index);
     setExpandedItems(newExpanded);
   };
 
@@ -173,6 +120,11 @@ const ClinicalTrialTimeline = ({ trialTitle }) => {
       return updated;
     });
   };
+  
+  // Render a message if no data is available
+  if (!timelineData || timelineData.length === 0) {
+    return <View style={styles.container}><Text>No timeline data available for this trial.</Text></View>;
+  }
 
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
@@ -187,6 +139,7 @@ const ClinicalTrialTimeline = ({ trialTitle }) => {
             onToggle={() => toggleExpanded(index)}
             taskStatus={taskStatus}
             onTaskToggle={toggleTask}
+            totalItems={timelineData.length}
           />
         ))}
       </View>

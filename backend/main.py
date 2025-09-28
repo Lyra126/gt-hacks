@@ -5,7 +5,7 @@ import firebase_config
 
 # We will create these files in the next steps
 #add back in timeline_service
-from api.endpoints import agent, auth, timeline, patient, organization, trials
+from api.endpoints import agent, auth, timeline, patient, organization, trials, emr
 
 load_dotenv()
 
@@ -23,6 +23,7 @@ app.include_router(auth.router, prefix="/api", tags=["Authentication"])
 app.include_router(patient.router, prefix="/api", tags=["Patient Views"])
 app.include_router(organization.router, prefix="/api", tags=["Organization Views"])
 app.include_router(trials.router, prefix="/api", tags=["Clinical Trials"])
+app.include_router(emr.router, prefix="/api", tags=["EMR"])
 
 # A simple root endpoint to confirm the server is running
 @app.get("/")

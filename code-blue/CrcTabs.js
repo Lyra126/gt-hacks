@@ -2,7 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
-import CrcDashboard from './src/CrcDashboard';
+import CrcDashboard from './src/crcDashboard';
 import AIChat from './src/aiChat';
 
 const Tab = createBottomTabNavigator();
